@@ -4,27 +4,27 @@ import { FileService } from "../../services/FileService";
 
 export class CreateUserStoryForm {
 	public plugin: ZonzonsProjectManagement;
+	public fileService: FileService;
 	public project: TFolder | null;
 	public name: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
+		this.fileService = new FileService(plugin);
 		this.project = null;
 		this.name = "";
 	}
 
 	public setProject(projectName: string): void {
-		this.project = this.plugin.app.vault.getFolderByPath(this.plugin.settings.projectFolderPath + "/" + projectName);
+		this.project = this.fileService.getProjectFolder(projectName);
 	}
 
 	public async create(): Promise<void> {
-		const fileService: FileService = new FileService(this.plugin);
-
 		if (!this.project) {
 			new Notice("Project not found. User story creation aborted.", 5000);
 			return;
 		}
 
-		await fileService.createUserStoryMarkdownFile(this.project, this.name);
+		await this.fileService.createUserStoryMarkdownFile(this.project, this.name);
 	}
 }

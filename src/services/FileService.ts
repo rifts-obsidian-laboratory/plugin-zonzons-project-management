@@ -14,6 +14,10 @@ export class FileService {
 		this.fileHelper = new FileHelper(this.app);
 	}
 
+	getProjectFolder(name: string): TFolder | null {
+		return this.app.vault.getFolderByPath(this.settings.projectFolderPath + "/" + name);
+	}
+
 	async createProjectFolder(name: string): Promise<TFolder> {
 		return await this.app.vault.createFolder(this.settings.projectFolderPath + "/" + name);
 	}
