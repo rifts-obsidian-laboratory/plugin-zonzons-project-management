@@ -43,5 +43,19 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(containerEl)
+			.setName("User story template path")
+			.setDesc("The path to the template user stories will be created with.")
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder("Start to type the name of a file...")
+					.setValue(this.plugin.settings.userStoryTemplatePath)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.userStoryTemplatePath = value;
+						await this.plugin.saveSettings();
+					});
+
+				new MarkdownFileSuggest(this.app, text.inputEl);
+			});
 	}
 }
