@@ -54,9 +54,9 @@ export class SettingTab extends PluginSettingTab {
 			.setDesc("The path to the template dashboards will be created with.")
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder("Start to type the name of a file...")
-					.setValue(this.plugin.settings.dashboardTemplatePath)
+					.setValue(this.plugin.settings.agileDashboardTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
-						this.plugin.settings.dashboardTemplatePath = value;
+						this.plugin.settings.agileDashboardTemplatePath = value;
 						await this.plugin.saveSettings();
 					});
 
