@@ -1,4 +1,4 @@
-import { Notice, TFolder } from "obsidian";
+import { Notice, TFile, TFolder } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
 import { ProjectType } from "../../enums/ProjectType";
 import { FileService } from "../../services/FileService";
@@ -26,7 +26,13 @@ export class CreateProjectForm {
 			return;
 		}
 
-		await this.fileService.createProjectOverviewMarkdownFile(project);
+		const projectOverview: TFile | null = await this.fileService.createProjectOverviewMarkdownFile(project);
+
+		if (!projectOverview) {
+			return;
+		}
+
+		await this.plugin.app.workspace.getLeaf(true).openFile(projectOverview);
 
 		if (this.type === ProjectType.TRADITIONAL) {
 			//

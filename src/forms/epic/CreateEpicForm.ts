@@ -1,5 +1,5 @@
 import ZonzonsProjectManagement from "../../main";
-import { Notice, TFolder } from "obsidian";
+import { Notice, TFile, TFolder } from "obsidian";
 import { FileService } from "../../services/FileService";
 
 export class CreateEpicForm {
@@ -25,6 +25,12 @@ export class CreateEpicForm {
 			return;
 		}
 
-		await this.fileService.createEpicMarkdownFile(this.project, this.name);
+		const epic: TFile | null = await this.fileService.createEpicMarkdownFile(this.project, this.name);
+
+		if (!epic) {
+			return;
+		}
+
+		await this.plugin.app.workspace.getLeaf(true).openFile(epic);
 	}
 }

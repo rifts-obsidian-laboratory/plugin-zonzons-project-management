@@ -1,5 +1,5 @@
 import ZonzonsProjectManagement from "../../main";
-import { Notice, TFolder } from "obsidian";
+import { Notice, TFile, TFolder } from "obsidian";
 import { FileService } from "../../services/FileService";
 
 export class CreateUserStoryForm {
@@ -25,6 +25,12 @@ export class CreateUserStoryForm {
 			return;
 		}
 
-		await this.fileService.createUserStoryMarkdownFile(this.project, this.name);
+		const userStory: TFile | null = await this.fileService.createUserStoryMarkdownFile(this.project, this.name);
+
+		if (!userStory) {
+			return;
+		}
+
+		await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
 	}
 }
