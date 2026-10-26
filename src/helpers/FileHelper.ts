@@ -11,7 +11,8 @@ export class FileHelper {
 		const template: TFile | TAbstractFile | null = this.app.vault.getAbstractFileByPath(templatePath);
 		if (!(template instanceof TFile)) return null;
 
-		const content: string = await this.app.vault.read(template);
+		const content: string = (await this.app.vault.read(template))
+			.replaceAll(/^> \[!template-help\][^\n]*\n(?:>[^\n]*\n?)*/gm, "");
 
 		let path: string = project.path + "/" + fileName;
 		if (!path.endsWith(".md")) path += ".md";
