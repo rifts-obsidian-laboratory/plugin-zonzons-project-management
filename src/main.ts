@@ -15,7 +15,7 @@ export default class ZonzonsProjectManagement extends Plugin {
 			id: "create-project",
 			name: "Create project",
 			callback: () => {
-				new CreateProjectModal(this.app).open();
+				new CreateProjectModal(this).open();
 			}
 		});
 

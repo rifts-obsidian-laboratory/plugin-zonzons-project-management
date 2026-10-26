@@ -1,12 +1,13 @@
-import { App, ButtonComponent, DropdownComponent, Modal, Setting, TextComponent } from "obsidian";
+import { ButtonComponent, DropdownComponent, Modal, TextComponent } from "obsidian";
 import { CreateProjectForm } from "../../forms/project/CreateProjectForm";
+import ZonzonsProjectManagement from "../../main";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
 
-	constructor(app: App) {
-		super(app);
-		this.form = new CreateProjectForm();
+	constructor(plugin: ZonzonsProjectManagement) {
+		super(plugin.app);
+		this.form = new CreateProjectForm(plugin);
 	}
 
 	override onOpen(): void {
@@ -40,7 +41,10 @@ export class CreateProjectModal extends Modal {
 
 		new ButtonComponent(contentEl)
 			.setButtonText("Create")
-			.onClick(() => this.form.create())
+			.onClick(async (): Promise<void> => {
+				await this.form.create();
+				this.close();
+			})
 			.setClass("submit-form-button");
 	}
 }
