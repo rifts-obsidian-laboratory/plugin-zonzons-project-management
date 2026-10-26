@@ -17,6 +17,8 @@ export class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
+		new Setting(containerEl).setName("General").setHeading();
+
 		new Setting(containerEl)
 			.setName("Project folder path")
 			.setDesc("The path to the folder where new projects will be scaffolded.")
@@ -44,6 +46,8 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(containerEl).setName("AGILE project management").setHeading();
 
 		new Setting(containerEl)
 			.setName("Dashboard template path")
