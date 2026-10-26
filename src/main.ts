@@ -3,12 +3,21 @@ import {
 } from 'obsidian';
 import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
+import { CreateProjectModal } from "./modals/project/CreateProjectModal";
 
 export default class ZonzonsProjectManagement extends Plugin {
 	settings!: I_Settings;
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
+
+		this.addCommand({
+			id: "create-project",
+			name: "Create project",
+			callback: () => {
+				new CreateProjectModal(this.app).open();
+			}
+		});
 
 		this.addSettingTab(new SettingTab(this.app, this));
 	}

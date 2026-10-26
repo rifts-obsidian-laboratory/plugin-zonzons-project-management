@@ -1,8 +1,30 @@
-/*
+.zonzons-project-management.modal {
+	.modal-header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		position: relative;
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+		.modal-header-button {
+			position: absolute;
+			top: 0;
+		}
+	}
 
-If your plugin does not need CSS, delete this file.
+	.modal-content {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 
-*/
+		.input-container {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.submit-form-button {
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
