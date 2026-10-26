@@ -1,7 +1,6 @@
 import ZonzonsProjectManagement from "../../main";
-import { App, Notice, TAbstractFile, TFile, TFolder } from "obsidian";
-import { I_Settings } from "../../settings/Settings";
-import { createMarkdownFile } from "../../helpers/file";
+import { Notice, TFolder } from "obsidian";
+import { FileService } from "../../services/FileService";
 
 export class CreateEpicForm {
 	public plugin: ZonzonsProjectManagement;
@@ -19,21 +18,13 @@ export class CreateEpicForm {
 	}
 
 	public async create(): Promise<void> {
-		const app: App = this.plugin.app;
-		const settings: I_Settings = this.plugin.settings;
-
-		console.log(this.project, this.name);
+		const fileService: FileService = new FileService(this.plugin);
 
 		if (!this.project) {
 			new Notice("Project not found. Epic creation aborted.", 5000);
 			return;
 		}
 
-		await createMarkdownFile(
-			app,
-			this.project,
-			settings.epicTemplatePath,
-			settings.epicFolderName + "/" + this.name + ".md",
-		);
+		await fileService.createEpicMarkdownFile(this.project, this.name);
 	}
 }

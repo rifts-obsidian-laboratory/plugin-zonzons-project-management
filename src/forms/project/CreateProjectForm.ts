@@ -1,8 +1,7 @@
-import { App, Notice, TFile, TFolder } from "obsidian";
-import { I_Settings } from "../../settings/Settings";
+import { Notice, TFolder } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
-import { createBaseFile, createMarkdownFile } from "../../helpers/file";
 import { ProjectType } from "../../enums/ProjectType";
+import { FileService } from "../../services/FileService";
 
 export class CreateProjectForm {
 	public plugin: ZonzonsProjectManagement;
@@ -16,39 +15,28 @@ export class CreateProjectForm {
 	}
 
 	public async create(): Promise<void> {
-		const app: App = this.plugin.app;
-		const settings: I_Settings = this.plugin.settings;
+		const fileService: FileService = new FileService(this.plugin);
 
 		let project: TFolder | null = null;
 
 		try {
-			project = await app.vault.createFolder(settings.projectFolderPath + "/" + this.name);
+			project = await fileService.createProjectFolder(this.name);
 		} catch (error) {
 			new Notice("Project already exists. Project creation aborted.", 5000);
 			return;
 		}
 
-		const projectOverview: TFile | null = await createMarkdownFile(
-			app,
-			project,
-			settings.projectOverviewTemplatePath,
-			settings.projectOverviewFileName,
-		);
+		await fileService.createProjectOverviewMarkdownFile(project);
 
 		if (this.type === ProjectType.TRADITIONAL) {
 			//
 		} else if (this.type === ProjectType.AGILE) {
-			const dashboard: TFile | null = await createBaseFile(
-				app,
-				project,
-				settings.agileDashboardTemplatePath,
-				settings.agileDashboardFileName,
-			);
+			await fileService.createAgileDashboardBaseFile(project);
 
-			const epics: TFolder = await app.vault.createFolder(project.path + "/" + settings.epicFolderName);
-			const userStories: TFolder = await app.vault.createFolder(project.path + "/" + settings.userStoryFolderName);
+			await fileService.createEpicFolder(project);
+			await fileService.createUserStoryFolder(project);
 		} else {
-			await app.vault.delete(project, true);
+			await this.plugin.app.vault.delete(project, true);
 			new Notice("Project type not supported. Project creation aborted.", 5000);
 		}
 	}
