@@ -1,5 +1,6 @@
 export interface I_Settings {
 	projectFolderPath: string;
+	projectOverviewTemplatePath: string;
 	dashboardTemplatePath: string;
 	epicTemplatePath: string;
 	userStoryTemplatePath: string;
@@ -8,6 +9,7 @@ export interface I_Settings {
 
 export const DEFAULT_SETTINGS: I_Settings = {
 	projectFolderPath: "",
+	projectOverviewTemplatePath: "",
 	dashboardTemplatePath: "",
 	epicTemplatePath: "",
 	userStoryTemplatePath: "",

@@ -32,6 +32,20 @@ export class SettingTab extends PluginSettingTab {
 			});
 
 		new Setting(containerEl)
+			.setName("Project overview template path")
+			.setDesc("The path to the template project overviews will be created with.")
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder("Start to type the name of a file...")
+					.setValue(this.plugin.settings.projectOverviewTemplatePath)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.projectOverviewTemplatePath = value;
+						await this.plugin.saveSettings();
+					});
+
+				new MarkdownFileSuggest(this.app, text.inputEl);
+			});
+
+		new Setting(containerEl)
 			.setName("Dashboard template path")
 			.setDesc("The path to the template dashboards will be created with.")
 			.addText((text: TextComponent): void => {
