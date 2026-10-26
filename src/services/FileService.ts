@@ -49,4 +49,12 @@ export class FileService {
 	async createUserStoryFolder(project: TFolder): Promise<TFolder> {
 		return await this.app.vault.createFolder(project.path + "/" + this.settings.userStoryFolderName);
 	}
+
+	async createUserStoryMarkdownFile(project: TFolder, name: string): Promise<TFile | null> {
+		return await this.fileHelper.createMarkdownFile(
+			project,
+			this.settings.userStoryTemplatePath,
+			this.settings.userStoryFolderName + "/" + name
+		);
+	}
 }
