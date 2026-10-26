@@ -1,17 +1,17 @@
 import { App, TFile, TFolder } from "obsidian";
 import { I_Settings } from "../settings/Settings";
 import ZonzonsProjectManagement from "../main";
-import { createBaseFile, createMarkdownFile } from "../helpers/file";
+import { FileHelper } from "../helpers/FileHelper";
 
 export class FileService {
-	plugin: ZonzonsProjectManagement;
 	app: App;
 	settings: I_Settings;
+	fileHelper: FileHelper;
 
 	constructor(plugin: ZonzonsProjectManagement) {
-		this.plugin = plugin;
 		this.app = plugin.app;
 		this.settings = plugin.settings;
+		this.fileHelper = new FileHelper(this.app);
 	}
 
 	async createProjectFolder(name: string): Promise<TFolder> {
@@ -19,8 +19,7 @@ export class FileService {
 	}
 
 	async createProjectOverviewMarkdownFile(project: TFolder): Promise<TFile | null> {
-		return await createMarkdownFile(
-			this.app,
+		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.projectOverviewTemplatePath,
 			this.settings.projectOverviewFileName
@@ -28,8 +27,7 @@ export class FileService {
 	}
 
 	async createAgileDashboardBaseFile(project: TFolder): Promise<TFile | null> {
-		return await createBaseFile(
-			this.app,
+		return await this.fileHelper.createBaseFile(
 			project,
 			this.settings.agileDashboardTemplatePath,
 			this.settings.agileDashboardFileName
@@ -41,8 +39,7 @@ export class FileService {
 	}
 
 	async createEpicMarkdownFile(project: TFolder, name: string): Promise<TFile | null> {
-		return await createMarkdownFile(
-			this.app,
+		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.epicTemplatePath,
 			this.settings.epicFolderName + "/" + name
