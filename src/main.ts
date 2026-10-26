@@ -4,6 +4,7 @@ import {
 import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
 import { CreateProjectModal } from "./modals/project/CreateProjectModal";
+import { CreateEpicModal } from "./modals/epic/CreateEpicModal";
 
 export default class ZonzonsProjectManagement extends Plugin {
 	settings!: I_Settings;
@@ -16,6 +17,14 @@ export default class ZonzonsProjectManagement extends Plugin {
 			name: "Create project",
 			callback: () => {
 				new CreateProjectModal(this).open();
+			}
+		});
+
+		this.addCommand({
+			id: "create-epic",
+			name: "Create epic",
+			callback: () => {
+				new CreateEpicModal(this).open();
 			}
 		});
 
