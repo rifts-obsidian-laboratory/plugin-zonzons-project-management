@@ -19,7 +19,14 @@ export class CreateProjectForm {
 		const app: App = this.plugin.app;
 		const settings: I_Settings = this.plugin.settings;
 
-		const project: TFolder = await app.vault.createFolder(settings.projectFolderPath + "/" + this.name);
+		let project: TFolder | null = null;
+
+		try {
+			project = await app.vault.createFolder(settings.projectFolderPath + "/" + this.name);
+		} catch (error) {
+			new Notice("Project already exists. Project creation aborted.", 5000);
+			return;
+		}
 
 		const projectOverview: TFile | null = await createMarkdownFile(
 			app,
