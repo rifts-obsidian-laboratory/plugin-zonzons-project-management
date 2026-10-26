@@ -39,6 +39,18 @@ export class SettingTab extends PluginSettingTab {
 		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(projectOverviewItemsEl)
+			.setName("Project overview file name")
+			.setDesc("The name given to the project overview file of each project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the project overview file.")
+				.setValue(this.plugin.settings.projectOverviewFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.projectOverviewFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(projectOverviewItemsEl)
 			.setName("Project overview template path")
 			.setDesc("The path to the template project overviews will be created with.")
 			.addText((text: TextComponent): void => {
@@ -52,22 +64,22 @@ export class SettingTab extends PluginSettingTab {
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(projectOverviewItemsEl)
-			.setName("Project overview file name")
-			.setDesc("The name given to the project overview file of each project.")
-			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the project overview file.")
-				.setValue(this.plugin.settings.projectOverviewFileName)
-				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.projectOverviewFileName = value;
-					await this.plugin.saveSettings();
-				})
-			);
-
 		new Setting(containerEl).setName("Traditional project management").setHeading();
 
 		const traditionalDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const traditionalDashboardItemsEl: HTMLDivElement = traditionalDashboardGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(traditionalDashboardItemsEl)
+			.setName("Dashboard file name")
+			.setDesc("The name given to the dashboard file of each traditional project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the dashboard file.")
+				.setValue(this.plugin.settings.traditionalDashboardFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.traditionalDashboardFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
 
 		new Setting(traditionalDashboardItemsEl)
 			.setName("Dashboard template path")
@@ -83,22 +95,22 @@ export class SettingTab extends PluginSettingTab {
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(traditionalDashboardItemsEl)
-			.setName("Dashboard file name")
-			.setDesc("The name given to the dashboard file of each traditional project.")
-			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the dashboard file.")
-				.setValue(this.plugin.settings.traditionalDashboardFileName)
-				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.traditionalDashboardFileName = value;
-					await this.plugin.saveSettings();
-				})
-			);
-
 		new Setting(containerEl).setName("AGILE project management").setHeading();
 
 		const agileDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const agileDashboardItemsEl: HTMLDivElement = agileDashboardGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(agileDashboardItemsEl)
+			.setName("Dashboard file name")
+			.setDesc("The name given to the dashboard file of each agile project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the dashboard file.")
+				.setValue(this.plugin.settings.agileDashboardFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.agileDashboardFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
 
 		new Setting(agileDashboardItemsEl)
 			.setName("Dashboard template path")
@@ -113,18 +125,6 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
-
-		new Setting(agileDashboardItemsEl)
-			.setName("Dashboard file name")
-			.setDesc("The name given to the dashboard file of each agile project.")
-			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the dashboard file.")
-				.setValue(this.plugin.settings.agileDashboardFileName)
-				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.agileDashboardFileName = value;
-					await this.plugin.saveSettings();
-				})
-			);
 
 		new Setting(containerEl)
 			.setName("Epic template path")
