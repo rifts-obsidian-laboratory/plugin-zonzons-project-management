@@ -1,6 +1,7 @@
 import { App, PluginSettingTab, Setting, TextComponent } from "obsidian";
 import ZonzonsProjectManagement from "../main";
 import { FolderSuggest } from "../suggests/FolderSuggest";
+import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
 
 export class SettingTab extends PluginSettingTab {
 	plugin: ZonzonsProjectManagement;
@@ -27,6 +28,20 @@ export class SettingTab extends PluginSettingTab {
 					});
 
 				new FolderSuggest(this.app, text.inputEl);
+			});
+
+		new Setting(containerEl)
+			.setName("Epic template path")
+			.setDesc("The path to the template epics will be created with.")
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder("Start to type the name of a file...")
+					.setValue(this.plugin.settings.epicTemplatePath)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.epicTemplatePath = value;
+						await this.plugin.saveSettings();
+					});
+
+				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 	}
 }
