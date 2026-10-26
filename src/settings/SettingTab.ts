@@ -15,6 +15,8 @@ export class SettingTab extends PluginSettingTab {
 	display(): void {
 		const { containerEl } = this;
 
+		containerEl.addClass("zonzons-project-management-setting-tab");
+
 		containerEl.empty();
 
 		new Setting(containerEl).setName("General").setHeading();
@@ -95,7 +97,10 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl).setName("AGILE project management").setHeading();
 
-		new Setting(containerEl)
+		const agileDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const agileDashboardItemsEl: HTMLDivElement = agileDashboardGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(agileDashboardItemsEl)
 			.setName("Dashboard template path")
 			.setDesc("The path to the template dashboards will be created with.")
 			.addText((text: TextComponent): void => {
@@ -108,6 +113,18 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(agileDashboardItemsEl)
+			.setName("Dashboard file name")
+			.setDesc("The name given to the dashboard file of each agile project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the dashboard file.")
+				.setValue(this.plugin.settings.agileDashboardFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.agileDashboardFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
 
 		new Setting(containerEl)
 			.setName("Epic template path")

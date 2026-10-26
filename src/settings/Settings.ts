@@ -5,6 +5,7 @@ export interface I_Settings {
 	traditionalDashboardTemplatePath: string;
 	traditionalDashboardFileName: string;
 	agileDashboardTemplatePath: string;
+	agileDashboardFileName: string;
 	epicTemplatePath: string;
 	userStoryTemplatePath: string;
 }
@@ -17,6 +18,7 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	traditionalDashboardTemplatePath: "",
 	traditionalDashboardFileName: "",
 	agileDashboardTemplatePath: "",
+	agileDashboardFileName: "",
 	epicTemplatePath: "",
 	userStoryTemplatePath: "",
 }
