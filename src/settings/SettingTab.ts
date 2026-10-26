@@ -47,6 +47,22 @@ export class SettingTab extends PluginSettingTab {
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 
+		new Setting(containerEl).setName("Traditional project management").setHeading();
+
+		new Setting(containerEl)
+			.setName("Dashboard template path")
+			.setDesc("the path to the template dashboards will be created with.")
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder("Start to type the name of a file...")
+					.setValue(this.plugin.settings.traditionalDashboardTemplatePath)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.traditionalDashboardTemplatePath = value;
+						await this.plugin.saveSettings();
+					});
+
+				new BaseFileSuggest(this.app, text.inputEl);
+			});
+
 		new Setting(containerEl).setName("AGILE project management").setHeading();
 
 		new Setting(containerEl)
