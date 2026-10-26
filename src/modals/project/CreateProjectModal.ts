@@ -1,6 +1,7 @@
 import { ButtonComponent, DropdownComponent, Modal, TextComponent } from "obsidian";
 import { CreateProjectForm } from "../../forms/project/CreateProjectForm";
 import ZonzonsProjectManagement from "../../main";
+import { isProjectType, ProjectType } from "../../enums/ProjectType";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
@@ -27,16 +28,16 @@ export class CreateProjectModal extends Modal {
 		const projectNameInput: TextComponent = new TextComponent(projectNameLabelEl)
 			.setPlaceholder("Enter the name of the project.")
 			.setValue(this.form.name)
-			.onChange((value: string) => this.form.name = value);
+			.onChange((value: string): string => this.form.name = value);
 		projectNameLabelEl.append(projectNameInput.inputEl);
 
 		const projectTypeLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Type" });
 		projectTypeLabelEl.classList.add("input-container");
 		const projectTypeDropdown: DropdownComponent = new DropdownComponent(projectTypeLabelEl)
-			.addOption("traditional", "Traditional")
-			.addOption("agile", "Agile")
+			.addOption(ProjectType.TRADITIONAL, "Traditional")
+			.addOption(ProjectType.AGILE, "Agile")
 			.setValue(this.form.type)
-			.onChange((value: string) => this.form.type = value);
+			.onChange((value: string): ProjectType => isProjectType(value) ? this.form.type = value as ProjectType : ProjectType.TRADITIONAL);
 		projectTypeLabelEl.append(projectTypeDropdown.selectEl);
 
 		new ButtonComponent(contentEl)

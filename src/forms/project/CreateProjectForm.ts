@@ -1,17 +1,18 @@
-import { App, Notice, TAbstractFile, TFile, TFolder } from "obsidian";
+import { App, Notice, TFile, TFolder } from "obsidian";
 import { I_Settings } from "../../settings/Settings";
 import ZonzonsProjectManagement from "../../main";
 import { createBaseFile, createMarkdownFile } from "../../helpers/file";
+import { ProjectType } from "../../enums/ProjectType";
 
 export class CreateProjectForm {
 	public plugin: ZonzonsProjectManagement;
 	public name: string;
-	public type: string;
+	public type: ProjectType;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
 		this.name = "";
-		this.type = "traditional";
+		this.type = ProjectType.TRADITIONAL;
 	}
 
 	public async create(): Promise<void> {
@@ -27,9 +28,9 @@ export class CreateProjectForm {
 			settings.projectOverviewFileName,
 		);
 
-		if (this.type === "traditional") {
+		if (this.type === ProjectType.TRADITIONAL) {
 			//
-		} else if (this.type === "agile") {
+		} else if (this.type === ProjectType.AGILE) {
 			const dashboard: TFile | null = await createBaseFile(
 				app,
 				project,
