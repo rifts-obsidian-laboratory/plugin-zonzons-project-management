@@ -126,7 +126,22 @@ export class SettingTab extends PluginSettingTab {
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(containerEl)
+		const epicGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const epicItemsEl: HTMLDivElement = epicGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(epicItemsEl)
+			.setName("Epic folder name")
+			.setDesc("The name given to the epic folder of each agile project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the epic folder.")
+				.setValue(this.plugin.settings.epicFolderName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.epicFolderName = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(epicItemsEl)
 			.setName("Epic template path")
 			.setDesc("The path to the template epics will be created with.")
 			.addText((text: TextComponent): void => {
