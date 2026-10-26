@@ -2,6 +2,7 @@ import { App, PluginSettingTab, Setting, TextComponent } from "obsidian";
 import ZonzonsProjectManagement from "../main";
 import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
+import { BaseFileSuggest } from "../suggests/BaseFileSuggest";
 
 export class SettingTab extends PluginSettingTab {
 	plugin: ZonzonsProjectManagement;
@@ -28,6 +29,20 @@ export class SettingTab extends PluginSettingTab {
 					});
 
 				new FolderSuggest(this.app, text.inputEl);
+			});
+
+		new Setting(containerEl)
+			.setName("Dashboard template path")
+			.setDesc("The path to the template dashboards will be created with.")
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder("Start to type the name of a file...")
+					.setValue(this.plugin.settings.dashboardTemplatePath)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.dashboardTemplatePath = value;
+						await this.plugin.saveSettings();
+					});
+
+				new BaseFileSuggest(this.app, text.inputEl);
 			});
 
 		new Setting(containerEl)
