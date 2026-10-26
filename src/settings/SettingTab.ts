@@ -155,7 +155,22 @@ export class SettingTab extends PluginSettingTab {
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(containerEl)
+		const userStoryGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const userStoryItemsEl: HTMLDivElement = userStoryGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(userStoryItemsEl)
+			.setName("User story folder name")
+			.setDesc("The name given to the user story folder of each agile project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the user story folder.")
+				.setValue(this.plugin.settings.userStoryFolderName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.userStoryFolderName = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(userStoryItemsEl)
 			.setName("User story template path")
 			.setDesc("The path to the template user stories will be created with.")
 			.addText((text: TextComponent): void => {
