@@ -33,7 +33,10 @@ export class SettingTab extends PluginSettingTab {
 				new FolderSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(containerEl)
+		const projectOverviewGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(projectOverviewItemsEl)
 			.setName("Project overview template path")
 			.setDesc("The path to the template project overviews will be created with.")
 			.addText((text: TextComponent): void => {
@@ -46,6 +49,18 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(projectOverviewItemsEl)
+			.setName("Project overview file name")
+			.setDesc("The name given to the project overview file of each project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the project overview file.")
+				.setValue(this.plugin.settings.projectOverviewFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.projectOverviewFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
 
 		new Setting(containerEl).setName("Traditional project management").setHeading();
 
