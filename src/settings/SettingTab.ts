@@ -19,7 +19,7 @@ export class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		new Setting(containerEl).setName("General").setHeading();
+		new Setting(containerEl).setName("Global").setHeading();
 
 		new Setting(containerEl)
 			.setName("Project folder path")
@@ -83,7 +83,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(traditionalDashboardItemsEl)
 			.setName("Dashboard template path")
-			.setDesc("the path to the template dashboards will be created with.")
+			.setDesc("The path to the template dashboards will be created with.")
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder("Start to type the name of a file...")
 					.setValue(this.plugin.settings.traditionalDashboardTemplatePath)
