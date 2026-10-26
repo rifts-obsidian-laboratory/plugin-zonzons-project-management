@@ -64,7 +64,10 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl).setName("Traditional project management").setHeading();
 
-		new Setting(containerEl)
+		const traditionalDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const traditionalDashboardItemsEl: HTMLDivElement = traditionalDashboardGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(traditionalDashboardItemsEl)
 			.setName("Dashboard template path")
 			.setDesc("the path to the template dashboards will be created with.")
 			.addText((text: TextComponent): void => {
@@ -77,6 +80,18 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(traditionalDashboardItemsEl)
+			.setName("Dashboard file name")
+			.setDesc("The name given to the dashboard file of each traditional project.")
+			.addText((text: TextComponent) => text
+				.setPlaceholder("Enter the name of the dashboard file.")
+				.setValue(this.plugin.settings.traditionalDashboardFileName)
+				.onChange(async (value: string): Promise<void> => {
+					this.plugin.settings.traditionalDashboardFileName = value;
+					await this.plugin.saveSettings();
+				})
+			);
 
 		new Setting(containerEl).setName("AGILE project management").setHeading();
 
