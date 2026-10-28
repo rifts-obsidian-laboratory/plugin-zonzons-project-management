@@ -23,16 +23,11 @@ export class FileService {
 		return await this.app.vault.createFolder(this.settings.projectFolderPath + "/" + name);
 	}
 
-	async createProjectOverviewMarkdownFile(project: TFolder): Promise<TFile | null> {
-		let _payload: MarkdownFilePayload = {
-			fileName: this.settings.projectOverviewFileName,
-			title: ""
-		}
-
+	async createProjectOverviewMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.projectOverviewTemplatePath,
-			_payload
+			payload
 		);
 	}
 

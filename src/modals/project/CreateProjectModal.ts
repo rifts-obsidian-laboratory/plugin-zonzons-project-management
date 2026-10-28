@@ -31,6 +31,14 @@ export class CreateProjectModal extends Modal {
 			.onChange((value: string): string => this.form.folderName = value);
 		projectFolderNameLabelEl.append(projectFolderNameInput.inputEl);
 
+		const projectOverviewFileNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Overview file name" });
+		projectOverviewFileNameLabelEl.classList.add("input-container");
+		const projectOverviewFileNameInput: TextComponent = new TextComponent(projectOverviewFileNameLabelEl)
+			.setPlaceholder("Enter the name of the project's overview file.")
+			.setValue(this.form.title)
+			.onChange((value: string): string => this.form.title = value);
+		projectOverviewFileNameLabelEl.append(projectOverviewFileNameInput.inputEl);
+
 		const projectTypeLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Type" });
 		projectTypeLabelEl.classList.add("input-container");
 		const projectTypeDropdown: DropdownComponent = new DropdownComponent(projectTypeLabelEl)
