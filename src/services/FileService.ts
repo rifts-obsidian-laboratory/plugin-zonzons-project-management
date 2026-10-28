@@ -44,13 +44,10 @@ export class FileService {
 	}
 
 	async createEpicMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
-		let _payload: MarkdownFilePayload = payload;
-		_payload.fileName = this.settings.epicFolderName + "/" + payload.fileName;
-
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.epicTemplatePath,
-			_payload
+			payload
 		);
 	}
 
@@ -59,13 +56,10 @@ export class FileService {
 	}
 
 	async createUserStoryMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
-		let _payload: MarkdownFilePayload = payload;
-		_payload.fileName = this.settings.userStoryFolderName + "/" + payload.fileName;
-
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.userStoryTemplatePath,
-			_payload
+			payload
 		);
 	}
 }

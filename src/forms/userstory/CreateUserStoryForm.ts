@@ -30,7 +30,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle {
 		}
 
 		const userStoryPayload: MarkdownFilePayload = {
-			fileName: this.fileName,
+			fileName: this.plugin.settings.userStoryFolderName + "/" + this.fileName,
 			title: this.title,
 		}
 
