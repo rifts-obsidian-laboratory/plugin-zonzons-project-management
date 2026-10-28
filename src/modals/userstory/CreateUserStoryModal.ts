@@ -42,6 +42,14 @@ export class CreateUserStoryModal extends Modal {
 				this.form.fileName = value;
 			});
 
+		const userStoryTitleLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Title" });
+		userStoryTitleLabelEl.classList.add("input-container");
+		new TextComponent(userStoryTitleLabelEl)
+			.setPlaceholder("Enter the inline title of the file...")
+			.onChange((value: string): void => {
+				this.form.title = value;
+			});
+
 		new ButtonComponent(contentEl)
 			.setButtonText("Create")
 			.onClick(async (): Promise<void> => {

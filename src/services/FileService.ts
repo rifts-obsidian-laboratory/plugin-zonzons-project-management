@@ -2,6 +2,7 @@ import { App, TFile, TFolder } from "obsidian";
 import { I_Settings } from "../settings/Settings";
 import ZonzonsProjectManagement from "../main";
 import { FileHelper } from "../helpers/FileHelper";
+import { MarkdownFilePayload } from "../types/MarkdownFilePayload";
 
 export class FileService {
 	app: App;
@@ -23,10 +24,15 @@ export class FileService {
 	}
 
 	async createProjectOverviewMarkdownFile(project: TFolder): Promise<TFile | null> {
+		let _payload: MarkdownFilePayload = {
+			fileName: this.settings.projectOverviewFileName,
+			title: ""
+		}
+
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.projectOverviewTemplatePath,
-			this.settings.projectOverviewFileName
+			_payload
 		);
 	}
 
@@ -42,11 +48,14 @@ export class FileService {
 		return await this.app.vault.createFolder(project.path + "/" + this.settings.epicFolderName);
 	}
 
-	async createEpicMarkdownFile(project: TFolder, name: string): Promise<TFile | null> {
+	async createEpicMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
+		let _payload: MarkdownFilePayload = payload;
+		_payload.fileName = this.settings.epicFolderName + "/" + payload.fileName;
+
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.epicTemplatePath,
-			this.settings.epicFolderName + "/" + name
+			_payload
 		);
 	}
 
@@ -54,11 +63,14 @@ export class FileService {
 		return await this.app.vault.createFolder(project.path + "/" + this.settings.userStoryFolderName);
 	}
 
-	async createUserStoryMarkdownFile(project: TFolder, name: string): Promise<TFile | null> {
+	async createUserStoryMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
+		let _payload: MarkdownFilePayload = payload;
+		_payload.fileName = this.settings.userStoryFolderName + "/" + payload.fileName;
+
 		return await this.fileHelper.createMarkdownFile(
 			project,
 			this.settings.userStoryTemplatePath,
-			this.settings.userStoryFolderName + "/" + name
+			_payload
 		);
 	}
 }

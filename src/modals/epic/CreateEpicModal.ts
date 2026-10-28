@@ -42,6 +42,14 @@ export class CreateEpicModal extends Modal {
 				this.form.fileName = value;
 			});
 
+		const epicTitleLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Title" });
+		epicTitleLabelEl.classList.add("input-container");
+		new TextComponent(epicTitleLabelEl)
+			.setPlaceholder("Enter the inline title of the file...")
+			.onChange((value: string): void => {
+				this.form.title = value;
+			});
+
 		new ButtonComponent(contentEl)
 			.setButtonText("Create")
 			.onClick(async (): Promise<void> => {
