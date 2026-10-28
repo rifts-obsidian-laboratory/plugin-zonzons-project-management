@@ -1,0 +1,155 @@
+{
+	"enums": {
+		"project_type": {
+			"traditional": "Traditional",
+			"agile": "Agile"
+		}
+	},
+	"commands": {
+		"create-project": "Create project",
+		"create-epic": "Create epic",
+		"create-user-story": "Create user story"
+	},
+	"modals": {
+		"project": {
+			"create": {
+				"title": "Create a new project",
+				"type": {
+					"label": "Type",
+					"description": "Choose the type of project you want to create. The type will determine the structure and files that will be generated for your project."
+				},
+				"folder_name": {
+					"label": "Folder name",
+					"description": "Enter the name of the folder where your project's information will be generated and written.",
+					"placeholder": "Enter the name of the project's folder."
+				},
+				"overview_title": {
+					"label": "Overview title",
+					"description": "Enter the inline title of the project's overview file. This title will replace the {{ title }} placeholder in the project overview template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+					"placeholder": "Enter the title of the project's overview file."
+				},
+				"submit": "Create"
+			}
+		},
+		"epic": {
+			"create": {
+				"title": "Create a new epic",
+				"project": {
+					"label": "Project",
+					"description": "Choose to which project the created epic belongs. The file will be created in the epic folder of the chosen project.",
+					"placeholder": "Start typing the name of a project..."
+				},
+				"epic_file_name": {
+					"label": "File name",
+					"description": "Enter the name of the file that will be created for the epic.",
+					"placeholder": "Enter the name of the file."
+				},
+				"epic_title": {
+					"label": "Title",
+					"description": "Enter the inline title of the epic. This title will replace the {{ title }} placeholder in the epic template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+					"placeholder": "Enter the title of the epic."
+				},
+				"submit": "Create"
+			}
+		},
+		"user_story": {
+			"create": {
+				"title": "Create a new user story",
+				"project": {
+					"label": "Project",
+					"description": "Choose to which project the created user story belongs. The file will be created in the user story folder of the chosen project.",
+					"placeholder": "Start typing the name of a project..."
+				},
+				"user_story_file_name": {
+					"label": "File name",
+					"description": "Enter the name of the file that will be created for the user story.",
+					"placeholder": "Enter the name of the file."
+				},
+				"user_story_title": {
+					"label": "Title",
+					"description": "Enter the inline title of the user story. This title will replace the {{ title }} placeholder in the user story template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+					"placeholder": "Enter the title of the user story."
+				},
+				"submit": "Create"
+			}
+		}
+	},
+	"settings": {
+		"global": {
+			"title": "Global",
+			"project_folder": {
+				"path": {
+					"label": "Project folder path",
+					"description": "The path to the folder where new projects will be scaffolded.",
+					"placeholder": "Start to type the name of a folder..."
+				}
+			},
+			"project_overview": {
+				"file_name": {
+					"label": "Project overview file name",
+					"description": "The name of the project overview file generated for each project.",
+					"placeholder": "Enter the name of the project overview file."
+				},
+				"template_path": {
+					"label": "Project overview template path",
+					"description": "The path to the template used to generate project overviews.",
+					"placeholder": "Start to type the name of a file..."
+				}
+			}
+		},
+		"traditional_project_management": {
+			"title": "Traditional project management",
+			"dashboard_file": {
+				"name": {
+					"label": "Dashboard file name",
+					"description": "The name of the dashboard file generated for each traditional project.",
+					"placeholder": "Enter the name of the dashboard file."
+				},
+				"template_path": {
+					"label": "Dashboard template path",
+					"description": "The path to the template used to generate traditional project dashboards.",
+					"placeholder": "Start to type the name of a file..."
+				}
+			}
+		},
+		"agile_project_management": {
+			"title": "Agile project management",
+			"dashboard_file": {
+				"name": {
+					"label": "Dashboard file name",
+					"description": "The name of the dashboard file generated for each agile project.",
+					"placeholder": "Enter the name of the dashboard file."
+				},
+				"template_path": {
+					"label": "Dashboard template path",
+					"description": "The path to the template used to generate agile project dashboards.",
+					"placeholder": "Start to type the name of a file..."
+				}
+			},
+			"epics": {
+				"folder_name": {
+					"label": "Epic folder name",
+					"description": "The name of the folder where epics will be stored.",
+					"placeholder": "Enter the name of the epics folder."
+				},
+				"template_path": {
+					"label": "Epic template path",
+					"description": "The path to the template used to generate epics.",
+					"placeholder": "Start to type the name of a file..."
+				}
+			},
+			"user_stories": {
+				"folder_name": {
+					"label": "User story folder name",
+					"description": "The name of the folder where user stories will be stored.",
+					"placeholder": "Enter the name of the user stories folder."
+				},
+				"template_path": {
+					"label": "User story template path",
+					"description": "The path to the template used to generate user stories.",
+					"placeholder": "Start to type the name of a file..."
+				}
+			}
+		}
+	}
+}

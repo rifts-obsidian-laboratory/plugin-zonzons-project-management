@@ -2,6 +2,7 @@ import { ButtonComponent, Modal, TextComponent } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
 import { CreateUserStoryForm } from "../../forms/userstory/CreateUserStoryForm";
 import { ProjectSuggest } from "../../suggests/ProjectSuggest";
+import { translate } from "../../i18n";
 
 export class CreateUserStoryModal extends Modal {
 	plugin: ZonzonsProjectManagement;
@@ -21,7 +22,7 @@ export class CreateUserStoryModal extends Modal {
 		headerEl.append(this.modalEl.querySelector<HTMLElement>(".modal-header-button")!);
 
 		titleEl.empty();
-		titleEl.setText("Create a new user story");
+		titleEl.setText(translate("modals.user_story.create.title"));
 
 		contentEl.empty();
 
@@ -34,17 +35,17 @@ export class CreateUserStoryModal extends Modal {
 	createProjectInput(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "Project" });
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.user_story.create.project.label") });
 		label.setAttribute("for", "project-input");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Choose to which project the created user story belongs. The file will be created in the user story folder of the chosen project.",
+			text: translate("modals.user_story.create.project.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "project-input-description";
 
 		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder("Start typing the name of a project...")
+			.setPlaceholder(translate("modals.user_story.create.project.placeholder"))
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
 			});
@@ -56,17 +57,17 @@ export class CreateUserStoryModal extends Modal {
 	createUserStoryFileNameInput(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "File name" });
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.user_story.create.user_story_file_name.label") });
 		label.setAttribute("for", "file-name-input");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Enter the name of the file that will be created for the user story.",
+			text: translate("modals.user_story.create.user_story_file_name.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "file-name-input-description";
 
 		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder("Enter the name of the file.")
+			.setPlaceholder(translate("modals.user_story.create.user_story_file_name.placeholder"))
 			.onChange((value: string): void => {
 				this.form.fileName = value;
 			});
@@ -77,17 +78,17 @@ export class CreateUserStoryModal extends Modal {
 	createUserStoryTitleInput(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "Title" });
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.user_story.create.user_story_title.label") });
 		label.setAttribute("for", "title-input");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Enter the inline title of the user story. This title will replace the {{ title }} placeholder in the user story template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+			text: translate("modals.user_story.create.user_story_title.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "title-input-description";
 
 		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder("Enter the title of the user story.")
+			.setPlaceholder(translate("modals.user_story.create.user_story_title.placeholder"))
 			.onChange((value: string): void => {
 				this.form.title = value;
 			});
@@ -97,7 +98,7 @@ export class CreateUserStoryModal extends Modal {
 
 	createSubmitButton(contentEl: HTMLElement): void {
 		new ButtonComponent(contentEl)
-			.setButtonText("Create")
+			.setButtonText(translate("modals.user_story.create.submit"))
 			.onClick(async (): Promise<void> => {
 				await this.form.create();
 				this.close();

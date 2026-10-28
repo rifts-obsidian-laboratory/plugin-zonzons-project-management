@@ -1,0 +1,155 @@
+{
+	"enums": {
+		"project_type": {
+			"traditional": "Traditionnel",
+			"agile": "Agile"
+		}
+	},
+	"commands": {
+		"create-project": "Créer un projet",
+		"create-epic": "Créer une épopée",
+		"create-user-story": "Créer un récit utilisateur"
+	},
+	"modals": {
+		"project": {
+			"create": {
+				"title": "Créer un nouveau projet",
+				"type": {
+					"label": "Type",
+					"description": "Choisissez le type de projet que vous souhaitez créer. Celui-ci déterminera la structure et les fichiers qui seront générés pour votre projet."
+				},
+				"folder_name": {
+					"label": "Nom du dossier",
+					"description": "Saisissez le nom du dossier dans lequel les informations de votre projet seront générées et enregistrées.",
+					"placeholder": "Saisissez le nom du dossier du projet."
+				},
+				"overview_title": {
+					"label": "Titre de la vue d’ensemble",
+					"description": "Saisissez le titre affiché dans le fichier de vue d’ensemble du projet. Ce titre remplacera le paramètre {{ title }} dans le modèle de vue d’ensemble du projet. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
+					"placeholder": "Saisissez le titre du fichier de vue d’ensemble du projet."
+				},
+				"submit": "Créer"
+			}
+		},
+		"epic": {
+			"create": {
+				"title": "Créer une nouvelle épopée",
+				"project": {
+					"label": "Projet",
+					"description": "Choisissez le projet auquel l’épopée créée sera rattachée. Le fichier sera créé dans le dossier des épopées du projet sélectionné.",
+					"placeholder": "Commencez à saisir le nom d’un projet..."
+				},
+				"epic_file_name": {
+					"label": "Nom du fichier",
+					"description": "Saisissez le nom du fichier qui sera créé pour cette épopée.",
+					"placeholder": "Saisissez le nom du fichier."
+				},
+				"epic_title": {
+					"label": "Titre",
+					"description": "Saisissez le titre affiché dans le fichier de l’épopée. Ce titre remplacera le paramètre {{ title }} dans le modèle d’épopée. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
+					"placeholder": "Saisissez le titre de l’épopée."
+				},
+				"submit": "Créer"
+			}
+		},
+		"user_story": {
+			"create": {
+				"title": "Créer un nouveau récit utilisateur",
+				"project": {
+					"label": "Projet",
+					"description": "Choisissez le projet auquel le récit utilisateur créé sera rattaché. Le fichier sera créé dans le dossier des récits utilisateurs du projet sélectionné.",
+					"placeholder": "Commencez à saisir le nom d’un projet..."
+				},
+				"user_story_file_name": {
+					"label": "Nom du fichier",
+					"description": "Saisissez le nom du fichier qui sera créé pour ce récit utilisateur.",
+					"placeholder": "Saisissez le nom du fichier."
+				},
+				"user_story_title": {
+					"label": "Titre",
+					"description": "Saisissez le titre affiché dans le fichier du récit utilisateur. Ce titre remplacera le paramètre {{ title }} dans le modèle de récit utilisateur. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
+					"placeholder": "Saisissez le titre du récit utilisateur."
+				},
+				"submit": "Créer"
+			}
+		}
+	},
+	"settings": {
+		"global": {
+			"title": "Général",
+			"project_folder": {
+				"path": {
+					"label": "Chemin du dossier de projet",
+					"description": "Le chemin vers le dossier où les nouveaux projets seront créés.",
+					"placeholder": "Commencez à taper le nom d'un dossier..."
+				}
+			},
+			"project_overview": {
+				"file_name": {
+					"label": "Nom du fichier de vue d'ensemble du projet",
+					"description": "Le nom du fichier de vue d'ensemble du projet généré pour chaque projet.",
+					"placeholder": "Entrez le nom du fichier de vue d'ensemble du projet."
+				},
+				"template_path": {
+					"label": "Chemin du modèle de vue d'ensemble du projet",
+					"description": "Le chemin vers le modèle utilisé pour générer les vues d'ensemble des projets.",
+					"placeholder": "Commencez à taper le nom d'un fichier..."
+				}
+			}
+		},
+		"traditional_project_management": {
+			"title": "Gestion de projet traditionnelle",
+			"dashboard_file": {
+				"name": {
+					"label": "Nom du fichier de tableau de bord",
+					"description": "Le nom du fichier de tableau de bord généré pour chaque projet traditionnel.",
+					"placeholder": "Entrez le nom du fichier de tableau de bord."
+				},
+				"template_path": {
+					"label": "Chemin du modèle de tableau de bord",
+					"description": "Le chemin vers le modèle utilisé pour générer les tableaux de bord des projets traditionnels.",
+					"placeholder": "Commencez à taper le nom d'un fichier..."
+				}
+			}
+		},
+		"agile_project_management": {
+			"title": "Gestion de projet agile",
+			"dashboard_file": {
+				"name": {
+					"label": "Nom du fichier de tableau de bord",
+					"description": "Le nom du fichier de tableau de bord généré pour chaque projet agile.",
+					"placeholder": "Entrez le nom du fichier de tableau de bord."
+				},
+				"template_path": {
+					"label": "Chemin du modèle de tableau de bord",
+					"description": "Le chemin vers le modèle utilisé pour générer les tableaux de bord des projets agile.",
+					"placeholder": "Commencez à taper le nom d'un fichier..."
+				}
+			},
+			"epics": {
+				"folder_name": {
+					"label": "Nom du dossier d'épopée",
+					"description": "Le nom du dossier où les épopées seront stockés.",
+					"placeholder": "Entrez le nom du dossier d'épopées."
+				},
+				"template_path": {
+					"label": "Chemin du modèle d'épopée",
+					"description": "Le chemin vers le modèle utilisé pour générer les épopées.",
+					"placeholder": "Commencez à taper le nom d'un fichier..."
+				}
+			},
+			"user_stories": {
+				"folder_name": {
+					"label": "Nom du dossier de récits utilisateur",
+					"description": "Le nom du dossier où les récits utilisateur seront stockées.",
+					"placeholder": "Entrez le nom du dossier de récits utilisateur."
+				},
+				"template_path": {
+					"label": "Chemin du modèle de récit utilisateur",
+					"description": "Le chemin vers le modèle utilisé pour générer les récits utilisateur.",
+					"placeholder": "Commencez à taper le nom d'un fichier..."
+				}
+			}
+		}
+	}
+}

@@ -3,6 +3,7 @@ import ZonzonsProjectManagement from "../main";
 import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
 import { BaseFileSuggest } from "../suggests/BaseFileSuggest";
+import { translate } from "../i18n";
 
 export class SettingTab extends PluginSettingTab {
 	plugin: ZonzonsProjectManagement;
@@ -19,13 +20,13 @@ export class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		new Setting(containerEl).setName("Global").setHeading();
+		new Setting(containerEl).setName(translate("settings.global.title")).setHeading();
 
 		new Setting(containerEl)
-			.setName("Project folder path")
-			.setDesc("The path to the folder where new projects will be scaffolded.")
+			.setName(translate("settings.global.project_folder.path.label"))
+			.setDesc(translate("settings.global.project_folder.path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a folder...")
+				text.setPlaceholder(translate("settings.global.project_folder.path.placeholder"))
 					.setValue(this.plugin.settings.projectFolderPath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.projectFolderPath = value;
@@ -39,10 +40,10 @@ export class SettingTab extends PluginSettingTab {
 		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(projectOverviewItemsEl)
-			.setName("Project overview file name")
-			.setDesc("The name of the project overview file generated for each project.")
+			.setName(translate("settings.global.project_overview.file_name.label"))
+			.setDesc(translate("settings.global.project_overview.file_name.description"))
 			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the project overview file.")
+				.setPlaceholder(translate("settings.global.project_overview.file_name.placeholder"))
 				.setValue(this.plugin.settings.projectOverviewFileName)
 				.onChange(async (value: string): Promise<void> => {
 					this.plugin.settings.projectOverviewFileName = value;
@@ -51,10 +52,10 @@ export class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(projectOverviewItemsEl)
-			.setName("Project overview template path")
-			.setDesc("The path to the template used to generate project overviews.")
+			.setName(translate("settings.global.project_overview.template_path.label"))
+			.setDesc(translate("settings.global.project_overview.template_path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a file...")
+				text.setPlaceholder(translate("settings.global.project_overview.template_path.placeholder"))
 					.setValue(this.plugin.settings.projectOverviewTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.projectOverviewTemplatePath = value;
@@ -64,16 +65,16 @@ export class SettingTab extends PluginSettingTab {
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(containerEl).setName("Traditional project management").setHeading();
+		new Setting(containerEl).setName(translate("settings.traditional_project_management.title")).setHeading();
 
 		const traditionalDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const traditionalDashboardItemsEl: HTMLDivElement = traditionalDashboardGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(traditionalDashboardItemsEl)
-			.setName("Dashboard file name")
-			.setDesc("The name of the dashboard file generated for each traditional project.")
+			.setName(translate("settings.traditional_project_management.dashboard_file.name.label"))
+			.setDesc(translate("settings.traditional_project_management.dashboard_file.name.description"))
 			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the dashboard file.")
+				.setPlaceholder(translate("settings.traditional_project_management.dashboard_file.name.placeholder"))
 				.setValue(this.plugin.settings.traditionalDashboardFileName)
 				.onChange(async (value: string): Promise<void> => {
 					this.plugin.settings.traditionalDashboardFileName = value;
@@ -82,10 +83,10 @@ export class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(traditionalDashboardItemsEl)
-			.setName("Dashboard template path")
-			.setDesc("The path to the template used to generate traditional project dashboards.")
+			.setName(translate("settings.traditional_project_management.dashboard_file.template_path.label"))
+			.setDesc(translate("settings.traditional_project_management.dashboard_file.template_path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a file...")
+				text.setPlaceholder(translate("settings.traditional_project_management.dashboard_file.template_path.placeholder"))
 					.setValue(this.plugin.settings.traditionalDashboardTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.traditionalDashboardTemplatePath = value;
@@ -95,16 +96,16 @@ export class SettingTab extends PluginSettingTab {
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
 
-		new Setting(containerEl).setName("AGILE project management").setHeading();
+		new Setting(containerEl).setName(translate("settings.agile_project_management.title")).setHeading();
 
 		const agileDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const agileDashboardItemsEl: HTMLDivElement = agileDashboardGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(agileDashboardItemsEl)
-			.setName("Dashboard file name")
-			.setDesc("The name of the dashboard file generated for each agile project.")
+			.setName(translate("settings.agile_project_management.dashboard_file.name.label"))
+			.setDesc(translate("settings.agile_project_management.dashboard_file.name.description"))
 			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the dashboard file.")
+				.setPlaceholder(translate("settings.agile_project_management.dashboard_file.name.placeholder"))
 				.setValue(this.plugin.settings.agileDashboardFileName)
 				.onChange(async (value: string): Promise<void> => {
 					this.plugin.settings.agileDashboardFileName = value;
@@ -113,10 +114,10 @@ export class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(agileDashboardItemsEl)
-			.setName("Dashboard template path")
-			.setDesc("The path to the template used to generate agile project dashboards.")
+			.setName(translate("settings.agile_project_management.dashboard_file.template_path.label"))
+			.setDesc(translate("settings.agile_project_management.dashboard_file.template_path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start typing the name of a file...")
+				text.setPlaceholder(translate("settings.agile_project_management.dashboard_file.template_path.placeholder"))
 					.setValue(this.plugin.settings.agileDashboardTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.agileDashboardTemplatePath = value;
@@ -130,10 +131,10 @@ export class SettingTab extends PluginSettingTab {
 		const epicItemsEl: HTMLDivElement = epicGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(epicItemsEl)
-			.setName("Epic folder name")
-			.setDesc("The name of the epic folder generated for each agile project.")
+			.setName(translate("settings.agile_project_management.epics.folder_name.label"))
+			.setDesc(translate("settings.agile_project_management.epics.folder_name.description"))
 			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the epic folder.")
+				.setPlaceholder(translate("settings.agile_project_management.epics.folder_name.placeholder"))
 				.setValue(this.plugin.settings.epicFolderName)
 				.onChange(async (value: string): Promise<void> => {
 					this.plugin.settings.epicFolderName = value;
@@ -142,10 +143,10 @@ export class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(epicItemsEl)
-			.setName("Epic template path")
-			.setDesc("The path to the template used to generate epics.")
+			.setName(translate("settings.agile_project_management.epics.template_path.label"))
+			.setDesc(translate("settings.agile_project_management.epics.template_path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start typing the name of a file...")
+				text.setPlaceholder(translate("settings.agile_project_management.epics.template_path.placeholder"))
 					.setValue(this.plugin.settings.epicTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.epicTemplatePath = value;
@@ -159,10 +160,10 @@ export class SettingTab extends PluginSettingTab {
 		const userStoryItemsEl: HTMLDivElement = userStoryGroupEl.createDiv({ cls: "setting-items" });
 
 		new Setting(userStoryItemsEl)
-			.setName("User story folder name")
-			.setDesc("The name of the user story folder generated for each agile project.")
+			.setName(translate("settings.agile_project_management.user_stories.folder_name.label"))
+			.setDesc(translate("settings.agile_project_management.user_stories.folder_name.description"))
 			.addText((text: TextComponent) => text
-				.setPlaceholder("Enter the name of the user story folder.")
+				.setPlaceholder(translate("settings.agile_project_management.user_stories.folder_name.placeholder"))
 				.setValue(this.plugin.settings.userStoryFolderName)
 				.onChange(async (value: string): Promise<void> => {
 					this.plugin.settings.userStoryFolderName = value;
@@ -171,10 +172,10 @@ export class SettingTab extends PluginSettingTab {
 			);
 
 		new Setting(userStoryItemsEl)
-			.setName("User story template path")
-			.setDesc("The path to the template used to generate user stories.")
+			.setName(translate("settings.agile_project_management.user_stories.template_path.label"))
+			.setDesc(translate("settings.agile_project_management.user_stories.template_path.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start typing the name of a file...")
+				text.setPlaceholder(translate("settings.agile_project_management.user_stories.template_path.placeholder"))
 					.setValue(this.plugin.settings.userStoryTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.userStoryTemplatePath = value;

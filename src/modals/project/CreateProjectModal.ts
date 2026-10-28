@@ -1,7 +1,8 @@
 import { ButtonComponent, DropdownComponent, Modal, TextComponent } from "obsidian";
 import { CreateProjectForm } from "../../forms/project/CreateProjectForm";
 import ZonzonsProjectManagement from "../../main";
-import { isProjectType, ProjectType } from "../../enums/ProjectType";
+import { isProjectType, ProjectType, translateProjectType } from "../../enums/ProjectType";
+import { translate } from "../../i18n";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
@@ -19,7 +20,7 @@ export class CreateProjectModal extends Modal {
 		headerEl.append(this.modalEl.querySelector<HTMLElement>(".modal-header-button")!);
 
 		titleEl.empty();
-		titleEl.setText("Create a new project");
+		titleEl.setText(translate("modals.project.create.title"));
 
 		contentEl.empty();
 
@@ -32,18 +33,18 @@ export class CreateProjectModal extends Modal {
 	createProjectTypeDropdown(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "Type"});
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.project.create.type.label")});
 		label.setAttribute("for", "type-dropdown");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Choose the type of project you want to create. The type will determine the structure and files that will be generated for your project.",
+			text: translate("modals.project.create.type.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "type-dropdown-description";
 
 		const input: DropdownComponent = new DropdownComponent(container)
-			.addOption(ProjectType.TRADITIONAL, "Traditional")
-			.addOption(ProjectType.AGILE, "Agile")
+			.addOption(ProjectType.TRADITIONAL, translateProjectType(ProjectType.TRADITIONAL))
+			.addOption(ProjectType.AGILE, translateProjectType(ProjectType.AGILE))
 			.setValue(this.form.type)
 			.onChange((value: string): ProjectType => isProjectType(value) ? this.form.type = value as ProjectType : ProjectType.TRADITIONAL);
 		input.selectEl.id = "type-dropdown";
@@ -53,17 +54,17 @@ export class CreateProjectModal extends Modal {
 	createProjectFolderNameInput(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "Folder name"});
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.project.create.folder_name.label")});
 		label.setAttribute("for", "folder-name-input");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Enter the name of the folder where your project's information will be generated and written.",
+			text: translate("modals.project.create.folder_name.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "folder-name-input-description";
 
 		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder("Enter the name of the project's folder.")
+			.setPlaceholder(translate("modals.project.create.folder_name.placeholder"))
 			.setValue(this.form.folderName)
 			.onChange((value: string): string => this.form.folderName = value);
 		input.inputEl.id = "folder-name-input";
@@ -73,17 +74,17 @@ export class CreateProjectModal extends Modal {
 	createProjectOverviewTitleInput(contentEl: HTMLElement): void {
 		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
 
-		const label: HTMLLabelElement = container.createEl("label", { text: "Overview title"});
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.project.create.overview_title.label")});
 		label.setAttribute("for", "overview-title-input");
 
 		const description: HTMLParagraphElement = container.createEl("p", {
-			text: "Enter the inline title of the project's overview file. This title will replace the {{ title }} placeholder in the project overview template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+			text: translate("modals.project.create.overview_title.description"),
 		});
 		description.classList.add("input-description");
 		description.id = "overview-title-input-description";
 
 		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder("Enter the title of the project's overview file.")
+			.setPlaceholder(translate("modals.project.create.overview_title.placeholder"))
 			.setValue(this.form.title)
 			.onChange((value: string): string => this.form.title = value);
 		input.inputEl.id = "overview-title-input";
@@ -92,7 +93,7 @@ export class CreateProjectModal extends Modal {
 
 	createSubmitButton(contentEl: HTMLElement): void {
 		new ButtonComponent(contentEl)
-			.setButtonText("Create")
+			.setButtonText(translate("modals.project.create.submit"))
 			.onClick(async (): Promise<void> => {
 				await this.form.create();
 				this.close();
