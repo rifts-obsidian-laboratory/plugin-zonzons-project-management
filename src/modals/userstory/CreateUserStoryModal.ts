@@ -25,31 +25,77 @@ export class CreateUserStoryModal extends Modal {
 
 		contentEl.empty();
 
-		const projectLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Project" });
-		projectLabelEl.classList.add("input-container");
-		const projectInput: TextComponent = new TextComponent(projectLabelEl)
-			.setPlaceholder("Start to type the name of a project...")
+		this.createProjectInput(contentEl);
+		this.createUserStoryFileNameInput(contentEl);
+		this.createUserStoryTitleInput(contentEl);
+		this.createSubmitButton(contentEl);
+	}
+
+	createProjectInput(contentEl: HTMLElement): void {
+		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
+
+		const label: HTMLLabelElement = container.createEl("label", { text: "Project" });
+		label.setAttribute("for", "project-input");
+
+		const description: HTMLParagraphElement = container.createEl("p", {
+			text: "Choose to which project the created user story belongs. The file will be created in the user story folder of the chosen project.",
+		});
+		description.classList.add("input-description");
+		description.id = "project-input-description";
+
+		const input: TextComponent = new TextComponent(container)
+			.setPlaceholder("Start typing the name of a project...")
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
 			});
-		new ProjectSuggest(this.plugin, projectInput.inputEl);
+		input.inputEl.id = "project-input";
+		input.inputEl.setAttribute("aria-describedby", "project-input-description");
+		new ProjectSuggest(this.plugin, input.inputEl);
+	}
 
-		const userStoryFileNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "File name" });
-		userStoryFileNameLabelEl.classList.add("input-container");
-		new TextComponent(userStoryFileNameLabelEl)
-			.setPlaceholder("Enter the name of the file...")
+	createUserStoryFileNameInput(contentEl: HTMLElement): void {
+		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
+
+		const label: HTMLLabelElement = container.createEl("label", { text: "File name" });
+		label.setAttribute("for", "file-name-input");
+
+		const description: HTMLParagraphElement = container.createEl("p", {
+			text: "Enter the name of the file that will be created for the user story.",
+		});
+		description.classList.add("input-description");
+		description.id = "file-name-input-description";
+
+		const input: TextComponent = new TextComponent(container)
+			.setPlaceholder("Enter the name of the file.")
 			.onChange((value: string): void => {
 				this.form.fileName = value;
 			});
+		input.inputEl.id = "file-name-input";
+		input.inputEl.setAttribute("aria-describedby", "file-name-input-description");
+	}
 
-		const userStoryTitleLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Title" });
-		userStoryTitleLabelEl.classList.add("input-container");
-		new TextComponent(userStoryTitleLabelEl)
-			.setPlaceholder("Enter the inline title of the file...")
+	createUserStoryTitleInput(contentEl: HTMLElement): void {
+		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
+
+		const label: HTMLLabelElement = container.createEl("label", { text: "Title" });
+		label.setAttribute("for", "title-input");
+
+		const description: HTMLParagraphElement = container.createEl("p", {
+			text: "Enter the inline title of the user story. This title will replace the {{ title }} placeholder in the user story template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+		});
+		description.classList.add("input-description");
+		description.id = "title-input-description";
+
+		const input: TextComponent = new TextComponent(container)
+			.setPlaceholder("Enter the title of the user story.")
 			.onChange((value: string): void => {
 				this.form.title = value;
 			});
+		input.inputEl.id = "title-input";
+		input.inputEl.setAttribute("aria-describedby", "title-input-description");
+	}
 
+	createSubmitButton(contentEl: HTMLElement): void {
 		new ButtonComponent(contentEl)
 			.setButtonText("Create")
 			.onClick(async (): Promise<void> => {
