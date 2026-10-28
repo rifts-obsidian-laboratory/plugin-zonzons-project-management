@@ -34,12 +34,12 @@ export class CreateUserStoryModal extends Modal {
 			});
 		new ProjectSuggest(this.plugin, projectInput.inputEl);
 
-		const userStoryNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Name" });
-		userStoryNameLabelEl.classList.add("input-container");
-		new TextComponent(userStoryNameLabelEl)
-			.setPlaceholder("Enter the name of the user story...")
+		const userStoryFileNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "File name" });
+		userStoryFileNameLabelEl.classList.add("input-container");
+		new TextComponent(userStoryFileNameLabelEl)
+			.setPlaceholder("Enter the name of the file...")
 			.onChange((value: string): void => {
-				this.form.name = value;
+				this.form.fileName = value;
 			});
 
 		new ButtonComponent(contentEl)

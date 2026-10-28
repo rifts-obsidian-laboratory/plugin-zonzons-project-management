@@ -34,12 +34,12 @@ export class CreateEpicModal extends Modal {
 			});
 		new ProjectSuggest(this.plugin, projectInput.inputEl);
 
-		const epicNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Name" });
-		epicNameLabelEl.classList.add("input-container");
-		new TextComponent(epicNameLabelEl)
-			.setPlaceholder("Enter the name of the epic...")
+		const epicFileNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "File name" });
+		epicFileNameLabelEl.classList.add("input-container");
+		new TextComponent(epicFileNameLabelEl)
+			.setPlaceholder("Enter the name of the file...")
 			.onChange((value: string): void => {
-				this.form.name = value;
+				this.form.fileName = value;
 			});
 
 		new ButtonComponent(contentEl)
