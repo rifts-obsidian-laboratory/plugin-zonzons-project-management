@@ -40,7 +40,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(projectOverviewItemsEl)
 			.setName("Project overview file name")
-			.setDesc("The name given to the project overview file of each project.")
+			.setDesc("The name of the project overview file generated for each project.")
 			.addText((text: TextComponent) => text
 				.setPlaceholder("Enter the name of the project overview file.")
 				.setValue(this.plugin.settings.projectOverviewFileName)
@@ -52,7 +52,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(projectOverviewItemsEl)
 			.setName("Project overview template path")
-			.setDesc("The path to the template project overviews will be created with.")
+			.setDesc("The path to the template used to generate project overviews.")
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder("Start to type the name of a file...")
 					.setValue(this.plugin.settings.projectOverviewTemplatePath)
@@ -71,7 +71,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(traditionalDashboardItemsEl)
 			.setName("Dashboard file name")
-			.setDesc("The name given to the dashboard file of each traditional project.")
+			.setDesc("The name of the dashboard file generated for each traditional project.")
 			.addText((text: TextComponent) => text
 				.setPlaceholder("Enter the name of the dashboard file.")
 				.setValue(this.plugin.settings.traditionalDashboardFileName)
@@ -83,7 +83,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(traditionalDashboardItemsEl)
 			.setName("Dashboard template path")
-			.setDesc("The path to the template dashboards will be created with.")
+			.setDesc("The path to the template used to generate traditional project dashboards.")
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder("Start to type the name of a file...")
 					.setValue(this.plugin.settings.traditionalDashboardTemplatePath)
@@ -102,7 +102,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(agileDashboardItemsEl)
 			.setName("Dashboard file name")
-			.setDesc("The name given to the dashboard file of each agile project.")
+			.setDesc("The name of the dashboard file generated for each agile project.")
 			.addText((text: TextComponent) => text
 				.setPlaceholder("Enter the name of the dashboard file.")
 				.setValue(this.plugin.settings.agileDashboardFileName)
@@ -114,9 +114,9 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(agileDashboardItemsEl)
 			.setName("Dashboard template path")
-			.setDesc("The path to the template dashboards will be created with.")
+			.setDesc("The path to the template used to generate agile project dashboards.")
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a file...")
+				text.setPlaceholder("Start typing the name of a file...")
 					.setValue(this.plugin.settings.agileDashboardTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.agileDashboardTemplatePath = value;
@@ -131,7 +131,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(epicItemsEl)
 			.setName("Epic folder name")
-			.setDesc("The name given to the epic folder of each agile project.")
+			.setDesc("The name of the epic folder generated for each agile project.")
 			.addText((text: TextComponent) => text
 				.setPlaceholder("Enter the name of the epic folder.")
 				.setValue(this.plugin.settings.epicFolderName)
@@ -143,9 +143,9 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(epicItemsEl)
 			.setName("Epic template path")
-			.setDesc("The path to the template epics will be created with.")
+			.setDesc("The path to the template used to generate epics.")
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a file...")
+				text.setPlaceholder("Start typing the name of a file...")
 					.setValue(this.plugin.settings.epicTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.epicTemplatePath = value;
@@ -160,7 +160,7 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(userStoryItemsEl)
 			.setName("User story folder name")
-			.setDesc("The name given to the user story folder of each agile project.")
+			.setDesc("The name of the user story folder generated for each agile project.")
 			.addText((text: TextComponent) => text
 				.setPlaceholder("Enter the name of the user story folder.")
 				.setValue(this.plugin.settings.userStoryFolderName)
@@ -172,9 +172,9 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(userStoryItemsEl)
 			.setName("User story template path")
-			.setDesc("The path to the template user stories will be created with.")
+			.setDesc("The path to the template used to generate user stories.")
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder("Start to type the name of a file...")
+				text.setPlaceholder("Start typing the name of a file...")
 					.setValue(this.plugin.settings.userStoryTemplatePath)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.userStoryTemplatePath = value;
