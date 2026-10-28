@@ -5,7 +5,7 @@ import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
 import { CreateProjectModal } from "./modals/project/CreateProjectModal";
 import { CreateEpicModal } from "./modals/epic/CreateEpicModal";
-import { CreateUserStoryModal } from "./modals/userstory/CreateUserStoryModal";
+import { CreateUserStoryModal } from "./modals/user_story/CreateUserStoryModal";
 import { translate } from "./i18n";
 
 export default class ZonzonsProjectManagement extends Plugin {

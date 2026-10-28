@@ -1,6 +1,6 @@
 import { ButtonComponent, Modal, TextComponent } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
-import { CreateUserStoryForm } from "../../forms/userstory/CreateUserStoryForm";
+import { CreateUserStoryForm } from "../../forms/user_story/CreateUserStoryForm";
 import { ProjectSuggest } from "../../suggests/ProjectSuggest";
 import { translate } from "../../i18n";
 
