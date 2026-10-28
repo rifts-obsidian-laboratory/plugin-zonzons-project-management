@@ -82,11 +82,17 @@
 	"settings": {
 		"global": {
 			"title": "Global",
-			"project_folder": {
-				"path": {
-					"label": "Project folder path",
-					"description": "The path to the folder where new projects will be scaffolded.",
-					"placeholder": "Start to type the name of a folder..."
+			"project": {
+				"folder": {
+					"path": {
+						"label": "Project folder path",
+						"description": "The path to the folder where new projects will be scaffolded.",
+						"placeholder": "Start to type the name of a folder..."
+					}
+				},
+				"display_project_creation_ribbon_button": {
+					"label": "Display project creation ribbon button",
+					"description": "Defines whether the corresponding ribbon button is displayed."
 				}
 			},
 			"project_overview": {
@@ -141,6 +147,10 @@
 					"label": "Epic template path",
 					"description": "The path to the template used to generate epics.",
 					"placeholder": "Start to type the name of a file..."
+				},
+				"display_epic_creation_ribbon_button": {
+					"label": "Display epic creation ribbon button",
+					"description": "Defines whether the corresponding ribbon button is displayed."
 				}
 			},
 			"user_stories": {
@@ -153,6 +163,10 @@
 					"label": "User story template path",
 					"description": "The path to the template used to generate user stories.",
 					"placeholder": "Start to type the name of a file..."
+				},
+				"display_user_story_creation_ribbon_button": {
+					"label": "Display user story creation ribbon button",
+					"description": "Defines whether the corresponding ribbon button is displayed."
 				}
 			}
 		}

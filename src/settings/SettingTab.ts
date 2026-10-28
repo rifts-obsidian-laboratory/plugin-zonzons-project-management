@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting, TextComponent } from "obsidian";
+import { App, PluginSettingTab, Setting, SliderComponent, TextComponent, ToggleComponent } from "obsidian";
 import ZonzonsProjectManagement from "../main";
 import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
@@ -22,9 +22,12 @@ export class SettingTab extends PluginSettingTab {
 
 		new Setting(containerEl).setName(translate("settings.global.title")).setHeading();
 
-		new Setting(containerEl)
-			.setName(translate("settings.global.project_folder.path.label"))
-			.setDesc(translate("settings.global.project_folder.path.description"))
+		const projectGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const projectItemsEl: HTMLDivElement = projectGroupEl.createDiv({ cls: "setting-items" });
+
+		new Setting(projectItemsEl)
+			.setName(translate("settings.global.project.folder.path.label"))
+			.setDesc(translate("settings.global.project.folder.path.description"))
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder(translate("settings.global.project_folder.path.placeholder"))
 					.setValue(this.plugin.settings.projectFolderPath)
@@ -35,6 +38,17 @@ export class SettingTab extends PluginSettingTab {
 
 				new FolderSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(projectItemsEl)
+			.setName(translate("settings.global.project.display_project_creation_ribbon_button.label"))
+			.setDesc(translate("settings.global.project.display_project_creation_ribbon_button.description"))
+			.addToggle((toggle: ToggleComponent): void => {
+				toggle.setValue(this.plugin.settings.displayProjectCreationRibbonButton)
+					.onChange(async (value: boolean): Promise<void> => {
+						this.plugin.settings.displayProjectCreationRibbonButton = value;
+						await this.plugin.saveSettings();
+					});
+			})
 
 		const projectOverviewGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
@@ -156,6 +170,17 @@ export class SettingTab extends PluginSettingTab {
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
 
+		new Setting(epicItemsEl)
+			.setName(translate("settings.agile_project_management.epics.display_epic_creation_ribbon_button.label"))
+			.setDesc(translate("settings.agile_project_management.epics.display_epic_creation_ribbon_button.description"))
+			.addToggle((toggle: ToggleComponent): void => {
+				toggle.setValue(this.plugin.settings.displayEpicCreationRibbonButton)
+					.onChange(async (value: boolean): Promise<void> => {
+						this.plugin.settings.displayEpicCreationRibbonButton = value;
+						await this.plugin.saveSettings();
+					});
+			})
+
 		const userStoryGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const userStoryItemsEl: HTMLDivElement = userStoryGroupEl.createDiv({ cls: "setting-items" });
 
@@ -184,5 +209,16 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+
+		new Setting(userStoryItemsEl)
+			.setName(translate("settings.agile_project_management.user_stories.display_user_story_creation_ribbon_button.label"))
+			.setDesc(translate("settings.agile_project_management.user_stories.display_user_story_creation_ribbon_button.description"))
+			.addToggle((toggle: ToggleComponent): void => {
+				toggle.setValue(this.plugin.settings.displayUserStoryCreationRibbonButton)
+					.onChange(async (value: boolean): Promise<void> => {
+						this.plugin.settings.displayUserStoryCreationRibbonButton = value;
+						await this.plugin.saveSettings();
+					});
+			})
 	}
 }

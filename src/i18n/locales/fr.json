@@ -82,11 +82,17 @@
 	"settings": {
 		"global": {
 			"title": "Général",
-			"project_folder": {
-				"path": {
-					"label": "Chemin du dossier de projet",
-					"description": "Le chemin vers le dossier où les nouveaux projets seront créés.",
-					"placeholder": "Commencez à taper le nom d'un dossier..."
+			"project": {
+				"folder": {
+					"path": {
+						"label": "Chemin du dossier de projet",
+						"description": "Le chemin vers le dossier où les nouveaux projets seront créés.",
+						"placeholder": "Commencez à taper le nom d'un dossier..."
+					}
+				},
+				"display_project_creation_ribbon_button": {
+					"label": "Afficher le bouton de création de projet dans le ruban",
+					"description": "Définit si le bouton correspondant du ruban doit être affiché."
 				}
 			},
 			"project_overview": {
@@ -141,6 +147,10 @@
 					"label": "Chemin du modèle d'épopée",
 					"description": "Le chemin vers le modèle utilisé pour générer les épopées.",
 					"placeholder": "Commencez à taper le nom d'un fichier..."
+				},
+				"display_epic_creation_ribbon_button": {
+					"label": "Afficher le bouton de création d'épopée dans le ruban",
+					"description": "Définit si le bouton correspondant du ruban doit être affiché."
 				}
 			},
 			"user_stories": {
@@ -153,6 +163,10 @@
 					"label": "Chemin du modèle de récit utilisateur",
 					"description": "Le chemin vers le modèle utilisé pour générer les récits utilisateur.",
 					"placeholder": "Commencez à taper le nom d'un fichier..."
+				},
+				"display_user_story_creation_ribbon_button": {
+					"label": "Afficher le bouton de création de récit utilisateur dans le ruban",
+					"description": "Définit si le bouton correspondant du ruban doit être affiché."
 				}
 			}
 		}
