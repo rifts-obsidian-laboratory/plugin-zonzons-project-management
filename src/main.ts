@@ -16,7 +16,7 @@ export default class ZonzonsProjectManagement extends Plugin {
 
 		this.addCommand({
 			id: "create-project",
-			name: translate("commands.create-project"),
+			name: translate("commands.create_project"),
 			callback: (): void => {
 				new CreateProjectModal(this).open();
 			}
@@ -24,7 +24,7 @@ export default class ZonzonsProjectManagement extends Plugin {
 
 		this.addCommand({
 			id: "create-epic",
-			name: translate("commands.create-epic"),
+			name: translate("commands.create_epic"),
 			callback: (): void => {
 				new CreateEpicModal(this).open();
 			}
@@ -32,11 +32,35 @@ export default class ZonzonsProjectManagement extends Plugin {
 
 		this.addCommand({
 			id: "create-user-story",
-			name: translate("commands.create-user-story"),
+			name: translate("commands.create_user_story"),
 			callback: (): void => {
 				new CreateUserStoryModal(this).open();
 			}
 		});
+
+		this.addRibbonIcon(
+			'folder-plus',
+			translate("ribbon_icons.create_project"),
+			(): void => {
+				new CreateProjectModal(this).open();
+			}
+		);
+
+		this.addRibbonIcon(
+			'file-plus',
+			translate("ribbon_icons.create_epic"),
+			(): void => {
+				new CreateEpicModal(this).open();
+			}
+		);
+
+		this.addRibbonIcon(
+			'clipboard-plus',
+			translate("ribbon_icons.create_user_story"),
+			(): void => {
+				new CreateUserStoryModal(this).open();
+			}
+		);
 
 		this.addSettingTab(new SettingTab(this.app, this));
 	}

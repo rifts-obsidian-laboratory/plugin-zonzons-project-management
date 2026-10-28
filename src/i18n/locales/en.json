@@ -6,9 +6,9 @@
 		}
 	},
 	"commands": {
-		"create-project": "Create project",
-		"create-epic": "Create epic",
-		"create-user-story": "Create user story"
+		"create_project": "Create project",
+		"create_epic": "Create epic",
+		"create_user_story": "Create user story"
 	},
 	"modals": {
 		"project": {
@@ -73,6 +73,11 @@
 				"submit": "Create"
 			}
 		}
+	},
+	"ribbon_icons": {
+		"create_project": "Create project",
+		"create_epic": "Create epic",
+		"create_user_story": "Create user story"
 	},
 	"settings": {
 		"global": {
