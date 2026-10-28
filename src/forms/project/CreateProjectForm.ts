@@ -2,17 +2,18 @@ import { Notice, TFile, TFolder } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
 import { ProjectType } from "../../enums/ProjectType";
 import { FileService } from "../../services/FileService";
+import { I_HasFolderName } from "../../interfaces/I_HasFolderName";
 
-export class CreateProjectForm {
+export class CreateProjectForm implements I_HasFolderName {
 	public plugin: ZonzonsProjectManagement;
 	public fileService: FileService;
-	public name: string;
+	public folderName: string;
 	public type: ProjectType;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
 		this.fileService = new FileService(plugin);
-		this.name = "";
+		this.folderName = "";
 		this.type = ProjectType.TRADITIONAL;
 	}
 
@@ -20,7 +21,7 @@ export class CreateProjectForm {
 		let project: TFolder | null = null;
 
 		try {
-			project = await this.fileService.createProjectFolder(this.name);
+			project = await this.fileService.createProjectFolder(this.folderName);
 		} catch (error) {
 			new Notice("Project already exists. Project creation aborted.", 5000);
 			return;

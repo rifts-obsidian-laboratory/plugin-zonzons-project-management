@@ -23,13 +23,13 @@ export class CreateProjectModal extends Modal {
 
 		contentEl.empty();
 
-		const projectNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Name" });
-		projectNameLabelEl.classList.add("input-container");
-		const projectNameInput: TextComponent = new TextComponent(projectNameLabelEl)
-			.setPlaceholder("Enter the name of the project.")
-			.setValue(this.form.name)
-			.onChange((value: string): string => this.form.name = value);
-		projectNameLabelEl.append(projectNameInput.inputEl);
+		const projectFolderNameLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Folder name" });
+		projectFolderNameLabelEl.classList.add("input-container");
+		const projectFolderNameInput: TextComponent = new TextComponent(projectFolderNameLabelEl)
+			.setPlaceholder("Enter the name of the project's folder.")
+			.setValue(this.form.folderName)
+			.onChange((value: string): string => this.form.folderName = value);
+		projectFolderNameLabelEl.append(projectFolderNameInput.inputEl);
 
 		const projectTypeLabelEl: HTMLLabelElement = contentEl.createEl("label", { text: "Type" });
 		projectTypeLabelEl.classList.add("input-container");
