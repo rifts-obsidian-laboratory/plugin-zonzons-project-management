@@ -12,7 +12,9 @@
 	},
 	"file_menu": {
 		"items": {
-			"create_project": "Créer un projet"
+			"create_project": "Créer un projet",
+			"create_epic": "Créer une épopée",
+			"create_user_story": "Créer un récit utilisateur"
 		}
 	},
 	"modals": {

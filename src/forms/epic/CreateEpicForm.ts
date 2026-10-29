@@ -23,6 +23,10 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle {
 		this.project = this.fileService.getProjectFolder(projectName);
 	}
 
+	public getProject(): string {
+		return this.project?.name ?? "";
+	}
+
 	public async create(): Promise<void> {
 		if (!this.project) {
 			new Notice("Project not found. Epic creation aborted.", 5000);

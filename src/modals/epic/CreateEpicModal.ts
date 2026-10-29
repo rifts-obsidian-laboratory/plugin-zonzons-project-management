@@ -8,10 +8,11 @@ export class CreateEpicModal extends Modal {
 	plugin: ZonzonsProjectManagement;
 	form: CreateEpicForm;
 
-	constructor(plugin: ZonzonsProjectManagement) {
+	constructor(plugin: ZonzonsProjectManagement, projectName?: string) {
 		super(plugin.app);
 		this.plugin = plugin;
 		this.form = new CreateEpicForm(plugin);
+		if (projectName) this.form.setProject(projectName);
 	}
 
 	override onOpen(): void {
@@ -46,6 +47,7 @@ export class CreateEpicModal extends Modal {
 
 		const input: TextComponent = new TextComponent(container)
 			.setPlaceholder(translate("modals.epic.create.project.placeholder"))
+			.setValue(this.form.getProject())
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
 			});

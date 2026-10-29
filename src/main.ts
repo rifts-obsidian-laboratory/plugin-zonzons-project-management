@@ -1,4 +1,4 @@
-import { MenuItem, Plugin, TFolder } from 'obsidian';
+import { Menu, MenuItem, Plugin, TAbstractFile, TFolder } from 'obsidian';
 import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
 import { CreateProjectModal } from "./modals/project/CreateProjectModal";
@@ -99,7 +99,7 @@ export default class ZonzonsProjectManagement extends Plugin {
 	}
 
 	addContextualActionsToFileMenu(): void {
-		this.app.workspace.on("file-menu", (menu, file, source) => {
+		this.app.workspace.on("file-menu", (menu: Menu, file: TAbstractFile, source: string): void => {
 			if (file instanceof TFolder && file.path === this.settings.projectFolderPath) {
 				menu.addItem((item: MenuItem): void => {
 					item.setTitle(translate("file_menu.items.create_project"))
@@ -108,6 +108,46 @@ export default class ZonzonsProjectManagement extends Plugin {
 							new CreateProjectModal(this).open();
 						});
 				});
+			}
+
+			if (file instanceof TFolder && file.parent?.path === this.settings.projectFolderPath) {
+				menu.addItem((item: MenuItem): void => {
+					item.setTitle(translate("file_menu.items.create_epic"))
+						.setIcon("file-plus")
+						.onClick((): void => {
+							new CreateEpicModal(this, file.name).open();
+						});
+				});
+
+				menu.addItem((item: MenuItem): void => {
+					item.setTitle(translate("file_menu.items.create_user_story"))
+						.setIcon("clipboard-plus")
+						.onClick((): void => {
+							new CreateUserStoryModal(this, file.name).open();
+						});
+				})
+			}
+
+			if (file instanceof TFolder && file.parent?.parent?.path === this.settings.projectFolderPath) {
+				if (file.name === this.settings.epicFolderName) {
+					menu.addItem((item: MenuItem): void => {
+						item.setTitle(translate("file_menu.items.create_epic"))
+							.setIcon("file-plus")
+							.onClick((): void => {
+								new CreateEpicModal(this, file.parent?.name).open();
+							});
+					});
+				}
+
+				if (file.name === this.settings.userStoryFolderName) {
+					menu.addItem((item: MenuItem): void => {
+						item.setTitle(translate("file_menu.items.create_user_story"))
+							.setIcon("clipboard-plus")
+							.onClick((): void => {
+								new CreateUserStoryModal(this, file.parent?.name).open();
+							});
+					})
+				}
 			}
 		});
 	}

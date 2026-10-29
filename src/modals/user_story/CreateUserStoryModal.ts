@@ -8,10 +8,11 @@ export class CreateUserStoryModal extends Modal {
 	plugin: ZonzonsProjectManagement;
 	form: CreateUserStoryForm;
 
-	constructor(plugin: ZonzonsProjectManagement) {
+	constructor(plugin: ZonzonsProjectManagement, projectName?: string) {
 		super(plugin.app);
 		this.plugin = plugin;
 		this.form = new CreateUserStoryForm(plugin);
+		if (projectName) this.form.setProject(projectName);
 	}
 
 	override onOpen(): void {
@@ -46,6 +47,7 @@ export class CreateUserStoryModal extends Modal {
 
 		const input: TextComponent = new TextComponent(container)
 			.setPlaceholder(translate("modals.user_story.create.project.placeholder"))
+			.setValue(this.form.getProject())
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
 			});
