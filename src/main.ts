@@ -1,4 +1,4 @@
-import { Plugin } from 'obsidian';
+import { MenuItem, Plugin, TFolder } from 'obsidian';
 import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
 import { CreateProjectModal } from "./modals/project/CreateProjectModal";
@@ -40,6 +40,8 @@ export default class ZonzonsProjectManagement extends Plugin {
 		});
 
 		this.refreshRibbonButtons();
+
+		this.addContextualActionsToFileMenu();
 
 		this.addSettingTab(new SettingTab(this.app, this));
 	}
@@ -94,5 +96,19 @@ export default class ZonzonsProjectManagement extends Plugin {
 		}
 
 		return button ?? this.addRibbonIcon(icon, label, callback);
+	}
+
+	addContextualActionsToFileMenu(): void {
+		this.app.workspace.on("file-menu", (menu, file, source) => {
+			if (file instanceof TFolder && file.path === this.settings.projectFolderPath) {
+				menu.addItem((item: MenuItem): void => {
+					item.setTitle(translate("file_menu.items.create_project"))
+						.setIcon("folder-plus")
+						.onClick((): void => {
+							new CreateProjectModal(this).open();
+						});
+				});
+			}
+		});
 	}
 }

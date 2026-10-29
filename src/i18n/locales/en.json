@@ -10,6 +10,11 @@
 		"create_epic": "Create epic",
 		"create_user_story": "Create user story"
 	},
+	"file_menu": {
+		"items": {
+			"create_project": "Create project"
+		}
+	},
 	"modals": {
 		"project": {
 			"create": {
