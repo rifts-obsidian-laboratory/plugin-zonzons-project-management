@@ -36,6 +36,11 @@
 					"placeholder": "Enter the title of the project's overview file."
 				},
 				"submit": "Create"
+			},
+			"delete": {
+				"title": "Delete an existing project",
+				"warning": "Deleting a project is not reversible. The project and all of its file will be deleted forever... Forever is quite long.",
+				"submit": "Delete"
 			}
 		},
 		"epic": {
@@ -178,7 +183,9 @@
 			}
 		},
 		"registered_projects": {
-			"title": "Registered projects"
+			"title": "Registered projects",
+			"no_project_found": "No project has been registered.",
+			"delete": "Delete"
 		}
 	}
 }

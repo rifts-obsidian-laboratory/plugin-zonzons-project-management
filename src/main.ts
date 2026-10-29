@@ -9,6 +9,7 @@ import { ProjectType } from "./enums/ProjectType";
 
 export default class ZonzonsProjectManagement extends Plugin {
 	settings!: I_Settings;
+	settingTab: SettingTab | undefined;
 	createProjectRibbonButton: HTMLElement | undefined;
 	createEpicRibbonButton: HTMLElement | undefined;
 	createUserStoryRibbonButton: HTMLElement | undefined;
@@ -44,7 +45,8 @@ export default class ZonzonsProjectManagement extends Plugin {
 
 		this.addContextualActionsToFileMenu();
 
-		this.addSettingTab(new SettingTab(this.app, this));
+		this.settingTab = new SettingTab(this.app, this);
+		this.addSettingTab(this.settingTab);
 	}
 
 	onunload(): void {

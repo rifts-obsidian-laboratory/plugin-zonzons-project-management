@@ -36,6 +36,11 @@
 					"placeholder": "Saisissez le titre du fichier de vue d’ensemble du projet."
 				},
 				"submit": "Créer"
+			},
+			"delete": {
+				"title": "Supprimer un projet existant",
+				"warning": "Supprimer un projet est une action irréversible. Le projet et tout ses fichiers seront supprimés pour l'éternité et l'éternité, c'est très long.",
+				"submit": "Delete"
 			}
 		},
 		"epic": {
@@ -178,7 +183,9 @@
 			}
 		},
 		"registered_projects": {
-			"title": "Projets enregistrés"
+			"title": "Projets enregistrés",
+			"no_project_found": "Aucun projet n'a été enregistré.",
+			"delete": "Supprimer"
 		}
 	}
 }
