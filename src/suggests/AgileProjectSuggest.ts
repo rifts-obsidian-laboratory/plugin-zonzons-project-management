@@ -1,4 +1,4 @@
-import { AbstractInputSuggest, App, TAbstractFile, TFolder } from "obsidian";
+import { AbstractInputSuggest, TAbstractFile, TFolder } from "obsidian";
 import ZonzonsProjectManagement from "../main";
 import { ProjectType } from "../enums/ProjectType";
 

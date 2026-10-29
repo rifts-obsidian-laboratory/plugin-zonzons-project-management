@@ -1,4 +1,4 @@
-import { ButtonComponent, DropdownComponent, Modal, TextComponent, TFolder } from "obsidian";
+import { ButtonComponent, Modal, TextComponent} from "obsidian";
 import { CreateEpicForm } from "../../forms/epic/CreateEpicForm";
 import ZonzonsProjectManagement from "../../main";
 import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
