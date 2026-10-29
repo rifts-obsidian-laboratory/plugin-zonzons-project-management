@@ -30,6 +30,13 @@ export class SettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
+		this.createGlobalSettingSection(containerEl);
+		this.createTraditionalProjectManagementSettingSection(containerEl);
+		this.createAgileProjectManagementSettingSection(containerEl);
+		this.createRegisteredProjectSettingSection(containerEl);
+	}
+
+	createGlobalSettingSection(containerEl: HTMLElement): void {
 		new Setting(containerEl).setName(translate("settings.global.title")).setHeading();
 
 		const projectGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
@@ -88,7 +95,9 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+	}
 
+	createTraditionalProjectManagementSettingSection(containerEl: HTMLElement): void {
 		new Setting(containerEl).setName(translate("settings.traditional_project_management.title")).setHeading();
 
 		const traditionalDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
@@ -119,7 +128,9 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
+	}
 
+	createAgileProjectManagementSettingSection(containerEl: HTMLElement): void {
 		new Setting(containerEl).setName(translate("settings.agile_project_management.title")).setHeading();
 
 		const agileDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
@@ -229,8 +240,10 @@ export class SettingTab extends PluginSettingTab {
 						this.plugin.settings.displayUserStoryCreationRibbonButton = value;
 						await this.plugin.saveSettings();
 					});
-			})
+			});
+	}
 
+	createRegisteredProjectSettingSection(containerEl: HTMLElement): void {
 		new Setting(containerEl).setName(translate("settings.registered_projects.title")).setHeading();
 
 		const projects: [string, ProjectType][] = Object
