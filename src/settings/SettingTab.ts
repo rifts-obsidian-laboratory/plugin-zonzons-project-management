@@ -295,8 +295,6 @@ export class SettingTab extends PluginSettingTab {
 							this.plugin.settings.projects[project] = isProjectType(value) ? value as ProjectType : ProjectType.TRADITIONAL;
 							await this.plugin.saveSettings();
 						});
-
-					dropdown.selectEl.style.width = "fit-content";
 				})
 				.addButton((button: ButtonComponent): void => {
 					button
@@ -308,8 +306,6 @@ export class SettingTab extends PluginSettingTab {
 							modal.open();
 						});
 				});
-
-			setting.infoEl.style.alignSelf = "center";
 		});
 	}
 }
