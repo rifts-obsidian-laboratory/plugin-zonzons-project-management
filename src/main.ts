@@ -114,45 +114,47 @@ export default class ZonzonsProjectManagement extends Plugin {
 			}
 
 			if (file instanceof TFolder) {
-				if (this.settings.projects[file.name] !== ProjectType.AGILE) return;
-
-				if (file.parent?.path === this.settings.projectFolderPath) {
-					menu.addItem((item: MenuItem): void => {
-						item.setTitle(translate("file_menu.items.create_epic"))
-							.setIcon("file-plus")
-							.onClick((): void => {
-								new CreateEpicModal(this, file.name).open();
-							});
-					});
-
-					menu.addItem((item: MenuItem): void => {
-						item.setTitle(translate("file_menu.items.create_user_story"))
-							.setIcon("clipboard-plus")
-							.onClick((): void => {
-								new CreateUserStoryModal(this, file.name).open();
-							});
-					})
-				}
-
-				if (file.parent?.parent?.path === this.settings.projectFolderPath) {
-					if (file.name === this.settings.epicFolderName) {
+				if (this.settings.projects[file.name] === ProjectType.AGILE) {
+					if (file.parent?.path === this.settings.projectFolderPath) {
 						menu.addItem((item: MenuItem): void => {
 							item.setTitle(translate("file_menu.items.create_epic"))
 								.setIcon("file-plus")
 								.onClick((): void => {
-									new CreateEpicModal(this, file.parent?.name).open();
+									new CreateEpicModal(this, file.name).open();
 								});
 						});
-					}
 
-					if (file.name === this.settings.userStoryFolderName) {
 						menu.addItem((item: MenuItem): void => {
 							item.setTitle(translate("file_menu.items.create_user_story"))
 								.setIcon("clipboard-plus")
 								.onClick((): void => {
-									new CreateUserStoryModal(this, file.parent?.name).open();
+									new CreateUserStoryModal(this, file.name).open();
 								});
 						})
+					}
+				}
+
+				if (this.settings.projects[file.parent?.name ?? ""] === ProjectType.AGILE) {
+					if (file.parent?.parent?.path === this.settings.projectFolderPath) {
+						if (file.name === this.settings.epicFolderName) {
+							menu.addItem((item: MenuItem): void => {
+								item.setTitle(translate("file_menu.items.create_epic"))
+									.setIcon("file-plus")
+									.onClick((): void => {
+										new CreateEpicModal(this, file.parent?.name).open();
+									});
+							});
+						}
+
+						if (file.name === this.settings.userStoryFolderName) {
+							menu.addItem((item: MenuItem): void => {
+								item.setTitle(translate("file_menu.items.create_user_story"))
+									.setIcon("clipboard-plus")
+									.onClick((): void => {
+										new CreateUserStoryModal(this, file.parent?.name).open();
+									});
+							})
+						}
 					}
 				}
 			}
