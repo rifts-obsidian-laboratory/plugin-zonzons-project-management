@@ -1,12 +1,12 @@
-import { Menu, MenuItem, Plugin, TAbstractFile, TFolder } from 'obsidian';
+import { Plugin } from 'obsidian';
 import { DEFAULT_SETTINGS, I_Settings } from "./settings/Settings";
 import { SettingTab } from "./settings/SettingTab";
 import { CreateProjectModal } from "./modals/project/CreateProjectModal";
 import { CreateEpicModal } from "./modals/epic/CreateEpicModal";
 import { CreateUserStoryModal } from "./modals/user_story/CreateUserStoryModal";
 import { translate } from "./i18n";
-import { ProjectType } from "./enums/ProjectType";
 import { CommandService } from "./services/CommandService";
+import { FileMenuService } from "./services/FileMenuService";
 
 export default class ZonzonsProjectManagement extends Plugin {
 	settings!: I_Settings;
@@ -19,10 +19,9 @@ export default class ZonzonsProjectManagement extends Plugin {
 		await this.loadSettings();
 
 		CommandService.initialize(this);
+		FileMenuService.initialize(this);
 
 		this.refreshRibbonButtons();
-
-		this.addContextualActionsToFileMenu();
 
 		this.settingTab = new SettingTab(this.app, this);
 		this.addSettingTab(this.settingTab);
@@ -78,65 +77,5 @@ export default class ZonzonsProjectManagement extends Plugin {
 		}
 
 		return button ?? this.addRibbonIcon(icon, label, callback);
-	}
-
-	addContextualActionsToFileMenu(): void {
-		this.app.workspace.on("file-menu", (menu: Menu, file: TAbstractFile, source: string): void => {
-			if (file instanceof TFolder && file.path === this.settings.projectFolderPath) {
-				menu.addItem((item: MenuItem): void => {
-					item.setTitle(translate("file_menu.items.create_project"))
-						.setIcon("folder-plus")
-						.onClick((): void => {
-							new CreateProjectModal(this).open();
-						});
-				});
-			}
-
-			if (file instanceof TFolder) {
-				if (this.settings.projects[file.name] === ProjectType.AGILE) {
-					if (file.parent?.path === this.settings.projectFolderPath) {
-						menu.addItem((item: MenuItem): void => {
-							item.setTitle(translate("file_menu.items.create_epic"))
-								.setIcon("file-plus")
-								.onClick((): void => {
-									new CreateEpicModal(this, file.name).open();
-								});
-						});
-
-						menu.addItem((item: MenuItem): void => {
-							item.setTitle(translate("file_menu.items.create_user_story"))
-								.setIcon("clipboard-plus")
-								.onClick((): void => {
-									new CreateUserStoryModal(this, file.name).open();
-								});
-						})
-					}
-				}
-
-				if (this.settings.projects[file.parent?.name ?? ""] === ProjectType.AGILE) {
-					if (file.parent?.parent?.path === this.settings.projectFolderPath) {
-						if (file.name === this.settings.epicFolderName) {
-							menu.addItem((item: MenuItem): void => {
-								item.setTitle(translate("file_menu.items.create_epic"))
-									.setIcon("file-plus")
-									.onClick((): void => {
-										new CreateEpicModal(this, file.parent?.name).open();
-									});
-							});
-						}
-
-						if (file.name === this.settings.userStoryFolderName) {
-							menu.addItem((item: MenuItem): void => {
-								item.setTitle(translate("file_menu.items.create_user_story"))
-									.setIcon("clipboard-plus")
-									.onClick((): void => {
-										new CreateUserStoryModal(this, file.parent?.name).open();
-									});
-							})
-						}
-					}
-				}
-			}
-		});
 	}
 }
