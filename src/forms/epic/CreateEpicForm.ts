@@ -2,6 +2,7 @@ import ZonzonsProjectManagement from "../../main";
 import { Notice, TFile, TFolder } from "obsidian";
 import { FileService } from "../../services/FileService";
 import { I_HasFileName } from "../../interfaces/I_HasFileName";
+import { I_HasTitle } from "../../interfaces/I_HasTitle";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
 
 export class CreateEpicForm implements I_HasFileName, I_HasTitle {

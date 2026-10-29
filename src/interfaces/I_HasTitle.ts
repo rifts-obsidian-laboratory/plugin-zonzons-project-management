@@ -1,3 +1,3 @@
-interface I_HasTitle {
+export interface I_HasTitle {
 	title: string;
 }

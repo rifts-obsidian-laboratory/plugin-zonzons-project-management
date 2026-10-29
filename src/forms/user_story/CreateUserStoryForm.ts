@@ -3,6 +3,7 @@ import { Notice, TFile, TFolder } from "obsidian";
 import { FileService } from "../../services/FileService";
 import { I_HasFileName } from "../../interfaces/I_HasFileName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
+import { I_HasTitle } from "../../interfaces/I_HasTitle";
 
 export class CreateUserStoryForm implements I_HasFileName, I_HasTitle {
 	public plugin: ZonzonsProjectManagement;

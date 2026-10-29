@@ -4,6 +4,7 @@ import { ProjectType } from "../../enums/ProjectType";
 import { FileService } from "../../services/FileService";
 import { I_HasFolderName } from "../../interfaces/I_HasFolderName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
+import { I_HasTitle } from "../../interfaces/I_HasTitle";
 
 export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 	public plugin: ZonzonsProjectManagement;
