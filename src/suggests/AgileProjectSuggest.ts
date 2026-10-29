@@ -1,7 +1,8 @@
 import { AbstractInputSuggest, App, TAbstractFile, TFolder } from "obsidian";
 import ZonzonsProjectManagement from "../main";
+import { ProjectType } from "../enums/ProjectType";
 
-export class ProjectSuggest extends AbstractInputSuggest<TFolder> {
+export class AgileProjectSuggest extends AbstractInputSuggest<TFolder> {
 	plugin: ZonzonsProjectManagement;
 	inputElement: HTMLInputElement;
 
@@ -20,6 +21,7 @@ export class ProjectSuggest extends AbstractInputSuggest<TFolder> {
 		return projects.children
 			.filter((file: TAbstractFile): file is TFolder => file instanceof TFolder)
 			.filter((folder: TFolder): boolean => folder.path.toLowerCase().includes(_query))
+			.filter((folder: TFolder): boolean => this.plugin.settings.projects[folder.name] === ProjectType.AGILE)
 			.slice(0, 10);
 	}
 

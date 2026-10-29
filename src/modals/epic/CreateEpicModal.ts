@@ -1,7 +1,7 @@
 import { ButtonComponent, DropdownComponent, Modal, TextComponent, TFolder } from "obsidian";
 import { CreateEpicForm } from "../../forms/epic/CreateEpicForm";
 import ZonzonsProjectManagement from "../../main";
-import { ProjectSuggest } from "../../suggests/ProjectSuggest";
+import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
 
 export class CreateEpicModal extends Modal {
@@ -58,7 +58,7 @@ export class CreateEpicModal extends Modal {
 		input.inputEl.id = "project-input";
 		input.inputEl.setAttribute("aria-describedby", "project-input-description");
 		input.setDisabled(this.isProjectInputDisabled);
-		new ProjectSuggest(this.plugin, input.inputEl);
+		new AgileProjectSuggest(this.plugin, input.inputEl);
 	}
 
 	createEpicFileNameInput(contentEl: HTMLElement): void {

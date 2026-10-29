@@ -1,7 +1,7 @@
 import { ButtonComponent, Modal, TextComponent } from "obsidian";
 import ZonzonsProjectManagement from "../../main";
 import { CreateUserStoryForm } from "../../forms/user_story/CreateUserStoryForm";
-import { ProjectSuggest } from "../../suggests/ProjectSuggest";
+import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
 
 export class CreateUserStoryModal extends Modal {
@@ -58,7 +58,7 @@ export class CreateUserStoryModal extends Modal {
 		input.inputEl.id = "project-input";
 		input.inputEl.setAttribute("aria-describedby", "project-input-description");
 		input.setDisabled(this.isProjectInputDisabled);
-		new ProjectSuggest(this.plugin, input.inputEl);
+		new AgileProjectSuggest(this.plugin, input.inputEl);
 	}
 
 	createUserStoryFileNameInput(contentEl: HTMLElement): void {
