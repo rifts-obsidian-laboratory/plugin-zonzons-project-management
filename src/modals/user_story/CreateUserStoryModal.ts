@@ -7,12 +7,16 @@ import { translate } from "../../i18n";
 export class CreateUserStoryModal extends Modal {
 	plugin: ZonzonsProjectManagement;
 	form: CreateUserStoryForm;
+	isProjectInputDisabled: boolean = false;
 
 	constructor(plugin: ZonzonsProjectManagement, projectName?: string) {
 		super(plugin.app);
 		this.plugin = plugin;
 		this.form = new CreateUserStoryForm(plugin);
-		if (projectName) this.form.setProject(projectName);
+		if (projectName) {
+			this.form.setProject(projectName);
+			this.isProjectInputDisabled = true;
+		}
 	}
 
 	override onOpen(): void {
@@ -53,6 +57,7 @@ export class CreateUserStoryModal extends Modal {
 			});
 		input.inputEl.id = "project-input";
 		input.inputEl.setAttribute("aria-describedby", "project-input-description");
+		input.setDisabled(this.isProjectInputDisabled);
 		new ProjectSuggest(this.plugin, input.inputEl);
 	}
 
