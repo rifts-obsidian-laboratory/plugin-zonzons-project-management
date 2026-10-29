@@ -1,3 +1,5 @@
+import { ProjectType } from "../enums/ProjectType";
+
 export interface I_Settings {
 	projectFolderPath: string;
 	displayProjectCreationRibbonButton: boolean;
@@ -13,6 +15,7 @@ export interface I_Settings {
 	userStoryFolderName: string;
 	userStoryTemplatePath: string;
 	displayUserStoryCreationRibbonButton: boolean;
+	projects: Record<string, ProjectType>
 }
 
 
@@ -31,4 +34,5 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	userStoryFolderName: "",
 	userStoryTemplatePath: "",
 	displayUserStoryCreationRibbonButton: true,
+	projects: {},
 }

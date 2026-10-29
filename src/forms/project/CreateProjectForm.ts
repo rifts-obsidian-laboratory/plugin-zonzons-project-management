@@ -25,8 +25,10 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 
 		try {
 			project = await this.fileService.createProjectFolder(this.folderName);
+			this.plugin.settings.projects[this.folderName] = this.type;
 		} catch (error) {
 			new Notice("Project already exists. Project creation aborted.", 5000);
+			delete this.plugin.settings.projects[this.folderName];
 			return;
 		}
 
@@ -52,7 +54,10 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 			await this.fileService.createUserStoryFolder(project);
 		} else {
 			await this.plugin.app.vault.delete(project, true);
+			delete this.plugin.settings.projects[this.folderName];
 			new Notice("Project type not supported. Project creation aborted.", 5000);
 		}
+
+		await this.plugin.saveSettings();
 	}
 }
