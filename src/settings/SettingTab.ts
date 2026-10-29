@@ -42,6 +42,7 @@ export class SettingTab extends PluginSettingTab {
 		const projectGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const projectItemsEl: HTMLDivElement = projectGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - Project folder path">
 		new Setting(projectItemsEl)
 			.setName(translate("settings.global.project.folder.path.label"))
 			.setDesc(translate("settings.global.project.folder.path.description"))
@@ -55,7 +56,9 @@ export class SettingTab extends PluginSettingTab {
 
 				new FolderSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Toggle - Display project creation ribbon button">
 		new Setting(projectItemsEl)
 			.setName(translate("settings.global.project.display_project_creation_ribbon_button.label"))
 			.setDesc(translate("settings.global.project.display_project_creation_ribbon_button.description"))
@@ -66,10 +69,12 @@ export class SettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			})
+		// </editor-fold>
 
 		const projectOverviewGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - Project overview file name">
 		new Setting(projectOverviewItemsEl)
 			.setName(translate("settings.global.project_overview.file_name.label"))
 			.setDesc(translate("settings.global.project_overview.file_name.description"))
@@ -81,7 +86,9 @@ export class SettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				})
 			);
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - Project overview template path">
 		new Setting(projectOverviewItemsEl)
 			.setName(translate("settings.global.project_overview.template_path.label"))
 			.setDesc(translate("settings.global.project_overview.template_path.description"))
@@ -95,6 +102,7 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 	}
 
 	createTraditionalProjectManagementSettingSection(containerEl: HTMLElement): void {
@@ -103,6 +111,7 @@ export class SettingTab extends PluginSettingTab {
 		const traditionalDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const traditionalDashboardItemsEl: HTMLDivElement = traditionalDashboardGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - Traditional project dashboard file name">
 		new Setting(traditionalDashboardItemsEl)
 			.setName(translate("settings.traditional_project_management.dashboard_file.name.label"))
 			.setDesc(translate("settings.traditional_project_management.dashboard_file.name.description"))
@@ -114,7 +123,9 @@ export class SettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				})
 			);
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - Traditional project dashboard template path">
 		new Setting(traditionalDashboardItemsEl)
 			.setName(translate("settings.traditional_project_management.dashboard_file.template_path.label"))
 			.setDesc(translate("settings.traditional_project_management.dashboard_file.template_path.description"))
@@ -128,6 +139,7 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 	}
 
 	createAgileProjectManagementSettingSection(containerEl: HTMLElement): void {
@@ -136,6 +148,7 @@ export class SettingTab extends PluginSettingTab {
 		const agileDashboardGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const agileDashboardItemsEl: HTMLDivElement = agileDashboardGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - Agile project dashboard file name">
 		new Setting(agileDashboardItemsEl)
 			.setName(translate("settings.agile_project_management.dashboard_file.name.label"))
 			.setDesc(translate("settings.agile_project_management.dashboard_file.name.description"))
@@ -147,7 +160,9 @@ export class SettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				})
 			);
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - Agile project dashboard template path">
 		new Setting(agileDashboardItemsEl)
 			.setName(translate("settings.agile_project_management.dashboard_file.template_path.label"))
 			.setDesc(translate("settings.agile_project_management.dashboard_file.template_path.description"))
@@ -161,10 +176,12 @@ export class SettingTab extends PluginSettingTab {
 
 				new BaseFileSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 
 		const epicGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const epicItemsEl: HTMLDivElement = epicGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - Epics folder name">
 		new Setting(epicItemsEl)
 			.setName(translate("settings.agile_project_management.epics.folder_name.label"))
 			.setDesc(translate("settings.agile_project_management.epics.folder_name.description"))
@@ -176,7 +193,9 @@ export class SettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				})
 			);
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - Epic template path">
 		new Setting(epicItemsEl)
 			.setName(translate("settings.agile_project_management.epics.template_path.label"))
 			.setDesc(translate("settings.agile_project_management.epics.template_path.description"))
@@ -190,7 +209,9 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Toggle - Display epic creation ribbon button">
 		new Setting(epicItemsEl)
 			.setName(translate("settings.agile_project_management.epics.display_epic_creation_ribbon_button.label"))
 			.setDesc(translate("settings.agile_project_management.epics.display_epic_creation_ribbon_button.description"))
@@ -201,10 +222,12 @@ export class SettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			})
+		// </editor-fold>
 
 		const userStoryGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const userStoryItemsEl: HTMLDivElement = userStoryGroupEl.createDiv({ cls: "setting-items" });
 
+		// <editor-fold desc="Setting - Text - User stories folder name">
 		new Setting(userStoryItemsEl)
 			.setName(translate("settings.agile_project_management.user_stories.folder_name.label"))
 			.setDesc(translate("settings.agile_project_management.user_stories.folder_name.description"))
@@ -216,7 +239,9 @@ export class SettingTab extends PluginSettingTab {
 					await this.plugin.saveSettings();
 				})
 			);
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - User story template path">
 		new Setting(userStoryItemsEl)
 			.setName(translate("settings.agile_project_management.user_stories.template_path.label"))
 			.setDesc(translate("settings.agile_project_management.user_stories.template_path.description"))
@@ -230,7 +255,9 @@ export class SettingTab extends PluginSettingTab {
 
 				new MarkdownFileSuggest(this.app, text.inputEl);
 			});
+		// </editor-fold>
 
+		// <editor-fold desc="Setting - Toggle - Display user story creation ribbon button">
 		new Setting(userStoryItemsEl)
 			.setName(translate("settings.agile_project_management.user_stories.display_user_story_creation_ribbon_button.label"))
 			.setDesc(translate("settings.agile_project_management.user_stories.display_user_story_creation_ribbon_button.description"))
@@ -241,6 +268,7 @@ export class SettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			});
+		// </editor-fold>
 	}
 
 	createRegisteredProjectSettingSection(containerEl: HTMLElement): void {
