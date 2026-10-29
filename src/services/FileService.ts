@@ -40,7 +40,7 @@ export class FileService {
 	}
 
 	async createEpicFolder(project: TFolder): Promise<TFolder> {
-		return await this.app.vault.createFolder(project.path + "/" + this.settings.epicFolderName);
+		return await this.app.vault.createFolder(project.path + "/" + this.settings.epicsFolderName);
 	}
 
 	async createEpicMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {
@@ -52,7 +52,7 @@ export class FileService {
 	}
 
 	async createUserStoryFolder(project: TFolder): Promise<TFolder> {
-		return await this.app.vault.createFolder(project.path + "/" + this.settings.userStoryFolderName);
+		return await this.app.vault.createFolder(project.path + "/" + this.settings.userStoriesFolderName);
 	}
 
 	async createUserStoryMarkdownFile(project: TFolder, payload: MarkdownFilePayload): Promise<TFile | null> {

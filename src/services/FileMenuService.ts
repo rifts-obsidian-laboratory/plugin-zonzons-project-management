@@ -24,11 +24,11 @@ export class FileMenuService {
 
 				if (plugin.settings.projects[file.parent?.name ?? ""] === ProjectType.AGILE) {
 					if (file.parent?.parent?.path === plugin.settings.projectFolderPath) {
-						if (file.name === plugin.settings.epicFolderName) {
+						if (file.name === plugin.settings.epicsFolderName) {
 							this.addCreateEpicMenuItem(plugin, menu, file.parent.name);
 						}
 
-						if (file.name === plugin.settings.userStoryFolderName) {
+						if (file.name === plugin.settings.userStoriesFolderName) {
 							this.addCreateUserStoryMenuItem(plugin, menu, file.parent.name);
 						}
 					}

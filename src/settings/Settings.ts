@@ -9,10 +9,10 @@ export interface I_Settings {
 	traditionalDashboardTemplatePath: string;
 	agileDashboardFileName: string;
 	agileDashboardTemplatePath: string;
-	epicFolderName: string;
+	epicsFolderName: string;
 	epicTemplatePath: string;
 	displayEpicCreationRibbonButton: boolean;
-	userStoryFolderName: string;
+	userStoriesFolderName: string;
 	userStoryTemplatePath: string;
 	displayUserStoryCreationRibbonButton: boolean;
 	projects: Record<string, ProjectType>
@@ -28,10 +28,10 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	traditionalDashboardTemplatePath: "",
 	agileDashboardFileName: "",
 	agileDashboardTemplatePath: "",
-	epicFolderName: "",
+	epicsFolderName: "",
 	epicTemplatePath: "",
 	displayEpicCreationRibbonButton: true,
-	userStoryFolderName: "",
+	userStoriesFolderName: "",
 	userStoryTemplatePath: "",
 	displayUserStoryCreationRibbonButton: true,
 	projects: {},

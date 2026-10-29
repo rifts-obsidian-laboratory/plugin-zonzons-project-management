@@ -187,9 +187,9 @@ export class SettingTab extends PluginSettingTab {
 			.setDesc(translate("settings.agile_project_management.epics.folder_name.description"))
 			.addText((text: TextComponent) => text
 				.setPlaceholder(translate("settings.agile_project_management.epics.folder_name.placeholder"))
-				.setValue(this.plugin.settings.epicFolderName)
+				.setValue(this.plugin.settings.epicsFolderName)
 				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.epicFolderName = value;
+					this.plugin.settings.epicsFolderName = value;
 					await this.plugin.saveSettings();
 				})
 			);
@@ -233,9 +233,9 @@ export class SettingTab extends PluginSettingTab {
 			.setDesc(translate("settings.agile_project_management.user_stories.folder_name.description"))
 			.addText((text: TextComponent) => text
 				.setPlaceholder(translate("settings.agile_project_management.user_stories.folder_name.placeholder"))
-				.setValue(this.plugin.settings.userStoryFolderName)
+				.setValue(this.plugin.settings.userStoriesFolderName)
 				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.userStoryFolderName = value;
+					this.plugin.settings.userStoriesFolderName = value;
 					await this.plugin.saveSettings();
 				})
 			);
