@@ -12,7 +12,7 @@ import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
 import { BaseFileSuggest } from "../suggests/BaseFileSuggest";
 import { translate } from "../i18n";
-import { ProjectType, translateProjectType } from "../enums/ProjectType";
+import { isProjectType, ProjectType, translateProjectType } from "../enums/ProjectType";
 import { DeleteProjectModal } from "../modals/project/DeleteProjectModal";
 
 export class SettingTab extends PluginSettingTab {
@@ -251,12 +251,7 @@ export class SettingTab extends PluginSettingTab {
 						.addOption(ProjectType.AGILE, translateProjectType(ProjectType.AGILE))
 						.setValue(projectType)
 						.onChange(async (value: string): Promise<void> => {
-							let _projectType: ProjectType = ProjectType.TRADITIONAL;
-
-							if (value === ProjectType.TRADITIONAL) _projectType = ProjectType.TRADITIONAL;
-							if (value === ProjectType.AGILE) _projectType = ProjectType.AGILE;
-
-							this.plugin.settings.projects[project] = _projectType;
+							this.plugin.settings.projects[project] = isProjectType(value) ? value as ProjectType : ProjectType.TRADITIONAL;
 							await this.plugin.saveSettings();
 						});
 
