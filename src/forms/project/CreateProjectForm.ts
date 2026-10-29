@@ -54,7 +54,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 			await this.fileService.createEpicFolder(project);
 			await this.fileService.createUserStoryFolder(project);
 		} else {
-			await this.plugin.app.vault.delete(project, true);
+			await this.plugin.app.fileManager.trashFile(project);
 			delete this.plugin.settings.projects[this.folderName];
 			new Notice("Project type not supported. Project creation aborted.", 5000);
 		}

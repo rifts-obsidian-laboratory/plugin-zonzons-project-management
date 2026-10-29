@@ -21,7 +21,7 @@ export class DeleteProjectForm {
 			if (project) {
 				delete this.plugin.settings.projects[project.name];
 				await this.plugin.saveSettings();
-				await this.plugin.app.vault.delete(project, true);
+				await this.plugin.app.fileManager.trashFile(project);
 				this.plugin.settingTab?.display();
 			}
 			else throw new Error("Project doesn't exist anymore.");
