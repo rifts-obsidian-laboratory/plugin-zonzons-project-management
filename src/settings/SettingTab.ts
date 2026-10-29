@@ -284,7 +284,7 @@ export class SettingTab extends PluginSettingTab {
 		}
 
 		projects.forEach(([project, projectType]) => {
-			let setting: Setting = new Setting(containerEl)
+			new Setting(containerEl)
 				.setName(project)
 				.addDropdown((dropdown: DropdownComponent): void => {
 					dropdown
