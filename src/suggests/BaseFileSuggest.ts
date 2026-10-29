@@ -11,6 +11,8 @@ export class BaseFileSuggest extends AbstractInputSuggest<TAbstractFile>{
 	protected getSuggestions(query: string): TAbstractFile[] {
 		const _query: string = query.toLowerCase();
 
+		if (_query === "") return [];
+
 		return this.app.vault
 			.getAllLoadedFiles()
 			.filter((file: TAbstractFile) => file.path.toLowerCase().includes(_query) && file.path.endsWith('.base'))

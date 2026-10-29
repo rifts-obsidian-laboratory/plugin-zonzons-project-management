@@ -15,7 +15,7 @@ export class ProjectSuggest extends AbstractInputSuggest<TFolder> {
 		const _query: string = query.toLowerCase();
 
 		const projects: TFolder | null = this.app.vault.getFolderByPath(this.plugin.settings.projectFolderPath);
-		if (!projects) return [];
+		if (!projects || _query === "") return [];
 
 		return projects.children
 			.filter((file: TAbstractFile): file is TFolder => file instanceof TFolder)

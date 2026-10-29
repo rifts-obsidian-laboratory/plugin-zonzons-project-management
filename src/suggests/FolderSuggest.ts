@@ -11,6 +11,8 @@ export class FolderSuggest extends AbstractInputSuggest<TFolder> {
 	protected getSuggestions(query: string): TFolder[] {
 		const _query: string = query.toLowerCase();
 
+		if (_query === "") return [];
+
 		return this.app.vault
 			.getAllLoadedFiles()
 			.filter((file: TAbstractFile): file is TFolder => {

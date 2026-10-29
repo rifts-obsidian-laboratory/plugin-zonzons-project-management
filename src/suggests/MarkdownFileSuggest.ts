@@ -11,6 +11,8 @@ export class MarkdownFileSuggest extends AbstractInputSuggest<TFile> {
 	protected getSuggestions(query: string): TFile[] {
 		const _query: string = query.toLowerCase();
 
+		if (_query === "") return [];
+
 		return this.app.vault
 			.getMarkdownFiles()
 			.filter((file: TFile) => file.path.toLowerCase().includes(_query))
