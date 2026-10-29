@@ -13,7 +13,7 @@ export class BaseFileSuggest extends AbstractInputSuggest<TAbstractFile>{
 
 		return this.app.vault
 			.getAllLoadedFiles()
-			.filter((file) => file.path.toLowerCase().includes(_query + '.base'))
+			.filter((file: TAbstractFile) => file.path.toLowerCase().includes(_query) && file.path.endsWith('.base'))
 			.slice(0, 10);
 	}
 
