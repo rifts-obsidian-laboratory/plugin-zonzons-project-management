@@ -176,6 +176,9 @@
 					"description": "Defines whether the corresponding ribbon button is displayed."
 				}
 			}
+		},
+		"registered_projects": {
+			"title": "Registered projects"
 		}
 	}
 }

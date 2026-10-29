@@ -176,6 +176,9 @@
 					"description": "Définit si le bouton correspondant du ruban doit être affiché."
 				}
 			}
+		},
+		"registered_projects": {
+			"title": "Projets enregistrés"
 		}
 	}
 }

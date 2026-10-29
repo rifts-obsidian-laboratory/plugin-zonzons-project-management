@@ -1,9 +1,10 @@
-import { App, PluginSettingTab, Setting, SliderComponent, TextComponent, ToggleComponent } from "obsidian";
+import { App, DropdownComponent, PluginSettingTab, Setting, TextComponent, ToggleComponent } from "obsidian";
 import ZonzonsProjectManagement from "../main";
 import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
 import { BaseFileSuggest } from "../suggests/BaseFileSuggest";
 import { translate } from "../i18n";
+import { ProjectType, translateProjectType } from "../enums/ProjectType";
 
 export class SettingTab extends PluginSettingTab {
 	plugin: ZonzonsProjectManagement;
@@ -220,5 +221,35 @@ export class SettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			})
+
+		new Setting(containerEl).setName(translate("settings.registered_projects.title")).setHeading();
+
+		const projects: [string, ProjectType][] = Object
+			.entries(this.plugin.settings.projects)
+			.sort();
+
+		projects.forEach(([project, projectType]) => {
+			let setting: Setting = new Setting(containerEl)
+				.setName(project)
+				.addDropdown((dropdown: DropdownComponent): void => {
+					dropdown
+						.addOption(ProjectType.TRADITIONAL, translateProjectType(ProjectType.TRADITIONAL))
+						.addOption(ProjectType.AGILE, translateProjectType(ProjectType.AGILE))
+						.setValue(projectType)
+						.onChange(async (value: string): Promise<void> => {
+							let _projectType: ProjectType = ProjectType.TRADITIONAL;
+
+							if (value === ProjectType.TRADITIONAL) _projectType = ProjectType.TRADITIONAL;
+							if (value === ProjectType.AGILE) _projectType = ProjectType.AGILE;
+
+							this.plugin.settings.projects[project] = _projectType;
+							await this.plugin.saveSettings();
+						});
+
+					dropdown.selectEl.style.width = "fit-content";
+				});
+
+			setting.infoEl.style.alignSelf = "center";
+		});
 	}
 }
