@@ -6,6 +6,7 @@ import { CreateEpicModal } from "./modals/epic/CreateEpicModal";
 import { CreateUserStoryModal } from "./modals/user_story/CreateUserStoryModal";
 import { translate } from "./i18n";
 import { ProjectType } from "./enums/ProjectType";
+import { CommandService } from "./services/CommandService";
 
 export default class ZonzonsProjectManagement extends Plugin {
 	settings!: I_Settings;
@@ -17,29 +18,7 @@ export default class ZonzonsProjectManagement extends Plugin {
 	async onload(): Promise<void> {
 		await this.loadSettings();
 
-		this.addCommand({
-			id: "create-project",
-			name: translate("commands.create_project"),
-			callback: (): void => {
-				new CreateProjectModal(this).open();
-			}
-		});
-
-		this.addCommand({
-			id: "create-epic",
-			name: translate("commands.create_epic"),
-			callback: (): void => {
-				new CreateEpicModal(this).open();
-			}
-		});
-
-		this.addCommand({
-			id: "create-user-story",
-			name: translate("commands.create_user_story"),
-			callback: (): void => {
-				new CreateUserStoryModal(this).open();
-			}
-		});
+		CommandService.initialize(this);
 
 		this.refreshRibbonButtons();
 
