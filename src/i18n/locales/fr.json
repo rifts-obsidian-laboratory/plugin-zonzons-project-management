@@ -151,7 +151,7 @@
 			},
 			"epics": {
 				"folder_name": {
-					"label": "Nom du dossier d'épopée",
+					"label": "Nom du dossier des épopées",
 					"description": "Le nom du dossier où les épopées seront stockés.",
 					"placeholder": "Entrez le nom du dossier d'épopées."
 				},
@@ -167,7 +167,7 @@
 			},
 			"user_stories": {
 				"folder_name": {
-					"label": "Nom du dossier de récits utilisateur",
+					"label": "Nom du dossier des récits utilisateur",
 					"description": "Le nom du dossier où les récits utilisateur seront stockées.",
 					"placeholder": "Entrez le nom du dossier de récits utilisateur."
 				},
