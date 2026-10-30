@@ -1,6 +1,6 @@
 # Zonzon's project management
 
-> The French version of this README is available [here](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.md).
+> La version française de ce README est disponible [ici (lien externe vers GitHub)](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.md).
 
 Zonzon's project management is a desktop plugin that adds a project creation and management system supporting both traditional and agile methodologies. It allows you to create projects with an overview file (`.md`), a dashboard (`.base`), and two dedicated folders for epics and user stories when using an agile project management approach.
 

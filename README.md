@@ -1,6 +1,6 @@
 # *Zonzon's project management*
 
-> The English version of this README file is available [here](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.en.md).
+> The English version of this README file is available [here (external link to GitHub)](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.en.md).
 
 *Zonzon's project management* est une extension pour ordinateur ajoutant un système de création et de gestion de projets avec des méthodologies traditionnelles et agiles. Elle permet de créer des projets avec un fichier de vue d'ensemble (`.md`), un tableau de bord (`.base`), ainsi que deux dossiers dédiés aux épopées et aux récits utilisateur dans le cas d'une gestion de projet agile.
 
@@ -55,7 +55,6 @@ Dans le cadre de la gestion de projet agile, *Zonzon's project management* perme
 
 Pour utiliser cette fonctionnalité, il vous faudra choisir le dossier dans lequel les épopées d'un projet seront entreposées grâce au paramètre « **Nom du dossier des épopées** ».
 
-
 Grâce au paramètre « **Chemin du modèle d'épopée** », il est possible de renseigner un modèle à utiliser pour générer l'épopée.
 
 #### Récits utilisateur
@@ -63,7 +62,6 @@ Grâce au paramètre « **Chemin du modèle d'épopée** », il est possible de 
 Dans le cadre de la gestion de projet agile, *Zonzon's project management* permet de créer facilement des récits utilisateur (« *user stories* » en anglais).
 
 Pour utiliser cette fonctionnalité, il vous faudra choisir le dossier dans lequel les récits utilisateur d'un projet seront entreposées grâce au paramètre « **Nom du dossier des récits utilisateur** ».
-
 
 Grâce au paramètre « **Chemin du modèle de récit utilisateur** », il est possible de renseigner un modèle à utiliser pour générer le récit utilisateur.
 
