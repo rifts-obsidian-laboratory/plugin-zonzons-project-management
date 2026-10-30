@@ -3,7 +3,7 @@
 	"name": "Zonzons project management",
 	"version": "1.0.0",
 	"minAppVersion": "1.14.5",
-	"description": "AGILE project scaffolding for Obsidian.",
+	"description": "My project management's methods imported into Obsidian.",
 	"author": "Noah Boos (Propzonzon) (Rift)",
 	"isDesktopOnly": true
 }
