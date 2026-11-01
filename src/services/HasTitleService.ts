@@ -1,19 +1,22 @@
 import {translate} from "../i18n";
 import {TextComponent} from "obsidian";
 import {I_HasTitle} from "../interfaces/I_HasTitle";
+import {HasTitleServiceOptions} from "../types/HasTitleServiceOptions";
 
 export class HasTitleService {
 	container: HTMLDivElement | undefined;
 	checkboxContainer: HTMLDivElement | undefined;
 	inputContainer: HTMLDivElement | undefined;
 	form: I_HasTitle;
+	options: Partial<HasTitleServiceOptions>;
 
 
-	constructor(form: I_HasTitle) {
+	constructor(form: I_HasTitle, options: Partial<HasTitleServiceOptions> = {}) {
 		this.form = form
 		this.container = undefined;
 		this.checkboxContainer = undefined;
 		this.inputContainer = undefined;
+		this.options = options;
 	}
 
 	public initialize(container: HTMLElement): void {
@@ -36,7 +39,7 @@ export class HasTitleService {
 				for: "has-title-checkbox",
 			}
 		});
-		this.appendInlineCode(label, translate("interfaces.has_title.checkbox.label"));
+		this.appendInlineCode(label, this.options.translations?.checkbox.label ?? translate("interfaces.has_title.checkbox.label"));
 
 		const input: HTMLInputElement = this.checkboxContainer.createEl("input", {
 			type: "checkbox",
@@ -65,7 +68,7 @@ export class HasTitleService {
 				id: "has-title-input-label",
 			}
 		});
-		this.appendInlineCode(label, translate("interfaces.has_title.input.label"));
+		this.appendInlineCode(label, this.options.translations?.input.label ?? translate("interfaces.has_title.input.label"));
 
 		const description: HTMLParagraphElement = this.inputContainer.createEl("p", {
 			attr: {
@@ -73,10 +76,10 @@ export class HasTitleService {
 				id: "has-title-input-description",
 			}
 		});
-		this.appendInlineCode(description, translate("interfaces.has_title.input.description"));
+		this.appendInlineCode(description, this.options.translations?.input.description ?? translate("interfaces.has_title.input.description"));
 
 		const input: TextComponent = new TextComponent(this.inputContainer)
-			.setPlaceholder(translate("interfaces.has_title.input.placeholder"))
+			.setPlaceholder(this.options.translations?.input.placeholder ?? translate("interfaces.has_title.input.placeholder"))
 			.onChange((value: string): void => {
 				this.form.title = value;
 			});

@@ -43,9 +43,14 @@
 					"placeholder": "Enter the name of the project's folder."
 				},
 				"overview_title": {
-					"label": "Overview title",
-					"description": "Enter the inline title of the project's overview file. This title will replace the {{ title }} placeholder in the project overview template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
-					"placeholder": "Enter the title of the project's overview file."
+					"checkbox": {
+						"label": "Define an internal title for the project's overview file (<code>{{ title }}</code>)"
+					},
+					"input": {
+						"label": "Internal title for the project's overview file (<code>{{ title }}</code>)",
+						"description": "Enter the internal title for the project's overview file. This title will replace the  (<code>{{ title }}</code>) placeholder in the project overview template. This is useful if you have invalid or special characters in the title that cannot be used in the file name.",
+						"placeholder": "Enter the internal title for the overview file."
+					}
 				},
 				"submit": "Create"
 			},

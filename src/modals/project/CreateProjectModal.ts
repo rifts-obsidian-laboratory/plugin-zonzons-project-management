@@ -4,6 +4,7 @@ import ZonzonsProjectManagement from "../../main";
 import { isProjectType, ProjectType, translateProjectType } from "../../enums/ProjectType";
 import { translate } from "../../i18n";
 import {HasTitleService} from "../../services/HasTitleService";
+import {HasTitleServiceOptions} from "../../types/HasTitleServiceOptions";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
@@ -28,7 +29,19 @@ export class CreateProjectModal extends Modal {
 		this.createProjectTypeDropdown(contentEl);
 		this.createProjectFolderNameInput(contentEl);
 
-		const hasTitleService = new HasTitleService(this.form);
+		const hasTitleServiceOptions: HasTitleServiceOptions = {
+			translations: {
+				checkbox: {
+					label: translate("modals.project.create.overview_title.checkbox.label")
+				},
+				input: {
+					label: translate("modals.project.create.overview_title.input.label"),
+					description: translate("modals.project.create.overview_title.input.description"),
+					placeholder: translate("modals.project.create.overview_title.input.placeholder"),
+				}
+			}
+		}
+		const hasTitleService = new HasTitleService(this.form, hasTitleServiceOptions);
 		hasTitleService.initialize(contentEl);
 
 		this.createSubmitButton(contentEl);

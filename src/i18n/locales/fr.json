@@ -43,9 +43,14 @@
 					"placeholder": "Saisissez le nom du dossier du projet."
 				},
 				"overview_title": {
-					"label": "Titre de la vue d’ensemble",
-					"description": "Saisissez le titre affiché dans le fichier de vue d’ensemble du projet. Ce titre remplacera le paramètre {{ title }} dans le modèle de vue d’ensemble du projet. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
-					"placeholder": "Saisissez le titre du fichier de vue d’ensemble du projet."
+					"checkbox": {
+						"label": "Définir un titre interne pour le fichier de vue d’ensemble du projet (<code>{{ title }}</code>)"
+					},
+					"input": {
+						"label": "Titre interne de la note de vue d’ensemble du projet (<code>{{ title }}</code>)",
+						"description": "Ce titre remplacera la marque substitutive {{ title }} dans le modèle de vue d’ensemble. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
+						"placeholder": "Saisissez le titre interne du fichier de vue d’ensemble."
+					}
 				},
 				"submit": "Créer"
 			},
