@@ -73,11 +73,6 @@
 					"description": "Saisissez le nom du fichier qui sera créé pour cette épopée.",
 					"placeholder": "Saisissez le nom du fichier."
 				},
-				"epic_title": {
-					"label": "Titre",
-					"description": "Saisissez le titre affiché dans le fichier de l’épopée. Ce titre remplacera le paramètre {{ title }} dans le modèle d’épopée. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
-					"placeholder": "Saisissez le titre de l’épopée."
-				},
 				"submit": "Créer"
 			}
 		},
@@ -93,11 +88,6 @@
 					"label": "Nom du fichier",
 					"description": "Saisissez le nom du fichier qui sera créé pour ce récit utilisateur.",
 					"placeholder": "Saisissez le nom du fichier."
-				},
-				"user_story_title": {
-					"label": "Titre",
-					"description": "Saisissez le titre affiché dans le fichier du récit utilisateur. Ce titre remplacera le paramètre {{ title }} dans le modèle de récit utilisateur. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
-					"placeholder": "Saisissez le titre du récit utilisateur."
 				},
 				"submit": "Créer"
 			}
