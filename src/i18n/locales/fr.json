@@ -17,6 +17,18 @@
 			"create_user_story": "Créer un récit utilisateur"
 		}
 	},
+	"interfaces": {
+		"has_title": {
+			"checkbox": {
+				"label": "Définir un titre interne différent du nom de la note (<code>{{ title }}</code>)"
+			},
+			"input": {
+				"label": "Titre interne (<code>{{ title }}</code>)",
+				"description": "Ce titre remplacera la marque substitutive <code>{{ title }}</code> dans le modèle. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
+				"placeholder": "Saisissez le titre interne de la note."
+			}
+		}
+	},
 	"modals": {
 		"project": {
 			"create": {

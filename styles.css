@@ -43,3 +43,35 @@
 		}
 	}
 }
+
+.zpm-has-title-container {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.zpm-checkbox-container {
+	display: flex;
+	flex-direction: row;
+	flex-flow: row-reverse;
+	justify-content: start;
+	align-items: center;
+	gap: 2px;
+}
+
+.zpm-input-container {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.zpm-input-description {
+	margin: 0;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	line-height: var(--line-height-tight);
+}
+
+.zpm-is-hidden {
+	display: none;
+}

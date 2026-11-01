@@ -3,6 +3,7 @@ import { CreateEpicForm } from "../../forms/epic/CreateEpicForm";
 import ZonzonsProjectManagement from "../../main";
 import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
+import {HasTitleService} from "../../services/HasTitleService";
 
 export class CreateEpicModal extends Modal {
 	plugin: ZonzonsProjectManagement;
@@ -33,7 +34,10 @@ export class CreateEpicModal extends Modal {
 
 		this.createProjectInput(contentEl);
 		this.createEpicFileNameInput(contentEl);
-		this.createEpicTitleInput(contentEl);
+
+		const hasTitleService = new HasTitleService(this.form);
+		hasTitleService.initialize(contentEl);
+
 		this.createSubmitButton(contentEl);
 	}
 
@@ -80,27 +84,6 @@ export class CreateEpicModal extends Modal {
 			});
 		input.inputEl.id = "file-name-input";
 		input.inputEl.setAttribute("aria-describedby", "file-name-input-description");
-	}
-
-	createEpicTitleInput(contentEl: HTMLElement): void {
-		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
-
-		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.epic.create.epic_title.label") });
-		label.setAttribute("for", "title-input");
-
-		const description: HTMLParagraphElement = container.createEl("p", {
-			text: translate("modals.epic.create.epic_title.description"),
-		});
-		description.classList.add("input-description");
-		description.id = "title-input-description";
-
-		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder(translate("modals.epic.create.epic_title.placeholder"))
-			.onChange((value: string): void => {
-				this.form.title = value;
-			});
-		input.inputEl.id = "title-input";
-		input.inputEl.setAttribute("aria-describedby", "title-input-description");
 	}
 
 	createSubmitButton(contentEl: HTMLElement): void {

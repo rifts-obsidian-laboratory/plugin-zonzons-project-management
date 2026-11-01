@@ -3,6 +3,7 @@ import { CreateProjectForm } from "../../forms/project/CreateProjectForm";
 import ZonzonsProjectManagement from "../../main";
 import { isProjectType, ProjectType, translateProjectType } from "../../enums/ProjectType";
 import { translate } from "../../i18n";
+import {HasTitleService} from "../../services/HasTitleService";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
@@ -26,7 +27,10 @@ export class CreateProjectModal extends Modal {
 
 		this.createProjectTypeDropdown(contentEl);
 		this.createProjectFolderNameInput(contentEl);
-		this.createProjectOverviewTitleInput(contentEl);
+
+		const hasTitleService = new HasTitleService(this.form);
+		hasTitleService.initialize(contentEl);
+
 		this.createSubmitButton(contentEl);
 	}
 
@@ -69,26 +73,6 @@ export class CreateProjectModal extends Modal {
 			.onChange((value: string): string => this.form.folderName = value);
 		input.inputEl.id = "folder-name-input";
 		input.inputEl.setAttribute("aria-describedby", "folder-name-input-description");
-	}
-
-	createProjectOverviewTitleInput(contentEl: HTMLElement): void {
-		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container" });
-
-		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.project.create.overview_title.label")});
-		label.setAttribute("for", "overview-title-input");
-
-		const description: HTMLParagraphElement = container.createEl("p", {
-			text: translate("modals.project.create.overview_title.description"),
-		});
-		description.classList.add("input-description");
-		description.id = "overview-title-input-description";
-
-		const input: TextComponent = new TextComponent(container)
-			.setPlaceholder(translate("modals.project.create.overview_title.placeholder"))
-			.setValue(this.form.title)
-			.onChange((value: string): string => this.form.title = value);
-		input.inputEl.id = "overview-title-input";
-		input.inputEl.setAttribute("aria-describedby", "overview-title-input-description");
 	}
 
 	createSubmitButton(contentEl: HTMLElement): void {

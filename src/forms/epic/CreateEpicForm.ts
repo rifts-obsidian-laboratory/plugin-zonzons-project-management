@@ -10,6 +10,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle {
 	public fileService: FileService;
 	public project: TFolder | null;
 	public fileName: string;
+	public hasTitle: boolean;
 	public title: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
@@ -17,6 +18,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle {
 		this.fileService = new FileService(plugin);
 		this.project = null;
 		this.fileName = "";
+		this.hasTitle = false;
 		this.title = "";
 	}
 

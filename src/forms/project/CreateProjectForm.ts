@@ -11,6 +11,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 	public fileService: FileService;
 	public folderName: string;
 	public type: ProjectType;
+	public hasTitle: boolean;
 	public title: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
@@ -18,6 +19,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 		this.fileService = new FileService(plugin);
 		this.folderName = "";
 		this.type = ProjectType.TRADITIONAL;
+		this.hasTitle = false;
 		this.title = "";
 	}
 

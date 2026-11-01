@@ -17,6 +17,18 @@
 			"create_user_story": "Create user story"
 		}
 	},
+	"interfaces": {
+		"has_title": {
+			"checkbox": {
+				"label": "Define a different internal title from the note name (<code>{{ title }}</code>)"
+			},
+			"input": {
+				"label": "Internal title (<code>{{ title }}</code>)",
+				"description": "This title will replace the <code>{{ title }}</code> placeholder in the template. This is useful if the title contains invalid or special characters that cannot be used in the file name.",
+				"placeholder": "Enter the internal title of the note."
+			}
+		}
+	},
 	"modals": {
 		"project": {
 			"create": {
