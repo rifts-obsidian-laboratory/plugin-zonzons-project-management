@@ -14,7 +14,8 @@ export class FileHelper {
 
 		const content: string = (await this.app.vault.read(template))
 			.replaceAll(/^> \[!template-help\][^\n]*\n(?:>[^\n]*\n?)*/gm, "")
-			.replaceAll(/\{\{\s*title\s*\}\}/gm, payload.title);
+			.replaceAll(/\{\{\s*title\s*\}\}/gm, payload.title)
+			.replaceAll(/\{\{\s*project-name\s*\}\}/gm, project.name);
 
 		let path: string = project.path + "/" + payload.fileName;
 		if (!path.endsWith(".md")) path += ".md";
