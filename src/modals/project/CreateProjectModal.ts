@@ -5,6 +5,7 @@ import { isProjectType, ProjectType, translateProjectType } from "../../enums/Pr
 import { translate } from "../../i18n";
 import {HasTitleService} from "../../services/HasTitleService";
 import {HasTitleServiceOptions} from "../../types/HasTitleServiceOptions";
+import {HasCodeService} from "../../services/HasCodeService";
 
 export class CreateProjectModal extends Modal {
 	form: CreateProjectForm;
@@ -43,6 +44,9 @@ export class CreateProjectModal extends Modal {
 		}
 		const hasTitleService = new HasTitleService(this.form, hasTitleServiceOptions);
 		hasTitleService.initialize(contentEl);
+
+		const hasCodeService = new HasCodeService(this.form);
+		hasCodeService.initialize(contentEl);
 
 		this.createSubmitButton(contentEl);
 	}

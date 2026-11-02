@@ -12,7 +12,7 @@ export class FileService {
 	constructor(plugin: ZonzonsProjectManagement) {
 		this.app = plugin.app;
 		this.settings = plugin.settings;
-		this.fileHelper = new FileHelper(this.app);
+		this.fileHelper = new FileHelper(plugin);
 	}
 
 	getProjectFolder(name: string): TFolder | null {

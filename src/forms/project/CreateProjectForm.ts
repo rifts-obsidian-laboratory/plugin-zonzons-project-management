@@ -5,14 +5,16 @@ import { FileService } from "../../services/FileService";
 import { I_HasFolderName } from "../../interfaces/I_HasFolderName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
 import { I_HasTitle } from "../../interfaces/I_HasTitle";
+import {I_HasCode} from "../../interfaces/I_HasCode";
 
-export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
+export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasCode {
 	public plugin: ZonzonsProjectManagement;
 	public fileService: FileService;
 	public folderName: string;
 	public type: ProjectType;
 	public hasTitle: boolean;
 	public title: string;
+	public code: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
@@ -21,6 +23,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 		this.type = ProjectType.TRADITIONAL;
 		this.hasTitle = false;
 		this.title = "";
+		this.code = "";
 	}
 
 	public async create(): Promise<void> {
@@ -37,7 +40,8 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle {
 
 		let projectOverviewPayload: MarkdownFilePayload = {
 			fileName: this.plugin.settings.projectOverviewFileName,
-			title: this.title
+			title: this.title,
+			code: this.code,
 		}
 
 		const projectOverview: TFile | null = await this.fileService.createProjectOverviewMarkdownFile(project, projectOverviewPayload);

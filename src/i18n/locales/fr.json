@@ -27,6 +27,13 @@
 				"description": "Ce titre remplacera la marque substitutive <code>{{ title }}</code> dans le modèle. Cette option est utile lorsque le titre contient des caractères interdits ou spéciaux qui ne peuvent pas être utilisés dans le nom du fichier.",
 				"placeholder": "Saisissez le titre interne de la note."
 			}
+		},
+		"has_code": {
+			"input": {
+				"label": "Code d'identification",
+				"description": "Ce code d'identification doit être court, il référence le contenu à créer. Cette option permet de codifier les projets, les épopées et les récits utilisateur d'une manière clairement identifiable.",
+				"placeholder": "Saisissez le code d'identification."
+			}
 		}
 	},
 	"modals": {
