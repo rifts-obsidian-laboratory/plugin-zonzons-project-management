@@ -39,7 +39,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasCode
 		}
 
 		let projectOverviewPayload: MarkdownFilePayload = {
-			fileName: this.plugin.settings.projectOverviewFileName,
+			filePath: this.plugin.settings.projectOverviewFileName,
 			title: this.title,
 			code: this.code,
 		}

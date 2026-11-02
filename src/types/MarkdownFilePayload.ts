@@ -1,5 +1,5 @@
 export type MarkdownFilePayload = {
-	fileName: string;
+	filePath: string;
 	title: string;
 	code: string;
 };

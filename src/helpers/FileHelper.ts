@@ -22,7 +22,7 @@ export class FileHelper {
 			.replaceAll(/\{\{\s*project-name\s*\}\}/gm, project.name)
 			.replaceAll(/^> \[!template-help\][^\n]*\n(?:>[^\n]*\n?)*/gm, "");
 
-		let path: string = project.path + "/" + payload.fileName;
+		let path: string = project.path + "/" + payload.filePath
 		if (!path.endsWith(".md")) path += ".md";
 
 		let file: TFile = await this.app.vault.create(path, content);
