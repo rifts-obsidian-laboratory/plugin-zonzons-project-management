@@ -189,6 +189,24 @@
 				}
 			}
 		},
+		"code_property": {
+			"title": "Code property",
+			"code_property_name": {
+				"label": "Code property name",
+				"description": "The name of the property used to store the code of projects, epics and user stories.",
+				"placeholder": "Enter the name of the code property."
+			},
+			"epic_code_prefix": {
+				"label": "Epic code prefix",
+				"description": "The prefix used to generate the code of epics. This prefix will be combined with the epic number to generate the code of an epic.",
+				"placeholder": "Enter the prefix for epic codes."
+			},
+			"user_story_code_prefix": {
+				"label": "User story code prefix",
+				"description": "The prefix used to generate the code of user stories. This prefix will be combined with the user story number to generate the code of a user story.",
+				"placeholder": "Enter the prefix for user story codes."
+			}
+		},
 		"registered_projects": {
 			"title": "Registered projects",
 			"no_project_found": "No project has been registered.",

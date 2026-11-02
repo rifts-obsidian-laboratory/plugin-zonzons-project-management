@@ -33,6 +33,7 @@ export class SettingTab extends PluginSettingTab {
 		this.createGlobalSettingSection(containerEl);
 		this.createTraditionalProjectManagementSettingSection(containerEl);
 		this.createAgileProjectManagementSettingSection(containerEl);
+		this.createCodeSettingSection(containerEl);
 		this.createRegisteredProjectSettingSection(containerEl);
 	}
 
@@ -265,6 +266,55 @@ export class SettingTab extends PluginSettingTab {
 				toggle.setValue(this.plugin.settings.displayUserStoryCreationRibbonButton)
 					.onChange(async (value: boolean): Promise<void> => {
 						this.plugin.settings.displayUserStoryCreationRibbonButton = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+	}
+
+	createCodeSettingSection(containerEl: HTMLElement): void {
+		new Setting(containerEl).setName(translate("settings.code_property.title")).setHeading();
+
+		// <editor-fold desc="Setting - Text - Code property name">
+		new Setting(containerEl)
+			.setName(translate("settings.code_property.code_property_name.label"))
+			.setDesc(translate("settings.code_property.code_property_name.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.code_property.code_property_name.placeholder"))
+					.setValue(this.plugin.settings.codePropertyName)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.codePropertyName = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+
+		const prefixGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const prefixItemsEl: HTMLDivElement = prefixGroupEl.createDiv({ cls: "setting-items" });
+
+		// <editor-fold desc="Setting - Text - Epic code prefix">
+		new Setting(prefixItemsEl)
+			.setName(translate("settings.code_property.epic_code_prefix.label"))
+			.setDesc(translate("settings.code_property.epic_code_prefix.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.code_property.epic_code_prefix.placeholder"))
+					.setValue(this.plugin.settings.epicCodePrefix)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.epicCodePrefix = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+
+		// <editor-fold desc="Setting - Text - User story code prefix">
+		new Setting(prefixItemsEl)
+			.setName(translate("settings.code_property.user_story_code_prefix.label"))
+			.setDesc(translate("settings.code_property.user_story_code_prefix.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.code_property.user_story_code_prefix.placeholder"))
+					.setValue(this.plugin.settings.userStoryCodePrefix)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.userStoryCodePrefix = value;
 						await this.plugin.saveSettings();
 					});
 			});

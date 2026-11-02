@@ -15,6 +15,9 @@ export interface I_Settings {
 	userStoriesFolderName: string;
 	userStoryTemplatePath: string;
 	displayUserStoryCreationRibbonButton: boolean;
+	codePropertyName: string;
+	epicCodePrefix: string;
+	userStoryCodePrefix: string;
 	projects: Record<string, ProjectType>
 }
 
@@ -34,5 +37,8 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	userStoriesFolderName: "",
 	userStoryTemplatePath: "",
 	displayUserStoryCreationRibbonButton: true,
+	codePropertyName: "",
+	epicCodePrefix: "",
+	userStoryCodePrefix: "",
 	projects: {},
 }

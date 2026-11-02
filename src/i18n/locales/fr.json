@@ -189,6 +189,24 @@
 				}
 			}
 		},
+		"code_property": {
+			"title": "Propriété du code",
+			"code_property_name": {
+				"label": "Nom de la propriété du code",
+				"description": "Le nom de la propriété qui sera utilisée pour entreposer le code de chaque projet, épopée et récit utilisateur.",
+				"placeholder": "Entrez le nom de la propriété du code."
+			},
+			"epic_code_prefix": {
+				"label": "Préfixe du code de l'épopée",
+				"description": "Le préfixe qui sera utilisé pour générer le code de chaque épopée. Ce préfixe sera combiné avec le numéro de l'épopée le code complet de l'épopée.",
+				"placeholder": "Entrez le préfixe du code de l'épopée."
+			},
+			"user_story_code_prefix": {
+				"label": "Préfixe du code du récit utilisateur",
+				"description": "Le préfixe qui sera utilisé pour générer le code de chaque récit utilisateur. Ce préfixe sera combiné avec le numéro du récit utilisateur pour créer le code complet du récit utilisateur.",
+				"placeholder": "Entrez le préfixe du code du récit utilisateur."
+			}
+		},
 		"registered_projects": {
 			"title": "Projets enregistrés",
 			"no_project_found": "Aucun projet n'a été enregistré.",
