@@ -43,6 +43,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasCode {
 
 		const epicPayload: MarkdownFilePayload = {
 			filePath: this.plugin.settings.epicsFolderName + "/" + this.fileName,
+			fileName: this.fileName,
 			title: this.title,
 			code: this.code + ((epicsFolder?.children.length ?? 0) + 1)
 		}

@@ -18,7 +18,7 @@ export class FileHelper {
 
 		const content: string = (await this.app.vault.read(template))
 			.replaceAll(/\{\{\s*code\s*\}\}/gm, payload.code)
-			.replaceAll(/\{\{\s*title\s*\}\}/gm, payload.title)
+			.replaceAll(/\{\{\s*title\s*\}\}/gm, payload.title || payload.fileName)
 			.replaceAll(/\{\{\s*project-name\s*\}\}/gm, project.name)
 			.replaceAll(/^> \[!template-help\][^\n]*\n(?:>[^\n]*\n?)*/gm, "");
 
