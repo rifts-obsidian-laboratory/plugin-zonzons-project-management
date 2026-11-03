@@ -1,6 +1,11 @@
+import {MarkdownFileType} from "../enums/MarkdownFileType";
+
 export type MarkdownFilePayload = {
+	type: MarkdownFileType;
 	filePath: string;
 	fileName: string;
 	title: string;
-	identifier: string;
+	projectIdentifier?: string;
+	epicIdentifier?: string;
+	userStoryIdentifier?: string;
 };

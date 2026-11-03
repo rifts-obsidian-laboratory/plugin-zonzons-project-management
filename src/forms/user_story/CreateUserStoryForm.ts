@@ -1,11 +1,12 @@
 import ZonzonsProjectManagement from "../../main";
-import { Notice, TFile, TFolder } from "obsidian";
-import { FileService } from "../../services/FileService";
-import { I_HasFileName } from "../../interfaces/I_HasFileName";
-import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
-import { I_HasTitle } from "../../interfaces/I_HasTitle";
+import {Notice, TFile, TFolder} from "obsidian";
+import {FileService} from "../../services/FileService";
+import {I_HasFileName} from "../../interfaces/I_HasFileName";
+import {MarkdownFilePayload} from "../../types/MarkdownFilePayload";
+import {I_HasTitle} from "../../interfaces/I_HasTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
 import {IdentifierHelper} from "../../helpers/IdentifierHelper";
+import {MarkdownFileType} from "../../enums/MarkdownFileType";
 
 export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
@@ -41,10 +42,11 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 		}
 
 		const userStoryPayload: MarkdownFilePayload = {
+			type: MarkdownFileType.USER_STORY,
 			filePath: this.plugin.settings.userStoriesFolderName + "/" + this.fileName,
 			fileName: this.fileName,
 			title: this.title,
-			identifier: IdentifierHelper.generateUserStoryIdentifier(this.plugin, this.project.path)
+			userStoryIdentifier: IdentifierHelper.generateUserStoryIdentifier(this.plugin, this.project.path)
 		}
 
 		const userStory: TFile | null = await this.fileService.createUserStoryMarkdownFile(this.project, userStoryPayload);

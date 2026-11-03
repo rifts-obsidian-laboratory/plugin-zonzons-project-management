@@ -1,11 +1,12 @@
-import { Notice, TFile, TFolder } from "obsidian";
+import {Notice, TFile, TFolder} from "obsidian";
 import ZonzonsProjectManagement from "../../main";
-import { ProjectType } from "../../enums/ProjectType";
-import { FileService } from "../../services/FileService";
-import { I_HasFolderName } from "../../interfaces/I_HasFolderName";
-import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
-import { I_HasTitle } from "../../interfaces/I_HasTitle";
+import {ProjectType} from "../../enums/ProjectType";
+import {FileService} from "../../services/FileService";
+import {I_HasFolderName} from "../../interfaces/I_HasFolderName";
+import {MarkdownFilePayload} from "../../types/MarkdownFilePayload";
+import {I_HasTitle} from "../../interfaces/I_HasTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
+import {MarkdownFileType} from "../../enums/MarkdownFileType";
 
 export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
@@ -39,10 +40,11 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIden
 		}
 
 		let projectOverviewPayload: MarkdownFilePayload = {
+			type: MarkdownFileType.PROJECT,
 			filePath: this.plugin.settings.projectOverviewFileName,
 			fileName: this.plugin.settings.projectOverviewFileName,
 			title: this.title,
-			identifier: this.identifier,
+			projectIdentifier: this.identifier,
 		}
 
 		const projectOverview: TFile | null = await this.fileService.createProjectOverviewMarkdownFile(project, projectOverviewPayload);
