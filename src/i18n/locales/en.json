@@ -28,7 +28,7 @@
 				"placeholder": "Enter the internal title of the note."
 			}
 		},
-		"has_code": {
+		"has_identifier": {
 			"input": {
 				"label": "Identification code",
 				"description": "This identification code must be short, it references the content to be created. This option allows you to codify projects, epics, and user stories in a clearly identifiable way.",

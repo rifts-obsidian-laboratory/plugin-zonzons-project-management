@@ -5,16 +5,16 @@ import { FileService } from "../../services/FileService";
 import { I_HasFolderName } from "../../interfaces/I_HasFolderName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
 import { I_HasTitle } from "../../interfaces/I_HasTitle";
-import {I_HasCode} from "../../interfaces/I_HasCode";
+import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
 
-export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasCode {
+export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
 	public fileService: FileService;
 	public folderName: string;
 	public type: ProjectType;
 	public hasTitle: boolean;
 	public title: string;
-	public code: string;
+	public identifier: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
@@ -23,7 +23,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasCode
 		this.type = ProjectType.TRADITIONAL;
 		this.hasTitle = false;
 		this.title = "";
-		this.code = "";
+		this.identifier = "";
 	}
 
 	public async create(): Promise<void> {
@@ -42,7 +42,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasCode
 			filePath: this.plugin.settings.projectOverviewFileName,
 			fileName: this.plugin.settings.projectOverviewFileName,
 			title: this.title,
-			code: this.code,
+			identifier: this.identifier,
 		}
 
 		const projectOverview: TFile | null = await this.fileService.createProjectOverviewMarkdownFile(project, projectOverviewPayload);

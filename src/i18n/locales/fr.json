@@ -28,7 +28,7 @@
 				"placeholder": "Saisissez le titre interne de la note."
 			}
 		},
-		"has_code": {
+		"has_identifier": {
 			"input": {
 				"label": "Code d'identification",
 				"description": "Ce code d'identification doit être court, il référence le contenu à créer. Cette option permet de codifier les projets, les épopées et les récits utilisateur d'une manière clairement identifiable.",
@@ -196,22 +196,22 @@
 				}
 			}
 		},
-		"code_property": {
-			"title": "Propriété du code",
-			"code_property_name": {
-				"label": "Nom de la propriété du code",
-				"description": "Le nom de la propriété qui sera utilisée pour entreposer le code de chaque projet, épopée et récit utilisateur.",
-				"placeholder": "Entrez le nom de la propriété du code."
+		"identifier_property": {
+			"title": "Identifiant",
+			"identifier_property_name": {
+				"label": "Nom de la propriété de l'identifiant",
+				"description": "Le nom de la propriété qui sera utilisée pour entreposer l'identifiant de chaque projet, épopée et récit utilisateur.",
+				"placeholder": "Entrez le nom de la propriété de l'identifiant."
 			},
-			"epic_code_prefix": {
-				"label": "Préfixe du code de l'épopée",
-				"description": "Le préfixe qui sera utilisé pour générer le code de chaque épopée. Ce préfixe sera combiné avec le numéro de l'épopée le code complet de l'épopée.",
-				"placeholder": "Entrez le préfixe du code de l'épopée."
+			"epic_identifier_prefix": {
+				"label": "Préfixe de l'identifiant de l'épopée",
+				"description": "Le préfixe qui sera utilisé pour générer l'identifiant de chaque épopée. Ce préfixe sera combiné avec le numéro de l'épopée pour créer l'identifiant complet de l'épopée.",
+				"placeholder": "Entrez le préfixe de l'identifiant de l'épopée."
 			},
-			"user_story_code_prefix": {
-				"label": "Préfixe du code du récit utilisateur",
-				"description": "Le préfixe qui sera utilisé pour générer le code de chaque récit utilisateur. Ce préfixe sera combiné avec le numéro du récit utilisateur pour créer le code complet du récit utilisateur.",
-				"placeholder": "Entrez le préfixe du code du récit utilisateur."
+			"user_story_identifier_prefix": {
+				"label": "Préfixe de l'identifiant du récit utilisateur",
+				"description": "Le préfixe qui sera utilisé pour générer l'identifiant de chaque récit utilisateur. Ce préfixe sera combiné avec le numéro du récit utilisateur pour créer l'identifiant complet du récit utilisateur.",
+				"placeholder": "Entrez le préfixe de l'identifiant du récit utilisateur."
 			}
 		},
 		"registered_projects": {

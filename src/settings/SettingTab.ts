@@ -33,7 +33,7 @@ export class SettingTab extends PluginSettingTab {
 		this.createGlobalSettingSection(containerEl);
 		this.createTraditionalProjectManagementSettingSection(containerEl);
 		this.createAgileProjectManagementSettingSection(containerEl);
-		this.createCodeSettingSection(containerEl);
+		this.createIdentifierSettingSection(containerEl);
 		this.createRegisteredProjectSettingSection(containerEl);
 	}
 
@@ -272,18 +272,18 @@ export class SettingTab extends PluginSettingTab {
 		// </editor-fold>
 	}
 
-	createCodeSettingSection(containerEl: HTMLElement): void {
-		new Setting(containerEl).setName(translate("settings.code_property.title")).setHeading();
+	createIdentifierSettingSection(containerEl: HTMLElement): void {
+		new Setting(containerEl).setName(translate("settings.identifier_property.title")).setHeading();
 
-		// <editor-fold desc="Setting - Text - Code property name">
+		// <editor-fold desc="Setting - Text - Identifier property name">
 		new Setting(containerEl)
-			.setName(translate("settings.code_property.code_property_name.label"))
-			.setDesc(translate("settings.code_property.code_property_name.description"))
+			.setName(translate("settings.identifier_property.identifier_property_name.label"))
+			.setDesc(translate("settings.identifier_property.identifier_property_name.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder(translate("settings.code_property.code_property_name.placeholder"))
-					.setValue(this.plugin.settings.codePropertyName)
+				text.setPlaceholder(translate("settings.identifier_property.identifier_property_name.placeholder"))
+					.setValue(this.plugin.settings.identifierPropertyName)
 					.onChange(async (value: string): Promise<void> => {
-						this.plugin.settings.codePropertyName = value;
+						this.plugin.settings.identifierPropertyName = value;
 						await this.plugin.saveSettings();
 					});
 			});
@@ -292,29 +292,29 @@ export class SettingTab extends PluginSettingTab {
 		const prefixGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
 		const prefixItemsEl: HTMLDivElement = prefixGroupEl.createDiv({ cls: "setting-items" });
 
-		// <editor-fold desc="Setting - Text - Epic code prefix">
+		// <editor-fold desc="Setting - Text - Epic identifier prefix">
 		new Setting(prefixItemsEl)
-			.setName(translate("settings.code_property.epic_code_prefix.label"))
-			.setDesc(translate("settings.code_property.epic_code_prefix.description"))
+			.setName(translate("settings.identifier_property.epic_identifier_prefix.label"))
+			.setDesc(translate("settings.identifier_property.epic_identifier_prefix.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder(translate("settings.code_property.epic_code_prefix.placeholder"))
-					.setValue(this.plugin.settings.epicCodePrefix)
+				text.setPlaceholder(translate("settings.identifier_property.epic_identifier_prefix.placeholder"))
+					.setValue(this.plugin.settings.epicIdentifierPrefix)
 					.onChange(async (value: string): Promise<void> => {
-						this.plugin.settings.epicCodePrefix = value;
+						this.plugin.settings.epicIdentifierPrefix = value;
 						await this.plugin.saveSettings();
 					});
 			});
 		// </editor-fold>
 
-		// <editor-fold desc="Setting - Text - User story code prefix">
+		// <editor-fold desc="Setting - Text - User story identifier prefix">
 		new Setting(prefixItemsEl)
-			.setName(translate("settings.code_property.user_story_code_prefix.label"))
-			.setDesc(translate("settings.code_property.user_story_code_prefix.description"))
+			.setName(translate("settings.identifier_property.user_story_identifier_prefix.label"))
+			.setDesc(translate("settings.identifier_property.user_story_identifier_prefix.description"))
 			.addText((text: TextComponent): void => {
-				text.setPlaceholder(translate("settings.code_property.user_story_code_prefix.placeholder"))
-					.setValue(this.plugin.settings.userStoryCodePrefix)
+				text.setPlaceholder(translate("settings.identifier_property.user_story_identifier_prefix.placeholder"))
+					.setValue(this.plugin.settings.userStoryIdentifierPrefix)
 					.onChange(async (value: string): Promise<void> => {
-						this.plugin.settings.userStoryCodePrefix = value;
+						this.plugin.settings.userStoryIdentifierPrefix = value;
 						await this.plugin.saveSettings();
 					});
 			});

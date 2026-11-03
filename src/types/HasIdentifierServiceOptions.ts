@@ -1,4 +1,4 @@
-export type HasCodeServiceOptions = {
+export type HasIdentifierServiceOptions = {
 	"translations": {
 		"input": {
 			"label": string;

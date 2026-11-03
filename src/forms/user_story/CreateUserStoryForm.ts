@@ -4,16 +4,16 @@ import { FileService } from "../../services/FileService";
 import { I_HasFileName } from "../../interfaces/I_HasFileName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
 import { I_HasTitle } from "../../interfaces/I_HasTitle";
-import {I_HasCode} from "../../interfaces/I_HasCode";
+import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
 
-export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasCode {
+export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
 	public fileService: FileService;
 	public project: TFolder | null;
 	public fileName: string;
 	public hasTitle: boolean;
 	public title: string;
-	public code: string;
+	public identifier: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
@@ -22,7 +22,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasCode
 		this.fileName = "";
 		this.hasTitle = false;
 		this.title = "";
-		this.code = this.plugin.settings.userStoryCodePrefix;
+		this.identifier = this.plugin.settings.userStoryIdentifierPrefix;
 	}
 
 	public setProject(projectName: string): void {
@@ -45,7 +45,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasCode
 			filePath: this.plugin.settings.userStoriesFolderName + "/" + this.fileName,
 			fileName: this.fileName,
 			title: this.title,
-			code: this.code + ((userStoriesFolder?.children.length ?? 0) + 1)
+			identifier: this.identifier + ((userStoriesFolder?.children.length ?? 0) + 1)
 		}
 
 		const userStory: TFile | null = await this.fileService.createUserStoryMarkdownFile(this.project, userStoryPayload);

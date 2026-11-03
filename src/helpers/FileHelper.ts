@@ -17,7 +17,7 @@ export class FileHelper {
 		if (!(template instanceof TFile)) return null;
 
 		const content: string = (await this.app.vault.read(template))
-			.replaceAll(/\{\{\s*code\s*\}\}/gm, payload.code)
+			.replaceAll(/\{\{\s*code\s*\}\}/gm, payload.identifier)
 			.replaceAll(/\{\{\s*title\s*\}\}/gm, payload.title || payload.fileName)
 			.replaceAll(/\{\{\s*project-name\s*\}\}/gm, project.name)
 			.replaceAll(/^> \[!template-help\][^\n]*\n(?:>[^\n]*\n?)*/gm, "");
@@ -28,7 +28,7 @@ export class FileHelper {
 		let file: TFile = await this.app.vault.create(path, content);
 
 		await this.app.fileManager.processFrontMatter(file, (frontMatter: any) => {
-			frontMatter[this.settings.codePropertyName] = payload.code;
+			frontMatter[this.settings.identifierPropertyName] = payload.identifier;
 		});
 
 		return file;
