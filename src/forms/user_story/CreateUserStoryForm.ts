@@ -5,6 +5,7 @@ import { I_HasFileName } from "../../interfaces/I_HasFileName";
 import { MarkdownFilePayload } from "../../types/MarkdownFilePayload";
 import { I_HasTitle } from "../../interfaces/I_HasTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
+import {IdentifierHelper} from "../../helpers/IdentifierHelper";
 
 export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
@@ -22,7 +23,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 		this.fileName = "";
 		this.hasTitle = false;
 		this.title = "";
-		this.identifier = this.plugin.settings.userStoryIdentifierPrefix;
+		this.identifier = "";
 	}
 
 	public setProject(projectName: string): void {
@@ -39,13 +40,11 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 			return;
 		}
 
-		const userStoriesFolder: TFolder | null = this.plugin.app.vault.getFolderByPath(this.project.path + "/" + this.plugin.settings.userStoriesFolderName);
-
 		const userStoryPayload: MarkdownFilePayload = {
 			filePath: this.plugin.settings.userStoriesFolderName + "/" + this.fileName,
 			fileName: this.fileName,
 			title: this.title,
-			identifier: this.identifier + ((userStoriesFolder?.children.length ?? 0) + 1)
+			identifier: IdentifierHelper.generateUserStoryIdentifier(this.plugin, this.project.path)
 		}
 
 		const userStory: TFile | null = await this.fileService.createUserStoryMarkdownFile(this.project, userStoryPayload);
