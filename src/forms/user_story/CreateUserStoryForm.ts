@@ -46,6 +46,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 			filePath: this.plugin.settings.userStoriesFolderName + "/" + this.fileName,
 			fileName: this.fileName,
 			title: this.title,
+			projectName: this.project.name,
 			userStoryIdentifier: IdentifierHelper.generateUserStoryIdentifier(this.plugin, this.project.path)
 		}
 

@@ -44,6 +44,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIden
 			filePath: this.plugin.settings.projectOverviewFileName,
 			fileName: this.plugin.settings.projectOverviewFileName,
 			title: this.title,
+			projectName: this.folderName,
 			projectIdentifier: this.identifier,
 		}
 

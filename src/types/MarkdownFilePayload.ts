@@ -6,6 +6,7 @@ export type MarkdownFilePayload = {
 	fileName: string;
 	title: string;
 	projectIdentifier?: string;
+	projectName?: string;
 	epicIdentifier?: string;
 	userStoryIdentifier?: string;
 };

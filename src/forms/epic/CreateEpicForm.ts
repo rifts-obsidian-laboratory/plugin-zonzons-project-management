@@ -46,6 +46,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasIdentifie
 			filePath: this.plugin.settings.epicsFolderName + "/" + this.fileName,
 			fileName: this.fileName,
 			title: this.title,
+			projectName: this.project.name,
 			epicIdentifier: IdentifierHelper.generateEpicIdentifier(this.plugin, this.project.path)
 		}
 
