@@ -1,16 +1,15 @@
 import ZonzonsProjectManagement from "../../main";
-import {Notice, TFile, TFolder} from "obsidian";
-import {FileService} from "../../services/FileService";
+import {TFolder} from "obsidian";
 import {I_HasFileName} from "../../interfaces/I_HasFileName";
-import {MarkdownFilePayload} from "../../types/MarkdownFilePayload";
 import {I_HasTitle} from "../../interfaces/I_HasTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
-import {IdentifierHelper} from "../../helpers/IdentifierHelper";
-import {MarkdownFileType} from "../../enums/MarkdownFileType";
+import {UserStoryService} from "../../services/UserStoryService";
+import {ProjectRepository} from "../../repositories/ProjectRepository";
 
 export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
-	public fileService: FileService;
+	public projectRepository: ProjectRepository;
+	public userStoryService: UserStoryService;
 	public project: TFolder | null;
 	public fileName: string;
 	public hasTitle: boolean;
@@ -19,7 +18,8 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 
 	public constructor(plugin: ZonzonsProjectManagement) {
 		this.plugin = plugin;
-		this.fileService = new FileService(plugin);
+		this.projectRepository = new ProjectRepository(plugin);
+		this.userStoryService = new UserStoryService(plugin);
 		this.project = null;
 		this.fileName = "";
 		this.hasTitle = false;
@@ -28,7 +28,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 	}
 
 	public setProject(projectName: string): void {
-		this.project = this.fileService.getProjectFolder(projectName);
+		this.project = this.projectRepository.getFolderByName(projectName);
 	}
 
 	public getProject(): string {
@@ -36,26 +36,6 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 	}
 
 	public async create(): Promise<void> {
-		if (!this.project) {
-			new Notice("Project not found. User story creation aborted.", 5000);
-			return;
-		}
-
-		const userStoryPayload: MarkdownFilePayload = {
-			type: MarkdownFileType.USER_STORY,
-			filePath: this.plugin.settings.userStoriesFolderName + "/" + this.fileName,
-			fileName: this.fileName,
-			title: this.title,
-			projectName: this.project.name,
-			userStoryIdentifier: IdentifierHelper.generateUserStoryIdentifier(this.plugin, this.project.path)
-		}
-
-		const userStory: TFile | null = await this.fileService.createUserStoryMarkdownFile(this.project, userStoryPayload);
-
-		if (!userStory) {
-			return;
-		}
-
-		await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
+		await this.userStoryService.create(this.project, this.fileName, this.title);
 	}
 }

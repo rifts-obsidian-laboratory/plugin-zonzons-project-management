@@ -1,16 +1,14 @@
 import ZonzonsProjectManagement from "../../main";
-import {Notice, TFile, TFolder} from "obsidian";
-import {FileService} from "../../services/FileService";
+import {TFolder} from "obsidian";
 import {I_HasFileName} from "../../interfaces/I_HasFileName";
 import {I_HasTitle} from "../../interfaces/I_HasTitle";
-import {MarkdownFilePayload} from "../../types/MarkdownFilePayload";
-import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
-import {IdentifierHelper} from "../../helpers/IdentifierHelper";
-import {MarkdownFileType} from "../../enums/MarkdownFileType";
+import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier"
+import {EpicService} from "../../services/EpicService";
+import {ProjectRepository} from "../../repositories/ProjectRepository";
 
 export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
-	public plugin: ZonzonsProjectManagement;
-	public fileService: FileService;
+	public projectRepository: ProjectRepository;
+	public epicService: EpicService;
 	public project: TFolder | null;
 	public fileName: string;
 	public hasTitle: boolean;
@@ -18,8 +16,8 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasIdentifie
 	public identifier: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
-		this.plugin = plugin;
-		this.fileService = new FileService(plugin);
+		this.projectRepository = new ProjectRepository(plugin);
+		this.epicService = new EpicService(plugin);
 		this.project = null;
 		this.fileName = "";
 		this.hasTitle = false;
@@ -28,7 +26,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasIdentifie
 	}
 
 	public setProject(projectName: string): void {
-		this.project = this.fileService.getProjectFolder(projectName);
+		this.project = this.projectRepository.getFolderByName(projectName);
 	}
 
 	public getProject(): string {
@@ -36,26 +34,6 @@ export class CreateEpicForm implements I_HasFileName, I_HasTitle, I_HasIdentifie
 	}
 
 	public async create(): Promise<void> {
-		if (!this.project) {
-			new Notice("Project not found. Epic creation aborted.", 5000);
-			return;
-		}
-
-		const epicPayload: MarkdownFilePayload = {
-			type: MarkdownFileType.EPIC,
-			filePath: this.plugin.settings.epicsFolderName + "/" + this.fileName,
-			fileName: this.fileName,
-			title: this.title,
-			projectName: this.project.name,
-			epicIdentifier: IdentifierHelper.generateEpicIdentifier(this.plugin, this.project.path)
-		}
-
-		const epic: TFile | null = await this.fileService.createEpicMarkdownFile(this.project, epicPayload);
-
-		if (!epic) {
-			return;
-		}
-
-		await this.plugin.app.workspace.getLeaf(true).openFile(epic);
+		await this.epicService.create(this.project, this.fileName, this.title);
 	}
 }

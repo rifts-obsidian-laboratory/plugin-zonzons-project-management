@@ -1,16 +1,12 @@
-import {Notice, TFile, TFolder} from "obsidian";
 import ZonzonsProjectManagement from "../../main";
 import {ProjectType} from "../../enums/ProjectType";
-import {FileService} from "../../services/FileService";
 import {I_HasFolderName} from "../../interfaces/I_HasFolderName";
-import {MarkdownFilePayload} from "../../types/MarkdownFilePayload";
 import {I_HasTitle} from "../../interfaces/I_HasTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
-import {MarkdownFileType} from "../../enums/MarkdownFileType";
+import {ProjectService} from "../../services/ProjectService";
 
 export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIdentifier {
-	public plugin: ZonzonsProjectManagement;
-	public fileService: FileService;
+	public projectService: ProjectService;
 	public folderName: string;
 	public type: ProjectType;
 	public hasTitle: boolean;
@@ -18,8 +14,7 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIden
 	public identifier: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
-		this.plugin = plugin;
-		this.fileService = new FileService(plugin);
+		this.projectService = new ProjectService(plugin);
 		this.folderName = "";
 		this.type = ProjectType.TRADITIONAL;
 		this.hasTitle = false;
@@ -28,47 +23,6 @@ export class CreateProjectForm implements I_HasFolderName, I_HasTitle, I_HasIden
 	}
 
 	public async create(): Promise<void> {
-		let project: TFolder | null = null;
-
-		try {
-			project = await this.fileService.createProjectFolder(this.folderName);
-			this.plugin.settings.projects[this.folderName] = this.type;
-		} catch (error) {
-			new Notice("Project already exists. Project creation aborted.", 5000);
-			delete this.plugin.settings.projects[this.folderName];
-			return;
-		}
-
-		let projectOverviewPayload: MarkdownFilePayload = {
-			type: MarkdownFileType.PROJECT,
-			filePath: this.plugin.settings.projectOverviewFileName,
-			fileName: this.plugin.settings.projectOverviewFileName,
-			title: this.title,
-			projectName: this.folderName,
-			projectIdentifier: this.identifier,
-		}
-
-		const projectOverview: TFile | null = await this.fileService.createProjectOverviewMarkdownFile(project, projectOverviewPayload);
-
-		if (!projectOverview) {
-			return;
-		}
-
-		await this.plugin.app.workspace.getLeaf(true).openFile(projectOverview);
-
-		if (this.type === ProjectType.TRADITIONAL) {
-			//
-		} else if (this.type === ProjectType.AGILE) {
-			await this.fileService.createAgileDashboardBaseFile(project);
-
-			await this.fileService.createEpicFolder(project);
-			await this.fileService.createUserStoryFolder(project);
-		} else {
-			await this.plugin.app.fileManager.trashFile(project);
-			delete this.plugin.settings.projects[this.folderName];
-			new Notice("Project type not supported. Project creation aborted.", 5000);
-		}
-
-		await this.plugin.saveSettings();
+		await this.projectService.create(this.type, this.folderName, this.title, this.identifier);
 	}
 }
