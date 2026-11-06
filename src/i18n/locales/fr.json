@@ -202,7 +202,7 @@
 			}
 		},
 		"identifier_property": {
-			"title": "Identifiant",
+			"title": "Identifiants de contenu",
 			"identifier_property_name": {
 				"label": "Nom de la propriété de l'identifiant",
 				"description": "Le nom de la propriété qui sera utilisée pour entreposer l'identifiant de chaque projet, épopée et récit utilisateur.",
@@ -220,7 +220,7 @@
 			}
 		},
 		"content_linking_properties": {
-			"title": "Propriétés de lien de contenu",
+			"title": "Liens de contenu",
 			"project_linking_property": {
 				"label": "Nom de la propriété de lien d'un projet",
 				"description": "Le nom de la propriété qui sera utilisée pour entreposer dans un contenu un lien vers le fichier de vue d'ensemble de son projet.",
