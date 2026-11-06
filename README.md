@@ -67,6 +67,24 @@ Pour utiliser cette fonctionnalité, il vous faudra choisir le dossier dans lequ
 
 Grâce au paramètre « **Chemin du modèle de récit utilisateur** », il est possible de renseigner un modèle à utiliser pour générer le récit utilisateur.
 
+### Identifiant de contenu
+
+Initialement présent pour codifier les contenus en gestion de projet agile, *Zonzon's project management* implémente un système d'identifiant de contenu. 
+
+Pour utiliser cette fonctionnalité, il vous faudra définir grâce au paramètre « **Nom de la propriété de l'identifiant** la propriété dans laquelle sera entreposé l'identifiant définit.
+
+Il existe trois types d'identifiant. Les identifiants de projet doivent être uniques et sont choisis par l'utilisateur lorsqu'il crée un projet. Les identifiants d'épopée et de récit utilisateur sont générés automatiquement. Ils se basent sur le nombre d'épopées ou de récits utilisateur déjà présent dans un projet.
+
+Ces derniers peuvent être préfixés à la volonté de l'utilisateur. Il vous faudra définir ces préfixes grâce aux paramètres « **Préfixe de l'identifiant de l'épopée** » et « **Préfixe de l'identifiant du récit utilisateur** ».
+
+### Liens de contenu
+
+*Zonzon's project management* permet de lier automatiquement les contenus entre eux à leurs créations respectives.
+
+Pour utiliser cette fonctionnalité, il vous faudra définir les propriétés dans lesquelles doivent être entreposées les rétroliens générés. Les paramètres concernés sont « **Nom de la propriété de lien d'un projet** » et « **Nom de la propriété de lien d'une épopée**.
+
+Un fichier de vue d'ensemble d'un projet sera lié dans chaque épopée et chaque récit utilisateur qui appartiennent audit projet. Une épopée sera quant à elle liée à chaque récit utilisateur qui appartient à ladite épopée.
+
 ### Projets enregistrés
 
 Afin de garder une trace du type de chaque projet (agile ou traditionnel), ceux-ci sont enregistrés et affichés dans cette section des paramètres. Chaque élément de la liste est un projet et permet de modifier le type du projet, mais aussi de le supprimer. Pour éviter des suppressions accidentelles, une fenêtre modale s'ouvrira pour confirmer la suppression un projet.

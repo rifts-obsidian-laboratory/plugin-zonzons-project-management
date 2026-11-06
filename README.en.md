@@ -67,6 +67,24 @@ To use this feature, you need to select the folder where a project's user storie
 
 You can also specify a template to use when generating user stories through the "**User story template path**" setting.
 
+### Content identifiers
+
+Originally intended to codify content in agile project management, Zonzon's project management implements a content ID system.
+
+To use this feature, you must define the property in which the assigned ID will be stored using the "**Identifier property name**" setting.
+
+There are three types of IDs. Project IDs must be unique and are chosen by the user when creating a project. Epic and user story IDs are generated automatically. They are based on the number of epics or user stories already present in a project.
+
+The latter two can be prefixed at the user's discretion. You can define these prefixes using the "**Epic identifier prefix**" and "**User story identifier prefix**" settings.
+
+### Content links
+
+Zonzon's project management automatically links content to one another when they are created.
+
+To use this feature, you must define the properties in which the generated backlinks will be stored. The relevant settings are "**Project link property name**" and "**Epic link property name**".
+
+A project's overview file will be linked in every epic and user story belonging to that project. Similarly, an epic will be linked in every user story belonging to that epic.
+
 ### Saved Projects
 
 To keep track of each project's type (agile or traditional), projects are saved and displayed in this section of the settings.
