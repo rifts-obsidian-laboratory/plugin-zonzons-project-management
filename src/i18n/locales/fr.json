@@ -91,6 +91,11 @@
 					"description": "Choisissez le projet auquel le récit utilisateur créé sera rattaché. Le fichier sera créé dans le dossier des récits utilisateurs du projet sélectionné.",
 					"placeholder": "Commencez à saisir le nom d’un projet..."
 				},
+				"epic": {
+					"label": "Épopée",
+					"description": "Choisissez l'épopée à laquelle le récit utilisateur créé sera rattaché. Avant de rechercher une épopée, assurez-vous d'avoir déjà sélectionné un projet.",
+					"placeholder": "Commencez à saisir l'identifiant ou le nom d’une épopée..."
+				},
 				"user_story_file_name": {
 					"label": "Nom du fichier",
 					"description": "Saisissez le nom du fichier qui sera créé pour ce récit utilisateur.",

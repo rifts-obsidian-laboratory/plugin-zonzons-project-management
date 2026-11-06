@@ -4,11 +4,14 @@ import { CreateUserStoryForm } from "../../forms/user_story/CreateUserStoryForm"
 import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
 import {HasInlineTitleService} from "../../services/HasInlineTitleService";
+import {EpicSuggest} from "../../suggests/EpicSuggest";
 
 export class CreateUserStoryModal extends Modal {
 	plugin: ZonzonsProjectManagement;
 	form: CreateUserStoryForm;
 	isProjectInputDisabled: boolean = false;
+	epicSuggest: EpicSuggest | null;
+	isEpicInputDisabled: boolean = false;
 
 	constructor(plugin: ZonzonsProjectManagement, projectName?: string) {
 		super(plugin.app);
@@ -18,6 +21,7 @@ export class CreateUserStoryModal extends Modal {
 			this.form.setProject(projectName);
 			this.isProjectInputDisabled = true;
 		}
+		this.epicSuggest = null;
 	}
 
 	override onOpen(): void {
@@ -33,6 +37,7 @@ export class CreateUserStoryModal extends Modal {
 		contentEl.empty();
 
 		this.createProjectInput(contentEl);
+		this.createEpicInput(contentEl);
 		this.createUserStoryFileNameInput(contentEl);
 
 		const hasInlineTitleService = new HasInlineTitleService(this.form);
@@ -58,11 +63,37 @@ export class CreateUserStoryModal extends Modal {
 			.setValue(this.form.getProjectName())
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
+				if (this.epicSuggest) this.epicSuggest.project = this.form.project;
 			});
 		input.inputEl.id = "project-input";
 		input.inputEl.setAttribute("aria-describedby", "project-input-description");
 		input.setDisabled(this.isProjectInputDisabled);
 		new AgileProjectSuggest(this.plugin, input.inputEl);
+	}
+
+	createEpicInput(contentEl: HTMLElement): void {
+		const container: HTMLDivElement = contentEl.createDiv({ cls: "input-container "});
+
+		const label: HTMLLabelElement = container.createEl("label", { text: translate("modals.user_story.create.epic.label") });
+		label.setAttribute("for", "epic-input");
+
+		const description: HTMLParagraphElement = container.createEl("p", {
+			text: translate("modals.user_story.create.epic.description"),
+		});
+		description.classList.add("input-description");
+		description.id = "epic-input-description";
+
+		const input: TextComponent = new TextComponent(container)
+			.setPlaceholder(translate("modals.user_story.create.epic.placeholder"))
+			.setValue(this.form.getEpicIdentifier())
+			.onChange(async (value: string): Promise<void> => {
+				this.form.setEpic(value);
+			});
+		input.inputEl.id = "epic-input";
+		input.inputEl.setAttribute("aria-describedby", "epic-input-description");
+		input.setDisabled(this.isEpicInputDisabled);
+
+		this.epicSuggest = new EpicSuggest(this.plugin, input.inputEl, this.form.project);
 	}
 
 	createUserStoryFileNameInput(contentEl: HTMLElement): void {

@@ -91,6 +91,11 @@
 					"description": "Choose to which project the created user story belongs. The file will be created in the user story folder of the chosen project.",
 					"placeholder": "Start typing the name of a project..."
 				},
+				"epic": {
+					"label": "Epic",
+					"description": "Choose to which epic the created user story belongs. Before searching for an epic, make sure you have already selected a project.",
+					"placeholder": "Start typing the name or the identifier of an epic..."
+				},
 				"user_story_file_name": {
 					"label": "File name",
 					"description": "Enter the name of the file that will be created for the user story.",

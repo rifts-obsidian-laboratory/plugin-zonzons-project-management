@@ -24,12 +24,11 @@ export class UserStoryService {
 		this.userStoryRepository = new UserStoryRepository(plugin);
 	}
 
-	async create(project: TFolder | null, name: string, inlineTitle: string): Promise<void> {
+	async create(project: TFolder | null, epic: TFile | null,  name: string, inlineTitle: string): Promise<void> {
 		try {
 			if (!project) throw new Error("Selected project not found.");
 
-			const projectOverviewFile: TFile | null = this.projectRepository.getOverview(project);
-			if (!projectOverviewFile) throw new Error("Project's overview file not found.");
+			if (!epic) throw new Error("Selected epic not found.");
 
 			const userStoriesFolder: TFolder | null = this.userStoryRepository.getUserStoriesFolder(project);
 			if (!userStoriesFolder) throw new Error("Project's user stories folder not found.");
@@ -47,6 +46,8 @@ export class UserStoryService {
 			if (!userStory) throw new Error("User story couldn't be created.");
 
 			await MarkdownMetadataHelper.setProjectLink(this.plugin, userStory, project);
+
+			await MarkdownMetadataHelper.setEpicLink(this.plugin, userStory, epic);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
 		} catch (error) {
