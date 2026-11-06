@@ -56,6 +56,8 @@ export class MarkdownPlaceholderHelper {
 			content = content.replaceAll(this.getPlaceholder(placeholder), value);
 		}
 
+		content = content.replaceAll(this.getPlaceholder(MarkdownPlaceholder.TEMPLATE_HELP), "");
+
 		return content;
 	}
 }
