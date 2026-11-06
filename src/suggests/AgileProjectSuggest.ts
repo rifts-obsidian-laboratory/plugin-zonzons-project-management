@@ -15,7 +15,7 @@ export class AgileProjectSuggest extends AbstractInputSuggest<TFolder> {
 	protected getSuggestions(query: string): TFolder[] {
 		const _query: string = query.toLowerCase();
 
-		const projects: TFolder | null = this.app.vault.getFolderByPath(this.plugin.settings.projectFolderPath);
+		const projects: TFolder | null = this.app.vault.getFolderByPath(this.plugin.settings.projectsFolderPath);
 		if (!projects || _query === "") return [];
 
 		return projects.children
@@ -26,11 +26,11 @@ export class AgileProjectSuggest extends AbstractInputSuggest<TFolder> {
 	}
 
 	renderSuggestion(folder: TFolder, element: HTMLElement): void {
-		element.setText(folder.path.replace(this.plugin.settings.projectFolderPath + "/", ""));
+		element.setText(folder.path.replace(this.plugin.settings.projectsFolderPath + "/", ""));
 	}
 
 	selectSuggestion(folder: TFolder): void {
-		this.inputElement.value = folder.path.replace(this.plugin.settings.projectFolderPath + "/", "");
+		this.inputElement.value = folder.path.replace(this.plugin.settings.projectsFolderPath + "/", "");
 		this.inputElement.trigger("input");
 		this.close();
 	}

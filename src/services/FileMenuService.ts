@@ -9,13 +9,13 @@ import { ProjectType } from "../enums/ProjectType";
 export class FileMenuService {
 	public static initialize(plugin: ZonzonsProjectManagement): void {
 		plugin.app.workspace.on("file-menu", (menu: Menu, file: TAbstractFile, source: string): void => {
-			if (file instanceof TFolder && file.path === plugin.settings.projectFolderPath) {
+			if (file instanceof TFolder && file.path === plugin.settings.projectsFolderPath) {
 				this.addCreateProjectMenuItem(plugin, menu);
 			}
 
 			if (file instanceof TFolder) {
 				if (plugin.settings.projects[file.name] === ProjectType.AGILE) {
-					if (file.parent?.path === plugin.settings.projectFolderPath) {
+					if (file.parent?.path === plugin.settings.projectsFolderPath) {
 						this.addCreateEpicMenuItem(plugin, menu, file.name);
 
 						this.addCreateUserStoryMenuItem(plugin, menu, file.name);
@@ -23,7 +23,7 @@ export class FileMenuService {
 				}
 
 				if (plugin.settings.projects[file.parent?.name ?? ""] === ProjectType.AGILE) {
-					if (file.parent?.parent?.path === plugin.settings.projectFolderPath) {
+					if (file.parent?.parent?.path === plugin.settings.projectsFolderPath) {
 						if (file.name === plugin.settings.epicsFolderName) {
 							this.addCreateEpicMenuItem(plugin, menu, file.parent.name);
 						}

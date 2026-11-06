@@ -17,17 +17,17 @@ export class ProjectRepository {
 
 	// <editor-fold desc="About the global projects folder.">
 	getProjectsFolder(): TFolder | null {
-		return this.app.vault.getFolderByPath(this.settings.projectFolderPath);
+		return this.app.vault.getFolderByPath(this.settings.projectsFolderPath);
 	}
 	// </editor-fold>
 
 	// <editor-fold desc="About a targeted project's folder.">
 	async createFolder(name: string): Promise<TFolder> {
-		return await this.app.vault.createFolder(PathHelper.join(this.settings.projectFolderPath, name));
+		return await this.app.vault.createFolder(PathHelper.join(this.settings.projectsFolderPath, name));
 	}
 
 	getFolderByName(name: string): TFolder | null {
-		return this.app.vault.getFolderByPath(PathHelper.join(this.settings.projectFolderPath, name));
+		return this.app.vault.getFolderByPath(PathHelper.join(this.settings.projectsFolderPath, name));
 	}
 
 	getFolderByIdentifier(identifier: string): TFolder | null {

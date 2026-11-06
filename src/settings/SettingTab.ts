@@ -50,9 +50,9 @@ export class SettingTab extends PluginSettingTab {
 			.setDesc(translate("settings.global.project.folder.path.description"))
 			.addText((text: TextComponent): void => {
 				text.setPlaceholder(translate("settings.global.project.folder.path.placeholder"))
-					.setValue(this.plugin.settings.projectFolderPath)
+					.setValue(this.plugin.settings.projectsFolderPath)
 					.onChange(async (value: string): Promise<void> => {
-						this.plugin.settings.projectFolderPath = value;
+						this.plugin.settings.projectsFolderPath = value;
 						await this.plugin.saveSettings();
 					});
 

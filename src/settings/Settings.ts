@@ -1,7 +1,7 @@
 import { ProjectType } from "../enums/ProjectType";
 
 export interface I_Settings {
-	projectFolderPath: string;
+	projectsFolderPath: string;
 	displayProjectCreationRibbonButton: boolean;
 	projectOverviewFileName: string;
 	projectOverviewTemplatePath: string;
@@ -25,7 +25,7 @@ export interface I_Settings {
 
 
 export const DEFAULT_SETTINGS: I_Settings = {
-	projectFolderPath: "projects",
+	projectsFolderPath: "projects",
 	displayProjectCreationRibbonButton: true,
 	projectOverviewFileName: "",
 	projectOverviewTemplatePath: "",
