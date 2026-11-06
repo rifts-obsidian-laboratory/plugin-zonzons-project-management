@@ -47,4 +47,20 @@ export class MarkdownMetadataHelper {
 
 		return await plugin.app.fileManager.processFrontMatter(file, (frontmatter: FrontMatterCache): string => frontmatter[plugin.settings.projectLinkPropertyName] = plugin.app.fileManager.generateMarkdownLink(projectOverviewFile, file.path));
 	}
+
+	static getEpicLink(app: App, settings: I_Settings, file: TFile): string | null {
+		const frontmatter: FrontMatterCache | undefined = this.getFrontmatter(app, file);
+		if (!frontmatter) return null;
+
+		const epicLink: unknown = frontmatter[settings.epicLinkPropertyName];
+		if (!epicLink || typeof  epicLink !== "string") return null;
+
+		return epicLink;
+	}
+
+	static async setEpicLink(plugin: ZonzonsProjectManagement, file: TFile, epic: TFile): Promise<void> {
+		if (!epic) return;
+
+		return await plugin.app.fileManager.processFrontMatter(file, (frontmatter: FrontMatterCache): string => frontmatter[plugin.settings.epicLinkPropertyName] = plugin.app.fileManager.generateMarkdownLink(epic, file.path));
+	}
 }

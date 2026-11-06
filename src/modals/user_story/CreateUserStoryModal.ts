@@ -55,7 +55,7 @@ export class CreateUserStoryModal extends Modal {
 
 		const input: TextComponent = new TextComponent(container)
 			.setPlaceholder(translate("modals.user_story.create.project.placeholder"))
-			.setValue(this.form.getProject())
+			.setValue(this.form.getProjectName())
 			.onChange(async (value: string): Promise<void> => {
 				this.form.setProject(value);
 			});

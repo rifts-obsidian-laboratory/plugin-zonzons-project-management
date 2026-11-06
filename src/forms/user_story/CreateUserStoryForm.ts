@@ -31,7 +31,7 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasInlineTitle, I_H
 		this.project = this.projectRepository.getFolderByName(projectName);
 	}
 
-	public getProject(): string {
+	public getProjectName(): string {
 		return this.project?.name ?? "";
 	}
 

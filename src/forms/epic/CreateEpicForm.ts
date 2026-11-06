@@ -29,7 +29,7 @@ export class CreateEpicForm implements I_HasFileName, I_HasInlineTitle, I_HasIde
 		this.project = this.projectRepository.getFolderByName(projectName);
 	}
 
-	public getProject(): string {
+	public getProjectName(): string {
 		return this.project?.name ?? "";
 	}
 
