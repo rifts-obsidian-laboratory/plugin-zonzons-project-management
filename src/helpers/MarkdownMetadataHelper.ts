@@ -1,5 +1,7 @@
-import {App, CachedMetadata, FrontMatterCache, TFile} from "obsidian";
+import {App, CachedMetadata, FrontMatterCache, TFile, TFolder} from "obsidian";
 import {I_Settings} from "../settings/Settings";
+import {ProjectRepository} from "../repositories/ProjectRepository";
+import ZonzonsProjectManagement from "../main";
 
 export class MarkdownMetadataHelper {
 	static getFrontmatter(app: App, file: TFile): FrontMatterCache | undefined {
@@ -23,5 +25,26 @@ export class MarkdownMetadataHelper {
 		if (!identifier) return;
 
 		return await app.fileManager.processFrontMatter(file, (frontmatter: FrontMatterCache): string => frontmatter[settings.identifierPropertyName] = identifier);
+	}
+
+	static getProjectLink(app: App, settings: I_Settings, file: TFile): string | null {
+		const frontmatter: FrontMatterCache | undefined = this.getFrontmatter(app, file);
+		if (!frontmatter) return null;
+
+		const projectLink: unknown = frontmatter[settings.projectLinkPropertyName];
+		if (!projectLink || typeof  projectLink !== "string") return null;
+
+		return projectLink;
+	}
+
+	static async setProjectLink(plugin: ZonzonsProjectManagement, file: TFile, project: TFolder): Promise<void> {
+		if (!project) return;
+
+		const repository: ProjectRepository = new ProjectRepository(plugin);
+
+		const projectOverviewFile: TFile | null = repository.getOverview(project);
+		if (!projectOverviewFile) throw new Error("Project's overview file not found.");
+
+		return await plugin.app.fileManager.processFrontMatter(file, (frontmatter: FrontMatterCache): string => frontmatter[plugin.settings.projectLinkPropertyName] = plugin.app.fileManager.generateMarkdownLink(projectOverviewFile, file.path));
 	}
 }

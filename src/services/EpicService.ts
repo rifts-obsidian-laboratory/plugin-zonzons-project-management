@@ -6,6 +6,7 @@ import {Notice, TFile, TFolder} from "obsidian";
 import {MarkdownFilePayload} from "../types/MarkdownFilePayload";
 import {MarkdownFileType} from "../enums/MarkdownFileType";
 import {PathHelper} from "../helpers/PathHelper";
+import {MarkdownMetadataHelper} from "../helpers/MarkdownMetadataHelper";
 
 export class EpicService {
 	plugin: ZonzonsProjectManagement;
@@ -24,6 +25,9 @@ export class EpicService {
 		try {
 			if (!project) throw new Error("Selected project not found.");
 
+			const projectOverviewFile: TFile | null = this.projectRepository.getOverview(project);
+			if (!projectOverviewFile) throw new Error("Project's overview file not found.");
+
 			const epicsFolder: TFolder | null = this.epicRepository.getEpicsFolder(project);
 			if (!epicsFolder) throw new Error("Project's epics folder not found.");
 
@@ -31,13 +35,15 @@ export class EpicService {
 				type: MarkdownFileType.EPIC,
 				filePath: PathHelper.buildMarkdownFilePath(this.settings.epicsFolderName, name),
 				fileName: name,
-				inlineTitle: inlineTitle,
+				inlineTitle,
 				projectName: project.name,
 				epicIdentifier: this.generateIdentifier(epicsFolder)
 			};
 
 			const epic: TFile | null = await this.epicRepository.createEpicFile(project, payload);
 			if (!epic) throw new Error("Epic file couldn't be created.");
+
+			await MarkdownMetadataHelper.setProjectLink(this.plugin, epic, project);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(epic);
 		} catch (error) {

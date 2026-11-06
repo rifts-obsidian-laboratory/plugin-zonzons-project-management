@@ -1,5 +1,5 @@
-import { App, TAbstractFile, TFile, TFolder } from "obsidian";
-import { MarkdownFilePayload } from "../types/MarkdownFilePayload";
+import {App, TAbstractFile, TFile, TFolder} from "obsidian";
+import {MarkdownFilePayload} from "../types/MarkdownFilePayload";
 import {I_Settings} from "../settings/Settings";
 import {MarkdownPlaceholderHelper} from "./MarkdownPlaceholderHelper";
 import {PathHelper} from "./PathHelper";

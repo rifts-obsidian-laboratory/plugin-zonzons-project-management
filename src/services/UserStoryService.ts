@@ -7,6 +7,7 @@ import {Notice, TFile, TFolder} from "obsidian";
 import {MarkdownFilePayload} from "../types/MarkdownFilePayload";
 import {MarkdownFileType} from "../enums/MarkdownFileType";
 import {PathHelper} from "../helpers/PathHelper";
+import {MarkdownMetadataHelper} from "../helpers/MarkdownMetadataHelper";
 
 export class UserStoryService {
 	plugin: ZonzonsProjectManagement;
@@ -27,6 +28,9 @@ export class UserStoryService {
 		try {
 			if (!project) throw new Error("Selected project not found.");
 
+			const projectOverviewFile: TFile | null = this.projectRepository.getOverview(project);
+			if (!projectOverviewFile) throw new Error("Project's overview file not found.");
+
 			const userStoriesFolder: TFolder | null = this.userStoryRepository.getUserStoriesFolder(project);
 			if (!userStoriesFolder) throw new Error("Project's user stories folder not found.");
 
@@ -34,13 +38,15 @@ export class UserStoryService {
 				type: MarkdownFileType.USER_STORY,
 				filePath: PathHelper.buildMarkdownFilePath(this.plugin.settings.userStoriesFolderName, name),
 				fileName: name,
-				inlineTitle: inlineTitle,
+				inlineTitle,
 				projectName: project.name,
 				userStoryIdentifier: this.generateIdentifier(userStoriesFolder)
 			}
 
 			const userStory: TFile | null = await this.userStoryRepository.createUserStoryFile(project, payload);
 			if (!userStory) throw new Error("User story couldn't be created.");
+
+			await MarkdownMetadataHelper.setProjectLink(this.plugin, userStory, project);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
 		} catch (error) {
