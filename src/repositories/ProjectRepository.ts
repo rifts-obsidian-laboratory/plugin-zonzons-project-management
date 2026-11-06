@@ -71,7 +71,7 @@ export class ProjectRepository {
 	}
 
 	getOverview(project: TFolder): TFile | null {
-		let path: string = PathHelper.buildMarkdownFilePath(project.path, this.settings.projectOverviewFileName);
+		let path: string = PathHelper.buildMarkdownFilePath(project.path, project.name);
 
 		const overviewFile: TAbstractFile | null = this.app.vault.getAbstractFileByPath(path);
 		if (!(overviewFile instanceof TFile)) return null;

@@ -30,8 +30,8 @@ export class ProjectService {
 
 			let payload: MarkdownFilePayload = {
 				type: MarkdownFileType.PROJECT,
-				filePath: this.settings.projectOverviewFileName,
-				fileName: this.settings.projectOverviewFileName,
+				filePath: name,
+				fileName: name,
 				inlineTitle: overviewInlineTitle,
 				projectName: name,
 				projectIdentifier: identifier

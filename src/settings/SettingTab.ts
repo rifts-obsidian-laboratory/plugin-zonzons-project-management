@@ -73,25 +73,8 @@ export class SettingTab extends PluginSettingTab {
 			})
 		// </editor-fold>
 
-		const projectOverviewGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
-		const projectOverviewItemsEl: HTMLDivElement = projectOverviewGroupEl.createDiv({ cls: "setting-items" });
-
-		// <editor-fold desc="Setting - Text - Project overview file name">
-		new Setting(projectOverviewItemsEl)
-			.setName(translate("settings.global.project_overview.file_name.label"))
-			.setDesc(translate("settings.global.project_overview.file_name.description"))
-			.addText((text: TextComponent) => text
-				.setPlaceholder(translate("settings.global.project_overview.file_name.placeholder"))
-				.setValue(this.plugin.settings.projectOverviewFileName)
-				.onChange(async (value: string): Promise<void> => {
-					this.plugin.settings.projectOverviewFileName = value;
-					await this.plugin.saveSettings();
-				})
-			);
-		// </editor-fold>
-
 		// <editor-fold desc="Setting - Text - Project overview template path">
-		new Setting(projectOverviewItemsEl)
+		new Setting(containerEl)
 			.setName(translate("settings.global.project_overview.template_path.label"))
 			.setDesc(translate("settings.global.project_overview.template_path.description"))
 			.addText((text: TextComponent): void => {
