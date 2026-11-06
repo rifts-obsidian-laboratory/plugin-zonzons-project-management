@@ -34,6 +34,7 @@ export class SettingTab extends PluginSettingTab {
 		this.createTraditionalProjectManagementSettingSection(containerEl);
 		this.createAgileProjectManagementSettingSection(containerEl);
 		this.createIdentifierSettingSection(containerEl);
+		this.createLinkSettingSection(containerEl);
 		this.createRegisteredProjectSettingSection(containerEl);
 	}
 
@@ -315,6 +316,41 @@ export class SettingTab extends PluginSettingTab {
 					.setValue(this.plugin.settings.userStoryIdentifierPrefix)
 					.onChange(async (value: string): Promise<void> => {
 						this.plugin.settings.userStoryIdentifierPrefix = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+	}
+
+	createLinkSettingSection(containerEl: HTMLElement): void {
+		new Setting(containerEl).setName(translate("settings.content_linking_properties.title")).setHeading();
+
+		const contentLinkingPropertiesGroupEl: HTMLDivElement = containerEl.createDiv({ cls: "setting-group" });
+		const contentLinkingPropertiesItemsEl: HTMLDivElement = contentLinkingPropertiesGroupEl.createDiv({ cls: "setting-items" });
+
+		// <editor-fold desc="Setting - Text - Project linking property">
+		new Setting(contentLinkingPropertiesItemsEl)
+			.setName(translate("settings.content_linking_properties.project_linking_property.label"))
+			.setDesc(translate("settings.content_linking_properties.project_linking_property.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.content_linking_properties.project_linking_property.placeholder"))
+					.setValue(this.plugin.settings.projectLinkPropertyName)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.projectLinkPropertyName = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+
+		// <editor-fold desc="Setting - Text - Epic linking property">
+		new Setting(contentLinkingPropertiesItemsEl)
+			.setName(translate("settings.content_linking_properties.epic_linking_property.label"))
+			.setDesc(translate("settings.content_linking_properties.epic_linking_property.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.content_linking_properties.epic_linking_property.placeholder"))
+					.setValue(this.plugin.settings.epicLinkPropertyName)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.epicLinkPropertyName = value;
 						await this.plugin.saveSettings();
 					});
 			});

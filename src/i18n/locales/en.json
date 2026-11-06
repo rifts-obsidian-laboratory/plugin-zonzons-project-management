@@ -214,6 +214,19 @@
 				"placeholder": "Enter the prefix for user story codes."
 			}
 		},
+		"content_linking_properties": {
+			"title": "Content linking properties",
+			"project_linking_property": {
+				"label": "Project linking property name",
+				"description": "The name of the property used to store a link that redirects a content to overview file of the project it belongs to.",
+				"placeholder": "Enter the name of the project linking property."
+			},
+			"epic_linking_property": {
+				"label": "Epic linking property name",
+				"description": "The name of the property used to store a link that redirects a content to the epic it belongs to.",
+				"placeholder": "Enter the name of the epic linking property."
+			}
+		},
 		"registered_projects": {
 			"title": "Registered projects",
 			"no_project_found": "No project has been registered.",

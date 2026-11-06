@@ -18,6 +18,8 @@ export interface I_Settings {
 	identifierPropertyName: string;
 	epicIdentifierPrefix: string;
 	userStoryIdentifierPrefix: string;
+	projectLinkPropertyName: string;
+	epicLinkPropertyName: string;
 	projects: Record<string, ProjectType>
 }
 
@@ -40,5 +42,7 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	identifierPropertyName: "",
 	epicIdentifierPrefix: "",
 	userStoryIdentifierPrefix: "",
+	projectLinkPropertyName: "",
+	epicLinkPropertyName: "",
 	projects: {},
 }

@@ -214,6 +214,19 @@
 				"placeholder": "Entrez le préfixe de l'identifiant du récit utilisateur."
 			}
 		},
+		"content_linking_properties": {
+			"title": "Propriétés de lien de contenu",
+			"project_linking_property": {
+				"label": "Nom de la propriété de lien d'un projet",
+				"description": "Le nom de la propriété qui sera utilisée pour entreposer dans un contenu un lien vers le fichier de vue d'ensemble de son projet.",
+				"placeholder": "Entrez le nom de la propriété de lien d'un projet."
+			},
+			"epic_linking_property": {
+				"label": "Nom de la propriété de lien d'une épopée",
+				"description": "Le nom de la propriété qui sera utilisée pour entreposer dans un contenu un lien vers son épopée.",
+				"placeholder": "Entrez le nom de la propriété de lien d'une épopée."
+			}
+		},
 		"registered_projects": {
 			"title": "Projets enregistrés",
 			"no_project_found": "Aucun projet n'a été enregistré.",
