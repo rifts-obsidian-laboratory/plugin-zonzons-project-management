@@ -3,7 +3,7 @@ import { CreateProjectForm } from "../../forms/project/CreateProjectForm";
 import ZonzonsProjectManagement from "../../main";
 import { isProjectType, ProjectType, translateProjectType } from "../../enums/ProjectType";
 import { translate } from "../../i18n";
-import {HasTitleService} from "../../services/HasTitleService";
+import {HasInlineTitleService} from "../../services/HasInlineTitleService";
 import {HasTitleServiceOptions} from "../../types/HasTitleServiceOptions";
 import {HasIdentifierService} from "../../services/HasIdentifierService";
 
@@ -42,8 +42,8 @@ export class CreateProjectModal extends Modal {
 				}
 			}
 		}
-		const hasTitleService = new HasTitleService(this.form, hasTitleServiceOptions);
-		hasTitleService.initialize(contentEl);
+		const hasInlineTitleService = new HasInlineTitleService(this.form, hasTitleServiceOptions);
+		hasInlineTitleService.initialize(contentEl);
 
 		const hasCodeService = new HasIdentifierService(this.form);
 		hasCodeService.initialize(contentEl);

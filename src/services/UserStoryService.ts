@@ -23,7 +23,7 @@ export class UserStoryService {
 		this.userStoryRepository = new UserStoryRepository(plugin);
 	}
 
-	async create(project: TFolder | null, name: string, title: string): Promise<void> {
+	async create(project: TFolder | null, name: string, inlineTitle: string): Promise<void> {
 		try {
 			if (!project) throw new Error("Selected project not found.");
 
@@ -34,7 +34,7 @@ export class UserStoryService {
 				type: MarkdownFileType.USER_STORY,
 				filePath: PathHelper.buildMarkdownFilePath(this.plugin.settings.userStoriesFolderName, name),
 				fileName: name,
-				title: title,
+				inlineTitle: inlineTitle,
 				projectName: project.name,
 				userStoryIdentifier: this.generateIdentifier(userStoriesFolder)
 			}

@@ -1,17 +1,17 @@
 import {translate} from "../i18n";
 import {TextComponent} from "obsidian";
-import {I_HasTitle} from "../interfaces/I_HasTitle";
+import {I_HasInlineTitle} from "../interfaces/I_HasInlineTitle";
 import {HasTitleServiceOptions} from "../types/HasTitleServiceOptions";
 
-export class HasTitleService {
+export class HasInlineTitleService {
 	container: HTMLDivElement | undefined;
 	checkboxContainer: HTMLDivElement | undefined;
 	inputContainer: HTMLDivElement | undefined;
-	form: I_HasTitle;
+	form: I_HasInlineTitle;
 	options: Partial<HasTitleServiceOptions>;
 
 
-	constructor(form: I_HasTitle, options: Partial<HasTitleServiceOptions> = {}) {
+	constructor(form: I_HasInlineTitle, options: Partial<HasTitleServiceOptions> = {}) {
 		this.form = form
 		this.container = undefined;
 		this.checkboxContainer = undefined;
@@ -20,7 +20,7 @@ export class HasTitleService {
 	}
 
 	public initialize(container: HTMLElement): void {
-		this.container = container.createDiv({ cls: "zpm-has-title-container" });
+		this.container = container.createDiv({ cls: "zpm-has-inline-title-container" });
 
 		this.generateCheckbox();
 		this.generateInputContainer();
@@ -28,7 +28,7 @@ export class HasTitleService {
 
 	generateCheckbox(): void {
 		if (!this.container) {
-			console.error("HasTitleService's container is not initialized. Call initialize() before generating the checkbox.");
+			console.error("HasInlineTitleService's container is not initialized. Call initialize() before generating the checkbox.");
 			return;
 		}
 
@@ -36,7 +36,7 @@ export class HasTitleService {
 
 		const label: HTMLLabelElement = this.checkboxContainer.createEl("label", {
 			attr: {
-				for: "has-title-checkbox",
+				for: "has-inline-title-checkbox",
 			}
 		});
 		this.appendInlineCode(label, this.options.translations?.checkbox.label ?? translate("interfaces.has_title.checkbox.label"));
@@ -44,7 +44,7 @@ export class HasTitleService {
 		const input: HTMLInputElement = this.checkboxContainer.createEl("input", {
 			type: "checkbox",
 			attr: {
-				id: "has-title-checkbox"
+				id: "has-inline-title-checkbox"
 			}
 		});
 
@@ -55,17 +55,17 @@ export class HasTitleService {
 
 	generateInputContainer(): void {
 		if (!this.container) {
-			console.error("HasTitleService's container is not initialized. Call initialize() before generating the input container.");
+			console.error("HasInlineTitleService's container is not initialized. Call initialize() before generating the input container.");
 			return;
 		}
 
 		this.inputContainer = this.container.createDiv({ cls: "zpm-input-container" });
-		this.inputContainer.classList.toggle("zpm-is-hidden", !this.form.hasTitle);
+		this.inputContainer.classList.toggle("zpm-is-hidden", !this.form.hasInlineTitle);
 
 		const label: HTMLLabelElement = this.inputContainer.createEl("label", {
 			attr: {
 				for: "title-input",
-				id: "has-title-input-label",
+				id: "has-inline-title-input-label",
 			}
 		});
 		this.appendInlineCode(label, this.options.translations?.input.label ?? translate("interfaces.has_title.input.label"));
@@ -73,7 +73,7 @@ export class HasTitleService {
 		const description: HTMLParagraphElement = this.inputContainer.createEl("p", {
 			attr: {
 				class: "zpm-input-description",
-				id: "has-title-input-description",
+				id: "has-inline-title-input-description",
 			}
 		});
 		this.appendInlineCode(description, this.options.translations?.input.description ?? translate("interfaces.has_title.input.description"));
@@ -81,16 +81,16 @@ export class HasTitleService {
 		const input: TextComponent = new TextComponent(this.inputContainer)
 			.setPlaceholder(this.options.translations?.input.placeholder ?? translate("interfaces.has_title.input.placeholder"))
 			.onChange((value: string): void => {
-				this.form.title = value;
+				this.form.inlineTitle = value;
 			});
 		input.inputEl.id = "title-input";
 		input.inputEl.setAttribute("aria-describedby", "title-input-description");
 	}
 
 	toggleHasTitle(event: Event): void {
-		this.form.hasTitle = (event.target as HTMLInputElement).checked;
-		this.checkboxContainer?.classList.toggle("zpm-is-hidden", this.form.hasTitle);
-		this.inputContainer?.classList.toggle("zpm-is-hidden", !this.form.hasTitle);
+		this.form.hasInlineTitle = (event.target as HTMLInputElement).checked;
+		this.checkboxContainer?.classList.toggle("zpm-is-hidden", this.form.hasInlineTitle);
+		this.inputContainer?.classList.toggle("zpm-is-hidden", !this.form.hasInlineTitle);
 	}
 
 	appendInlineCode(parent: HTMLElement, text: string): void {

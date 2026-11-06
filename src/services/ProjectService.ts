@@ -23,7 +23,7 @@ export class ProjectService {
 		this.userStoryRepository = new UserStoryRepository(plugin);
 	}
 
-	async create(type: ProjectType, name: string, overviewTitle: string, identifier: string): Promise<void> {
+	async create(type: ProjectType, name: string, overviewInlineTitle: string, identifier: string): Promise<void> {
 		try {
 			let project: TFolder = await this.projectRepository.createFolder(name);
 			this.settings.projects[name] = type;
@@ -32,7 +32,7 @@ export class ProjectService {
 				type: MarkdownFileType.PROJECT,
 				filePath: this.settings.projectOverviewFileName,
 				fileName: this.settings.projectOverviewFileName,
-				title: overviewTitle,
+				inlineTitle: overviewInlineTitle,
 				projectName: name,
 				projectIdentifier: identifier
 			}

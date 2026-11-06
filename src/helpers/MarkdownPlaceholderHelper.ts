@@ -38,7 +38,7 @@ export class MarkdownPlaceholderHelper {
 			case MarkdownPlaceholder.PROJECT_NAME:
 				return payload.projectName;
 			case MarkdownPlaceholder.TITLE:
-				return payload.title || payload.fileName;
+				return payload.inlineTitle || payload.fileName;
 			case MarkdownPlaceholder.USER_STORY_IDENTIFIER:
 				return payload.userStoryIdentifier;
 			case MarkdownPlaceholder.TEMPLATE_HELP:

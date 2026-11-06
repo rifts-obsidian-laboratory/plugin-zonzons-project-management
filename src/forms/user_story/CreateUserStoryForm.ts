@@ -1,19 +1,19 @@
 import ZonzonsProjectManagement from "../../main";
 import {TFolder} from "obsidian";
 import {I_HasFileName} from "../../interfaces/I_HasFileName";
-import {I_HasTitle} from "../../interfaces/I_HasTitle";
+import {I_HasInlineTitle} from "../../interfaces/I_HasInlineTitle";
 import {I_HasIdentifier} from "../../interfaces/I_HasIdentifier";
 import {UserStoryService} from "../../services/UserStoryService";
 import {ProjectRepository} from "../../repositories/ProjectRepository";
 
-export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIdentifier {
+export class CreateUserStoryForm implements I_HasFileName, I_HasInlineTitle, I_HasIdentifier {
 	public plugin: ZonzonsProjectManagement;
 	public projectRepository: ProjectRepository;
 	public userStoryService: UserStoryService;
 	public project: TFolder | null;
 	public fileName: string;
-	public hasTitle: boolean;
-	public title: string;
+	public hasInlineTitle: boolean;
+	public inlineTitle: string;
 	public identifier: string;
 
 	public constructor(plugin: ZonzonsProjectManagement) {
@@ -22,8 +22,8 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 		this.userStoryService = new UserStoryService(plugin);
 		this.project = null;
 		this.fileName = "";
-		this.hasTitle = false;
-		this.title = "";
+		this.hasInlineTitle = false;
+		this.inlineTitle = "";
 		this.identifier = "";
 	}
 
@@ -36,6 +36,6 @@ export class CreateUserStoryForm implements I_HasFileName, I_HasTitle, I_HasIden
 	}
 
 	public async create(): Promise<void> {
-		await this.userStoryService.create(this.project, this.fileName, this.title);
+		await this.userStoryService.create(this.project, this.fileName, this.inlineTitle);
 	}
 }

@@ -3,7 +3,7 @@ import { CreateEpicForm } from "../../forms/epic/CreateEpicForm";
 import ZonzonsProjectManagement from "../../main";
 import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
-import {HasTitleService} from "../../services/HasTitleService";
+import {HasInlineTitleService} from "../../services/HasInlineTitleService";
 
 export class CreateEpicModal extends Modal {
 	plugin: ZonzonsProjectManagement;
@@ -35,8 +35,8 @@ export class CreateEpicModal extends Modal {
 		this.createProjectInput(contentEl);
 		this.createEpicFileNameInput(contentEl);
 
-		const hasTitleService = new HasTitleService(this.form);
-		hasTitleService.initialize(contentEl);
+		const hasInlineTitleService = new HasInlineTitleService(this.form);
+		hasInlineTitleService.initialize(contentEl);
 
 		this.createSubmitButton(contentEl);
 	}

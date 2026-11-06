@@ -3,7 +3,7 @@ import ZonzonsProjectManagement from "../../main";
 import { CreateUserStoryForm } from "../../forms/user_story/CreateUserStoryForm";
 import { AgileProjectSuggest } from "../../suggests/AgileProjectSuggest";
 import { translate } from "../../i18n";
-import {HasTitleService} from "../../services/HasTitleService";
+import {HasInlineTitleService} from "../../services/HasInlineTitleService";
 
 export class CreateUserStoryModal extends Modal {
 	plugin: ZonzonsProjectManagement;
@@ -35,8 +35,8 @@ export class CreateUserStoryModal extends Modal {
 		this.createProjectInput(contentEl);
 		this.createUserStoryFileNameInput(contentEl);
 
-		const hasTitleService = new HasTitleService(this.form);
-		hasTitleService.initialize(contentEl);
+		const hasInlineTitleService = new HasInlineTitleService(this.form);
+		hasInlineTitleService.initialize(contentEl);
 
 		this.createSubmitButton(contentEl);
 	}

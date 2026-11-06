@@ -20,7 +20,7 @@ export class EpicService {
 		this.epicRepository = new EpicRepository(plugin);
 	}
 
-	async create(project: TFolder | null, name: string, title: string): Promise<void> {
+	async create(project: TFolder | null, name: string, inlineTitle: string): Promise<void> {
 		try {
 			if (!project) throw new Error("Selected project not found.");
 
@@ -31,7 +31,7 @@ export class EpicService {
 				type: MarkdownFileType.EPIC,
 				filePath: PathHelper.buildMarkdownFilePath(this.settings.epicsFolderName, name),
 				fileName: name,
-				title,
+				inlineTitle: inlineTitle,
 				projectName: project.name,
 				epicIdentifier: this.generateIdentifier(epicsFolder)
 			};

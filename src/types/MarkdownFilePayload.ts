@@ -4,7 +4,7 @@ export type MarkdownFilePayload = {
 	type: MarkdownFileType;
 	filePath: string;
 	fileName: string;
-	title: string;
+	inlineTitle: string;
 	projectIdentifier?: string;
 	projectName?: string;
 	epicIdentifier?: string;
