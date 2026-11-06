@@ -89,6 +89,25 @@ Un fichier de vue d'ensemble d'un projet sera lié dans chaque épopée et chaqu
 
 Afin de garder une trace du type de chaque projet (agile ou traditionnel), ceux-ci sont enregistrés et affichés dans cette section des paramètres. Chaque élément de la liste est un projet et permet de modifier le type du projet, mais aussi de le supprimer. Pour éviter des suppressions accidentelles, une fenêtre modale s'ouvrira pour confirmer la suppression un projet.
 
+### Marques substitutives
+
+Afin de garder des modèles et de rendre des notes compréhensibles, détaillés et propres, *Zonzon's project management* ajoute plusieurs marques substitutives vous permettant d'utiliser certaines données de vos projets.
+
+- `{{ epic-identifier }}` permet d'écrire automatiquement l'identifiant de l'épopée. ;
+- `{{ project-identifier }}` permet d'écrire automatiquement l'identifiant du projet ;
+- `{{ project-name }}` permet d'écrire automatiquement le nom du projet ;
+- `{{ title }}` permet d'écrire automatiquement le titre. Par défaut, il utilise le nom du fichier, mais si un titre dans le texte est renseigné, celui-ci sera priorisé ;
+- `{{ user-story-identifier }}` permet d'écrire automatiquement l'identifiant du récit utilisateur.
+
+*Zonzon's project management* prend également en charge un type d'encadré particulier, *template-help*, celui-ci s'utilise comme un encadré classique :
+
+```markdown
+> [!template-help] Est-ce que les loutres sont mignonnes ?
+> Oui. Sans aucun débat possible, elles le sont !
+```
+
+La seule différence avec un encadré classique, c'est que l'extension ne le recopiera pas dans les fichiers générés à partir d'un modèle le contenant. Il sert donc à inscrire des indications à propos de certaines sections de vos notes (Usages, valeurs par défaut, etc.). Utiles pour partager vos modèles ou y jeter un œil deux mois après les avoir écrits, parce que vous avez un doute.
+
 ## Licence & Compléments
 
 Ce projet est maintenu sous la licence MIT.

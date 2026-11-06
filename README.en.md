@@ -91,6 +91,25 @@ To keep track of each project's type (agile or traditional), projects are saved 
 
 Each entry in the list represents a project and allows you to change its project management type or delete it. To prevent accidental deletions, a confirmation modal will appear before a project is deleted.
 
+### Placeholders
+
+To keep templates reusable and notes clear, detailed, and well-structured, Zonzon's project management provides several placeholders that allow you to dynamically insert data from your projects.
+
+- `{{ epic-identifier }}` automatically inserts the epic identifier;
+- `{{ project-identifier }}` automatically inserts the project identifier;
+- `{{ project-name }}` automatically inserts the project name;
+- `{{ title }}` automatically inserts the title. By default, it uses the file name, but if an inline title is specified, it takes priority;
+- `{{ user-story-identifier }}` automatically inserts the user story identifier.
+
+Zonzon's project management also supports a special callout type, `template-help`, which is used just like a regular callout:
+
+```markdown
+> [!template-help] Are otters cute?
+> Yes. Without a shadow of a doubt!
+```
+
+The only difference compared to a regular callout is that the extension will not copy it into files generated from a template containing it. It is therefore intended for documenting specific sections of your notes, usage instructions, default values, and so on. This can be useful when sharing your templates or revisiting them two months after writing them because you've forgotten how something works.
+
 ## License & Additional Information
 
 This project is released under the MIT License.
