@@ -1,6 +1,6 @@
 # Zonzon's project management
 
-> La version française de ce README est disponible [ici (lien externe vers GitHub)](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.md).
+> La version française de ce *README* est disponible [ici (lien externe vers GitHub)](https://github.com/rifts-obsidian-laboratory/plugin-zonzons-project-management/blob/main/README.md).
 
 Zonzon's project management is a desktop plugin that adds a project creation and management system supporting both traditional and agile methodologies. It allows you to create projects with an overview file (`.md`), a dashboard (`.base`), and two dedicated folders for epics and user stories when using an agile project management approach.
 
@@ -29,9 +29,11 @@ To use the plugin, you first need to select the folder where your projects will 
 
 #### Project Overview File
 
-Zonzon's project management also allows you to automatically create an overview file (in `.md` format) for each new project. To use this feature, you need to specify both the file name and the template to use when generating the file in the appropriate fields.
+Zonzon's project management also allows you to automatically generate an overview file (in `.md` format) for each new project. To use this feature, you must specify the template to be used to generate the file in the appropriate field.
 
-The two relevant settings are "**Project overview file name**" and "**Project overview template path**".
+The relevant setting is "**Project overview template path**".
+
+Since version `2.0.0`, the "**Project overview file name**" setting is no longer available. Each generated overview file is now named after the project it belongs to. This change made it possible to implement the backlink system. Without it, backlinks between projects could fail to work correctly, potentially redirecting users to another project's overview note.
 
 ### Traditional Project Management
 

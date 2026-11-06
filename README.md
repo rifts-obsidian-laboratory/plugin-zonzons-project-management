@@ -6,7 +6,7 @@
 
 ## Installation
 
-L'extension s'installe depuis la place de marché Obsidian comme tout autre extension.
+L'extension s'installe depuis la place de marché Obsidian comme toute autre extension.
 
 Il est également possible de télécharger le dossier compressé `zonzons-project-management` dans la dernière *release* disponible sur le dépôt GitHub du projet. Une fois téléchargé, vous pouvez décompresser ce dossier et transférer le dossier décompressé le dossier `plugin/` dans votre coffre Obsidian. Actualiser ou redémarrer ensuite l'application Obsidian pour voir et activer l'extension.
 
@@ -29,9 +29,11 @@ Pour utiliser l'extension, il vous faudra choisir le dossier dans lequel vos pro
 
 #### Fichier de vue d'ensemble d'un projet
 
-*Zonzon's project management* vous permet également de créer automatiquement un fichier de vue d'ensemble (format `.md`) pour chaque nouveau projet. Pour utiliser cette fonctionnalité, il faut spécifier dans les champs adéquats le nom de fichier, ainsi que le modèle à utiliser pour générer le fichier.
+*Zonzon's project management* vous permet également de créer automatiquement un fichier de vue d'ensemble (format `.md`) pour chaque nouveau projet. Pour utiliser cette fonctionnalité, il faut spécifier dans le champ adéquat le modèle à utiliser pour générer le fichier.
 
-Les deux paramètres concernés sont « **Nom du fichier de vue d'ensemble du projet** » et « **Chemin du modèle de vue d'ensemble du projet** ».
+Le paramètre concerné est « **Chemin du modèle de vue d'ensemble du projet** ».
+
+Depuis la version `2.0.0`, le paramètre « **Nom du fichier de vue d'ensemble du projet** » n'est plus disponible. Chaque fichier de vue d'ensemble généré a pour nom le nom du projet auquel il appartient. Cette modification a permis l'implémentation du système de rétroliens, sans cette dernière, les rétroliens pouvaient ne pas fonctionner correctement entre les projets : Ils pouvaient rediriger vers la note de vue d'ensemble d'un autre projet.
 
 ### Gestion de projet traditionnelle
 
@@ -73,4 +75,4 @@ Afin de garder une trace du type de chaque projet (agile ou traditionnel), ceux-
 
 Ce projet est maintenu sous la licence MIT.
 
-Merci d'avoir lu jusqu'ici, j'ai développé cette extension en quelque jours pour répondre à un besoin personnel. Je l'ai rendu publique, parce que vous en avez peut-être besoin. N'hésitez pas à me faire des suggestions de fonctionnalité et à me rapporter d'éventuels bogues. Je ne garantis pas ajouter les fonctionnalités suggérées, dans la mesure où cet extension est avant tout là pour répondre à mes besoins personnels. J'espère que *Zonzon's project management* saura vous aider.
+Merci d'avoir lu jusqu'ici, j'ai développé cette extension en quelque jours pour répondre à un besoin personnel. Je l'ai rendu publique, parce que vous en avez peut-être besoin. N'hésitez pas à me faire des suggestions de fonctionnalité et à me rapporter d'éventuels bogues. Je ne garantis pas ajouter les fonctionnalités suggérées, dans la mesure où cette extension est avant tout là pour répondre à mes besoins personnels. J'espère que *Zonzon's project management* saura vous aider.
