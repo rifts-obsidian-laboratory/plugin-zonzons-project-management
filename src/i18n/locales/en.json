@@ -116,7 +116,7 @@
 			"project": {
 				"folder": {
 					"path": {
-						"label": "Project folder path",
+						"label": "Projects folder path",
 						"description": "The path to the folder where new projects will be scaffolded.",
 						"placeholder": "Start to type the name of a folder..."
 					}

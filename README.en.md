@@ -25,7 +25,7 @@ The settings described in this section are not exhaustive; there are more featur
 
 #### Project Folder
 
-To use the plugin, you first need to select the folder where your projects will be stored using the "**Project folder path**" setting.
+To use the plugin, you first need to select the folder where your projects will be stored using the "**Projects folder path**" setting.
 
 #### Project Overview File
 
