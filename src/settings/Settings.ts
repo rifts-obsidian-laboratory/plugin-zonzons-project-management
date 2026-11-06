@@ -25,7 +25,7 @@ export interface I_Settings {
 
 
 export const DEFAULT_SETTINGS: I_Settings = {
-	projectFolderPath: "",
+	projectFolderPath: "projects",
 	displayProjectCreationRibbonButton: true,
 	projectOverviewFileName: "",
 	projectOverviewTemplatePath: "",
@@ -33,16 +33,16 @@ export const DEFAULT_SETTINGS: I_Settings = {
 	traditionalDashboardTemplatePath: "",
 	agileDashboardFileName: "",
 	agileDashboardTemplatePath: "",
-	epicsFolderName: "",
+	epicsFolderName: "epics",
 	epicTemplatePath: "",
 	displayEpicCreationRibbonButton: true,
-	userStoriesFolderName: "",
+	userStoriesFolderName: "user-stories",
 	userStoryTemplatePath: "",
 	displayUserStoryCreationRibbonButton: true,
-	identifierPropertyName: "",
-	epicIdentifierPrefix: "",
-	userStoryIdentifierPrefix: "",
-	projectLinkPropertyName: "",
-	epicLinkPropertyName: "",
+	identifierPropertyName: "identifier",
+	epicIdentifierPrefix: "E-",
+	userStoryIdentifierPrefix: "US-",
+	projectLinkPropertyName: "project",
+	epicLinkPropertyName: "epic",
 	projects: {},
 }
