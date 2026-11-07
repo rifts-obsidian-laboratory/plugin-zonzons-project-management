@@ -1,7 +1,8 @@
 {
-	"name": "obsidian-sample-plugin",
-	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"name": "zonzons-project-management",
+	"version": "2.0.0",
+	"description": "My project management for both traditional and agile methodologies.",
+	"author": "Noah Boos (Propzonzon) (Rift)",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
