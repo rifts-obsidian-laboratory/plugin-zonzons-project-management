@@ -1,5 +1,3 @@
-import { ProjectType } from "../enums/ProjectType";
-
 export interface I_Settings {
 	projectsFolderPath: string;
 	projectTypePropertyName: string;

@@ -1,10 +1,12 @@
 import ZonzonsProjectManagement from "../main";
-import { Menu, MenuItem, TAbstractFile, TFolder } from "obsidian";
+import {Menu, MenuItem, TAbstractFile, TFile, TFolder} from "obsidian";
 import { translate } from "../i18n";
 import { CreateProjectModal } from "../modals/project/CreateProjectModal";
 import { CreateEpicModal } from "../modals/epic/CreateEpicModal";
 import { CreateUserStoryModal } from "../modals/user_story/CreateUserStoryModal";
 import { ProjectType } from "../enums/ProjectType";
+import {ProjectRepository} from "../repositories/ProjectRepository";
+import {MarkdownMetadataHelper} from "../helpers/MarkdownMetadataHelper";
 
 export class FileMenuService {
 	public static initialize(plugin: ZonzonsProjectManagement): void {
@@ -14,7 +16,15 @@ export class FileMenuService {
 			}
 
 			if (file instanceof TFolder) {
-				if (plugin.settings.projects[file.name] === ProjectType.AGILE) {
+				const repository: ProjectRepository = new ProjectRepository(plugin);
+
+				const overview: TFile | null = repository.getOverview(file);
+				if (!overview) return;
+
+				const type: ProjectType | null = MarkdownMetadataHelper.getProjectType(plugin.app, plugin.settings, overview);
+				if (!type) return;
+
+				if (type === ProjectType.AGILE) {
 					if (file.parent?.path === plugin.settings.projectsFolderPath) {
 						this.addCreateEpicMenuItem(plugin, menu, file.name);
 
@@ -22,7 +32,7 @@ export class FileMenuService {
 					}
 				}
 
-				if (plugin.settings.projects[file.parent?.name ?? ""] === ProjectType.AGILE) {
+				if (type === ProjectType.AGILE) {
 					if (file.parent?.parent?.path === plugin.settings.projectsFolderPath) {
 						if (file.name === plugin.settings.epicsFolderName) {
 							this.addCreateEpicMenuItem(plugin, menu, file.parent.name);

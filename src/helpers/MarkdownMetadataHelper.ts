@@ -12,7 +12,7 @@ export class MarkdownMetadataHelper {
 		return metadata.frontmatter;
 	}
 
-	static getProjectType(app: App, settings: I_Settings, file: TFile): string | null {
+	static getProjectType(app: App, settings: I_Settings, file: TFile): ProjectType | null {
 		const frontmatter: FrontMatterCache | undefined = this.getFrontmatter(app, file);
 		if (!frontmatter) return null;
 

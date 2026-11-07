@@ -3,8 +3,6 @@ import {MarkdownFilePayload} from "../types/MarkdownFilePayload";
 import {I_Settings} from "../settings/Settings";
 import {MarkdownPlaceholderHelper} from "./MarkdownPlaceholderHelper";
 import {PathHelper} from "./PathHelper";
-import {MarkdownMetadataHelper} from "./MarkdownMetadataHelper";
-import {MarkdownFileTypeHelper} from "./MarkdownFileTypeHelper";
 
 export class FileHelper {
 	static getTemplate(app: App, path: string): TFile | null {
