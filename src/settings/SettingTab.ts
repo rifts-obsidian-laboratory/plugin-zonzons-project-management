@@ -1,7 +1,5 @@
 import {
 	App,
-	ButtonComponent,
-	DropdownComponent,
 	PluginSettingTab,
 	Setting,
 	TextComponent,
@@ -12,8 +10,6 @@ import { FolderSuggest } from "../suggests/FolderSuggest";
 import { MarkdownFileSuggest } from "../suggests/MarkdownFileSuggest";
 import { BaseFileSuggest } from "../suggests/BaseFileSuggest";
 import { translate } from "../i18n";
-import { isProjectType, ProjectType, translateProjectType } from "../enums/ProjectType";
-import { DeleteProjectModal } from "../modals/project/DeleteProjectModal";
 
 export class SettingTab extends PluginSettingTab {
 	plugin: ZonzonsProjectManagement;
@@ -35,7 +31,6 @@ export class SettingTab extends PluginSettingTab {
 		this.createAgileProjectManagementSettingSection(containerEl);
 		this.createIdentifierSettingSection(containerEl);
 		this.createLinkSettingSection(containerEl);
-		this.createRegisteredProjectSettingSection(containerEl);
 	}
 
 	createGlobalSettingSection(containerEl: HTMLElement): void {
@@ -352,43 +347,5 @@ export class SettingTab extends PluginSettingTab {
 					});
 			});
 		// </editor-fold>
-	}
-
-	createRegisteredProjectSettingSection(containerEl: HTMLElement): void {
-		new Setting(containerEl).setName(translate("settings.registered_projects.title")).setHeading();
-
-		const projects: [string, ProjectType][] = Object
-			.entries(this.plugin.settings.projects)
-			.sort();
-
-		if (projects.length === 0) {
-			new Setting(containerEl)
-				.setName(translate("settings.registered_projects.no_project_found"))
-		}
-
-		projects.forEach(([project, projectType]) => {
-			new Setting(containerEl)
-				.setName(project)
-				.addDropdown((dropdown: DropdownComponent): void => {
-					dropdown
-						.addOption(ProjectType.TRADITIONAL, translateProjectType(ProjectType.TRADITIONAL))
-						.addOption(ProjectType.AGILE, translateProjectType(ProjectType.AGILE))
-						.setValue(projectType)
-						.onChange(async (value: string): Promise<void> => {
-							this.plugin.settings.projects[project] = isProjectType(value) ? value as ProjectType : ProjectType.TRADITIONAL;
-							await this.plugin.saveSettings();
-						});
-				})
-				.addButton((button: ButtonComponent): void => {
-					button
-						.setButtonText(translate("settings.registered_projects.delete"))
-						.setWarning()
-						.onClick(() => {
-							const modal = new DeleteProjectModal(this.plugin);
-							modal.form.folderName = project;
-							modal.open();
-						});
-				});
-		});
 	}
 }

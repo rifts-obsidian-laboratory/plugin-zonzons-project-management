@@ -27,7 +27,6 @@ export class ProjectService {
 	async create(type: ProjectType, name: string, overviewInlineTitle: string, identifier: string): Promise<void> {
 		try {
 			let project: TFolder = await this.projectRepository.createFolder(name);
-			this.settings.projects[name] = type;
 
 			let payload: MarkdownFilePayload = {
 				type: MarkdownFileType.PROJECT,
@@ -59,7 +58,6 @@ export class ProjectService {
 			const project: TFolder | null = this.projectRepository.getFolderByName(name);
 			if (!project) return;
 
-			delete this.settings.projects[project.name];
 			await this.projectRepository.deleteFolder(project);
 		}
 
@@ -71,14 +69,11 @@ export class ProjectService {
 			let project: TFolder | null = this.projectRepository.getFolderByName(name);
 			if (!project) throw new Error("Project couldn't be found.");
 
-			delete this.settings.projects[project.name];
 			await this.projectRepository.deleteFolder(project);
 
 			this.plugin.settingTab?.display();
 		} catch (error) {
 			new Notice("Failed to delete project: " + String(error), 5000);
 		}
-
-		await this.plugin.saveSettings();
 	}
 }
