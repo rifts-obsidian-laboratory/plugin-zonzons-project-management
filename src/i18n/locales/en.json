@@ -126,6 +126,11 @@
 					"description": "Defines whether the corresponding ribbon button is displayed."
 				}
 			},
+			"project_type_property_name": {
+				"label": "Project type property name",
+				"description": "The name of the property used to store the type of each project.",
+				"placeholder": "Enter the name of the project type property."
+			},
 			"project_overview": {
 				"file_name": {
 					"label": "Project overview file name",

@@ -126,6 +126,11 @@
 					"description": "Définit si le bouton correspondant du ruban doit être affiché."
 				}
 			},
+			"project_type_property_name": {
+				"label": "Nom de la propriété du type de projet",
+				"description": "Le nom de la propriété qui sera utilisée pour entreposer le type de chaque projet.",
+				"placeholder": "Entrez le nom de la propriété du type de projet."
+			},
 			"project_overview": {
 				"file_name": {
 					"label": "Nom du fichier de vue d'ensemble du projet",

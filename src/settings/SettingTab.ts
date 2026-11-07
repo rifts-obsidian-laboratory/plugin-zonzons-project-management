@@ -60,6 +60,20 @@ export class SettingTab extends PluginSettingTab {
 			});
 		// </editor-fold>
 
+		// <editor-fold desc="Setting - Text - Project type property name">
+		new Setting(projectItemsEl)
+			.setName(translate("settings.global.project_type_property_name.label"))
+			.setDesc(translate("settings.global.project_type_property_name.description"))
+			.addText((text: TextComponent): void => {
+				text.setPlaceholder(translate("settings.global.project_type_property_name.placeholder"))
+					.setValue(this.plugin.settings.projectTypePropertyName)
+					.onChange(async (value: string): Promise<void> => {
+						this.plugin.settings.projectTypePropertyName = value;
+						await this.plugin.saveSettings();
+					});
+			});
+		// </editor-fold>
+
 		// <editor-fold desc="Setting - Toggle - Display project creation ribbon button">
 		new Setting(projectItemsEl)
 			.setName(translate("settings.global.project.display_project_creation_ribbon_button.label"))
