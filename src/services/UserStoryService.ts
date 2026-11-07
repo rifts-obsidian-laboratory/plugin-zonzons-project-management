@@ -57,7 +57,7 @@ export class UserStoryService {
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
 		} catch (error) {
-			new Notice("User story creation aborted: " + String(error), 500);
+			new Notice("User story creation aborted: " + String(error), 5000);
 		}
 	}
 
