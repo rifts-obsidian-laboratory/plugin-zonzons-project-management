@@ -2,6 +2,7 @@ import {App, CachedMetadata, FrontMatterCache, TFile, TFolder} from "obsidian";
 import {I_Settings} from "../settings/Settings";
 import {ProjectRepository} from "../repositories/ProjectRepository";
 import ZonzonsProjectManagement from "../main";
+import {ProjectType} from "../enums/ProjectType";
 
 export class MarkdownMetadataHelper {
 	static getFrontmatter(app: App, file: TFile): FrontMatterCache | undefined {
@@ -9,6 +10,20 @@ export class MarkdownMetadataHelper {
 		if (!metadata) return undefined;
 
 		return metadata.frontmatter;
+	}
+
+	static getProjectType(app: App, settings: I_Settings, file: TFile): string | null {
+		const frontmatter: FrontMatterCache | undefined = this.getFrontmatter(app, file);
+		if (!frontmatter) return null;
+
+		const type: ProjectType = frontmatter[settings.projectTypePropertyName] as ProjectType;
+		if (!type) return null;
+
+		return type;
+	}
+
+	static async setProjectType(app: App, settings: I_Settings, file: TFile, type: ProjectType) {
+		return await app.fileManager.processFrontMatter(file, (frontmatter: FrontMatterCache): string => frontmatter[settings.projectTypePropertyName] = type);
 	}
 
 	static getIdentifier(app: App, settings: I_Settings, file: TFile): string | null {

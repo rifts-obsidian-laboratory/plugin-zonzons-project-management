@@ -41,6 +41,7 @@ export class ProjectService {
 			const overview: TFile | null = await this.projectRepository.createOverviewFile(project, payload);
 			if (!overview) throw new Error("Overview file couldn't be created.");
 
+			await MarkdownMetadataHelper.setProjectType(this.plugin.app, this.settings, overview, type);
 			await MarkdownMetadataHelper.setIdentifier(this.plugin.app, this.settings, overview, identifier);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(overview);
