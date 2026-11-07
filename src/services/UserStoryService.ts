@@ -33,6 +33,8 @@ export class UserStoryService {
 			const userStoriesFolder: TFolder | null = this.userStoryRepository.getUserStoriesFolder(project);
 			if (!userStoriesFolder) throw new Error("Project's user stories folder not found.");
 
+			const projectIdentifier: string | null = this.projectRepository.getIdentifier(project);
+			const epicIdentifier: string | null = this.epicRepository.getIdentifier(epic);
 			const identifier: string = this.generateIdentifier(userStoriesFolder);
 
 			const payload: MarkdownFilePayload = {
@@ -41,6 +43,8 @@ export class UserStoryService {
 				fileName: name,
 				inlineTitle,
 				projectName: project.name,
+				projectIdentifier: projectIdentifier ?? "",
+				epicIdentifier: epicIdentifier ?? "",
 				userStoryIdentifier: identifier
 			}
 

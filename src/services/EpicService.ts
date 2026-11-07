@@ -31,6 +31,7 @@ export class EpicService {
 			const epicsFolder: TFolder | null = this.epicRepository.getEpicsFolder(project);
 			if (!epicsFolder) throw new Error("Project's epics folder not found.");
 
+			const projectIdentifier: string | null = this.projectRepository.getIdentifier(project);
 			const identifier: string = this.generateIdentifier(epicsFolder);
 
 			const payload: MarkdownFilePayload = {
@@ -39,6 +40,7 @@ export class EpicService {
 				fileName: name,
 				inlineTitle,
 				projectName: project.name,
+				projectIdentifier: projectIdentifier ?? "",
 				epicIdentifier: identifier
 			};
 
