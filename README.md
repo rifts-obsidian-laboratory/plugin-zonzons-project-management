@@ -12,12 +12,13 @@ Il est également possible de télécharger le dossier compressé `zonzons-proje
 
 ## Démarrage
 
-Les premiers pas pour prendre en main *Zonzon's project management* se font entièrement dans les paramètres de l'extension. Les paramètres sont découpés en quatre sections.
+Les premiers pas pour prendre en main *Zonzon's project management* se font dans les paramètres de l'extension et dans les modèles que vous utiliserez. Les paramètres sont découpés en plusieurs sections.
 
 - Général ;
 - Gestion de projet traditionnelle ;
 - Gestion de projet agile ;
-- Projets enregistrés.
+- Identifiants de contenu ;
+- Liens de contenu.
 
 Les paramètres mentionnés dans cette section ne sont pas exhaustifs, d'autres sont à découvrir. :3
 
@@ -84,10 +85,6 @@ Ces derniers peuvent être préfixés à la volonté de l'utilisateur. Il vous f
 Pour utiliser cette fonctionnalité, il vous faudra définir les propriétés dans lesquelles doivent être entreposées les rétroliens générés. Les paramètres concernés sont « **Nom de la propriété de lien d'un projet** » et « **Nom de la propriété de lien d'une épopée**.
 
 Un fichier de vue d'ensemble d'un projet sera lié dans chaque épopée et chaque récit utilisateur qui appartiennent audit projet. Une épopée sera quant à elle liée à chaque récit utilisateur qui appartient à ladite épopée.
-
-### Projets enregistrés
-
-Afin de garder une trace du type de chaque projet (agile ou traditionnel), ceux-ci sont enregistrés et affichés dans cette section des paramètres. Chaque élément de la liste est un projet et permet de modifier le type du projet, mais aussi de le supprimer. Pour éviter des suppressions accidentelles, une fenêtre modale s'ouvrira pour confirmer la suppression un projet.
 
 ### Marques substitutives
 

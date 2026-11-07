@@ -12,12 +12,13 @@ Alternatively, you can download the `zonzons-project-management` compressed fold
 
 ## Getting Started
 
-Getting started with Zonzon's project management is done entirely through the plugin's settings. These settings are divided into four sections:
+Getting started with Zonzon's project management is done through the plugin's settings and the templates you will use. These settings are divided into several sections:
 
 - General;
 - Traditional project management;
 - Agile project management;
-- Saved projects.
+- Content identifiers ;
+- Content links.
 
 The settings described in this section are not exhaustive; there are more features to discover. :3
 
@@ -84,12 +85,6 @@ Zonzon's project management automatically links content to one another when they
 To use this feature, you must define the properties in which the generated backlinks will be stored. The relevant settings are "**Project link property name**" and "**Epic link property name**".
 
 A project's overview file will be linked in every epic and user story belonging to that project. Similarly, an epic will be linked in every user story belonging to that epic.
-
-### Saved Projects
-
-To keep track of each project's type (agile or traditional), projects are saved and displayed in this section of the settings.
-
-Each entry in the list represents a project and allows you to change its project management type or delete it. To prevent accidental deletions, a confirmation modal will appear before a project is deleted.
 
 ### Placeholders
 
