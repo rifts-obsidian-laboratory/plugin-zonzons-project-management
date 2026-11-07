@@ -33,21 +33,23 @@ export class UserStoryService {
 			const userStoriesFolder: TFolder | null = this.userStoryRepository.getUserStoriesFolder(project);
 			if (!userStoriesFolder) throw new Error("Project's user stories folder not found.");
 
+			const identifier: string = this.generateIdentifier(userStoriesFolder);
+
 			const payload: MarkdownFilePayload = {
 				type: MarkdownFileType.USER_STORY,
 				filePath: PathHelper.buildMarkdownFilePath(this.plugin.settings.userStoriesFolderName, name),
 				fileName: name,
 				inlineTitle,
 				projectName: project.name,
-				userStoryIdentifier: this.generateIdentifier(userStoriesFolder)
+				userStoryIdentifier: identifier
 			}
 
 			const userStory: TFile | null = await this.userStoryRepository.createUserStoryFile(project, payload);
 			if (!userStory) throw new Error("User story couldn't be created.");
 
 			await MarkdownMetadataHelper.setProjectLink(this.plugin, userStory, project);
-
 			await MarkdownMetadataHelper.setEpicLink(this.plugin, userStory, epic);
+			await MarkdownMetadataHelper.setIdentifier(this.plugin.app, this.settings, userStory, identifier);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(userStory);
 		} catch (error) {

@@ -21,8 +21,6 @@ export class FileHelper {
 
 		let file: TFile = await app.vault.create(PathHelper.buildMarkdownFilePath(project.path, payload.filePath), content);
 
-		await MarkdownMetadataHelper.setIdentifier(app, settings, file, MarkdownFileTypeHelper.getIdentifierFromMarkdownFilePayload(payload));
-
 		return file;
 	}
 

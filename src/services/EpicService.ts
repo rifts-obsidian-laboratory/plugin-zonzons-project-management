@@ -31,19 +31,22 @@ export class EpicService {
 			const epicsFolder: TFolder | null = this.epicRepository.getEpicsFolder(project);
 			if (!epicsFolder) throw new Error("Project's epics folder not found.");
 
+			const identifier: string = this.generateIdentifier(epicsFolder);
+
 			const payload: MarkdownFilePayload = {
 				type: MarkdownFileType.EPIC,
 				filePath: PathHelper.buildMarkdownFilePath(this.settings.epicsFolderName, name),
 				fileName: name,
 				inlineTitle,
 				projectName: project.name,
-				epicIdentifier: this.generateIdentifier(epicsFolder)
+				epicIdentifier: identifier
 			};
 
 			const epic: TFile | null = await this.epicRepository.createEpicFile(project, payload);
 			if (!epic) throw new Error("Epic file couldn't be created.");
 
 			await MarkdownMetadataHelper.setProjectLink(this.plugin, epic, project);
+			await MarkdownMetadataHelper.setIdentifier(this.plugin.app, this.settings, epic, identifier);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(epic);
 		} catch (error) {

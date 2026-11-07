@@ -7,6 +7,7 @@ import {MarkdownFileType} from "../enums/MarkdownFileType";
 import {EpicRepository} from "../repositories/EpicRepository";
 import {UserStoryRepository} from "../repositories/UserStoryRepository";
 import {I_Settings} from "../settings/Settings";
+import {MarkdownMetadataHelper} from "../helpers/MarkdownMetadataHelper";
 
 export class ProjectService {
 	plugin: ZonzonsProjectManagement;
@@ -39,6 +40,8 @@ export class ProjectService {
 
 			const overview: TFile | null = await this.projectRepository.createOverviewFile(project, payload);
 			if (!overview) throw new Error("Overview file couldn't be created.");
+
+			await MarkdownMetadataHelper.setIdentifier(this.plugin.app, this.settings, overview, identifier);
 
 			await this.plugin.app.workspace.getLeaf(true).openFile(overview);
 
